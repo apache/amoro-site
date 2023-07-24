@@ -1,14 +1,13 @@
 baseURL = ""
 languageCode = "en-us"
-title = "Arctic"
-theme = "iceberg-theme"
+title = "Amoro"
+theme = "amoro-theme"
 sectionPagesMenu = "main"
 
 [params]
   siteType = "landing-page"
   search = true
-  description = "Lakehouse management service."
-  latestVersions.iceberg = "0.5.0"
+  description = "Amoro is a Lakehouse management system built on open data lake formats."
   docsBaseURL = ""
 
 [[params.social]]
@@ -19,10 +18,6 @@ sectionPagesMenu = "main"
   title = "github"
   icon = "github"
   url = "https://github.com/Netease/arctic"
-[[params.social]]
-  title = "slack"
-  icon = "slack"
-  url = "https://join.slack.com/t/apache-iceberg/shared_invite/zt-1jyaasx2a-TxE4z_ubxDkTFS7UFDHnjw"  
 
 [outputFormats.SearchIndex]
 baseName = "landingpagesearch"
@@ -32,9 +27,6 @@ mediaType = "application/json"
 home = [ "HTML", "RSS", "SearchIndex" ]
 
 [menu]
-  versions = [
-    { name = "latest", url = "/docs/latest", weight = 1 },
-  ]
 
   topnav = [
     { name = "Quickstart", weight = 100 },

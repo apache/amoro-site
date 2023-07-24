@@ -27,13 +27,13 @@ Click on `Catalogs` in the sidebar, click on the `+` button under Catalog List t
 {{% tabcontent "spark-sql"  %}}
 
 To use the Iceberg Format, select `Type` as `Internal Catalog`, and choose `Table Format` as `Iceberg`.
-![Create catalog](../../../img/quickstart/create-catalog.png)
+![Create catalog](../images/quickstart/create-catalog.png)
 
 {{% /tabcontent %}}
 {{% tabcontent "spark-shell" %}}
 
 To use the Mixed-Iceberg Format, select `Type` as `Internal Catalog`, and choose `Table Format` as `Mixed-Iceberg`.
-![Create catalog](../../../img/quickstart/create-catalog.png)
+![Create catalog](../images/quickstart/create-catalog.png)
 
 {{% /tabcontent %}}
 {{% /codetabs %}}
@@ -55,13 +55,13 @@ Under the default configuration of AMS, there is an optimizer group named `local
 
 Click on `Resource` in the sidebar, select the `Optimizer Group` tab, and click the `scale-out` operation for group `local`.
 
-![Optimizers](../../../img/quickstart/ScaleOut.png)
+![Optimizers](../images/quickstart/ScaleOut.png)
 
 Set the concurrency of the optimizer to 1 and click `OK`.
 
 Then you can switch the tab to `Optimizer`, you can find the newly launched optimizer here.
 
-![Optimizers](../../../img/quickstart/Optimizing.png)
+![Optimizers](../images/quickstart/Optimizing.png)
 
 ## Demo setps
 
@@ -238,7 +238,7 @@ SELECT * FROM db.user ORDER BY id ;
 
 You will get the following execution result:
 
-![Upsert result](../../../img/quickstart/upsert-result.png)
+![Upsert result](../images/quickstart/upsert-result.png)
 
 Continue to send the following data into the socket channel:
 
@@ -252,7 +252,7 @@ DELETE|3|lee|2022-07-01 10:11:00
 
 Query the content of the test table by `Terminal` again, you will get the following result this time：
 
-![Upsert result2](../../../img/quickstart/upsert-result2.png)
+![Upsert result2](../images/quickstart/upsert-result2.png)
 
 ### Check self-optimizing
 
@@ -260,10 +260,10 @@ As new data is written to the table, Arctic will automatically trigger self-opti
 
 Click on `Tables` in the sidebar, select the test table to enter the table details page, switch to the `Optimizing` tab, where you can see all the self-optimizing tasks on the table.
 
-![Table optimized history](../../../img/quickstart/table-optimized-history.png)
+![Table optimized history](../images/quickstart/table-optimized-history.png)
 
 You can also enter the `Optimizing` page through the the sidebar to view the current optimizing status of all tables.
 
-![Table optimizing](../../../img/quickstart/table-optimizing.png)
+![Table optimizing](../images/quickstart/table-optimizing.png)
 
 For more information on Self-Optimizing, please refer to: [Self-optimizing](/docs/latest/concepts/self-optimizing)

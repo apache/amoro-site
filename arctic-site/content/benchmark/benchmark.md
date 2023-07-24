@@ -44,17 +44,17 @@ This test is based on CHbenchmark, which is a hybrid testing standard that integ
 
 - 22 OLAP workloads based on TCP-H, where Q15 was abandoned in this test due to its association with views and the lack of view rewriting.
 
-<img src="../../../img/chbenchmark/OLTP-OLAP.png" alt="OLTP AND OLAP" width="60%" height="60%">
+<img src="../images/chbenchmark/OLTP-OLAP.png" alt="OLTP AND OLAP" width="60%" height="60%">
 
 ### Prepare test data
 
 Based on the TPC-C, the raw data was constructed in MySQL for this test. The dataset includes a total of 12 tables, with the relationship between TPC-C and TPC-H tables shown in the following diagram:
 
-<img src="../../../img/chbenchmark/TPCC-TPCH.png" alt="TPCC AND TPCH" width="60%" height="60%">
+<img src="../images/chbenchmark/TPCC-TPCH.png" alt="TPCC AND TPCH" width="60%" height="60%">
 
 In addition, the relationship between the data sizes of each table is shown in the following table, where `w` represents the number of warehouses. It can be observed that the data sizes of intermediate tables such as `new_order` and `stock` are affected by the number of warehouses. Therefore, the data set size can be adjusted by controlling the number of warehouses during testing.
 
-<img src="../../../img/chbenchmark/chbenchmark.png" alt="chbenchmark" width="60%" height="60%">
+<img src="../images/chbenchmark/chbenchmark.png" alt="chbenchmark" width="60%" height="60%">
 
 In this test, the number of warehouses was set to 100, and the initial data set size in the MySQL database was approximately 10GB. The following table shows the number of data records for each table in the initial data set and the changes in the number of data records for each table after running the one-hour TPC-C test.
 
@@ -146,25 +146,25 @@ ORDER BY revenue DESC, o_entry_d;
 ## Test results
 
 ### Static result
-![arctic iceberg static performence](../../../img/chbenchmark/arctic-iceberg-100-warehouse-static-performence.png)
+![arctic iceberg static performence](../images/chbenchmark/arctic-iceberg-100-warehouse-static-performence.png)
 
 The figure above shows a performance comparison of Iceberg and Mixed-Iceberg table formats for querying static data. It can be seen from the figure that the query performance of the two table formats is similar.
 
 ### Dynamic result
 
-![Arctic Iceberg Hudi 100 warehouse performence with TPCC time](../../../img/chbenchmark/Arctic-Iceberg-Hudi_100_warehouse_performence_with_TPCC_time.png)
+![Arctic Iceberg Hudi 100 warehouse performence with TPCC time](../images/chbenchmark/Arctic-Iceberg-Hudi_100_warehouse_performence_with_TPCC_time.png)
 
 The figure above shows a performance comparison of Iceberg 、Mixed-Iceberg and Hudi table formats for querying dynamic data. The test recorded the results of running TPC-C for different time periods.
 
 The following are the specific results of each test group:
 
-![Arctic Iceberg Hudi 100 warehouse performence on TPCC 0-30 minutes](../../../img/chbenchmark/Arctic-Iceberg-Hudi_100_warehouse_performence_on_TPCC_0-30_minutes.png)
+![Arctic Iceberg Hudi 100 warehouse performence on TPCC 0-30 minutes](../images/chbenchmark/Arctic-Iceberg-Hudi_100_warehouse_performence_on_TPCC_0-30_minutes.png)
 
-![Arctic Iceberg Hudi 100 warehouse performence on TPCC 30-60 minutes](../../../img/chbenchmark/Arctic-Iceberg-Hudi_100_warehouse_performence_on_TPCC_30-60_minutes.png)
+![Arctic Iceberg Hudi 100 warehouse performence on TPCC 30-60 minutes](../images/chbenchmark/Arctic-Iceberg-Hudi_100_warehouse_performence_on_TPCC_30-60_minutes.png)
 
-![Arctic Iceberg Hudi 100 warehouse performence on TPCC 60-90 minutes](../../../img/chbenchmark/Arctic-Iceberg-Hudi_100_warehouse_performence_on_TPCC_60-90_minutes.png)
+![Arctic Iceberg Hudi 100 warehouse performence on TPCC 60-90 minutes](../images/chbenchmark/Arctic-Iceberg-Hudi_100_warehouse_performence_on_TPCC_60-90_minutes.png)
 
-![Arctic Iceberg Hudi 100 warehouse performence on TPCC 90-120 minutes](../../../img/chbenchmark/Arctic-Iceberg-Hudi_100_warehouse_performence_on_TPCC_90-120_minutes.png)
+![Arctic Iceberg Hudi 100 warehouse performence on TPCC 90-120 minutes](../images/chbenchmark/Arctic-Iceberg-Hudi_100_warehouse_performence_on_TPCC_90-120_minutes.png)
 
 ## Conclusion
 

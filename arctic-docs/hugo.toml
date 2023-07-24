@@ -2,8 +2,8 @@ baseURL = ""
 canonifyURLs = "true"
 relativeURLs = "true"
 languageCode = "en-us"
-title = "Arctic"
-theme= "iceberg-theme"
+title = "Amoro"
+theme= "amoro-theme"
 
 [params]
   siteType = "docs"
@@ -23,9 +23,6 @@ home = [ "HTML", "RSS", "SearchIndex" ]
 
 
 [menu]
-  versions = [
-    { name = "latest", url = "/docs/latest", weight = 1 },
-  ]
 
   topnav = [
     { name = "Quickstart", weight = 100 },

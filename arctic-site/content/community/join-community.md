@@ -10,7 +10,7 @@ Anyone interested in the Arctic project can join the community and contribute to
 
 This document describes the various roles within the community, including the responsibilities of the roles and the criteria for contribution
 
-# Roles and Responsibilities
+## Roles and Responsibilities
 Arctic community is composed of and operated by the following roles:
 - User
 - Contributor
