@@ -15,12 +15,11 @@ theme= "amoro-theme"
   disableHome=true
 
 [outputFormats.SearchIndex]
-baseName = "docssearch"
+baseName = "search"
 mediaType = "application/json"
 
 [outputs]
 home = [ "HTML", "RSS", "SearchIndex" ]
-
 
 [menu]
 
