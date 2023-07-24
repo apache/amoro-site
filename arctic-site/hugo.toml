@@ -1,0 +1,56 @@
+baseURL = ""
+languageCode = "en-us"
+title = "Arctic"
+theme = "iceberg-theme"
+sectionPagesMenu = "main"
+
+[params]
+  siteType = "landing-page"
+  search = true
+  description = "Lakehouse management service."
+  latestVersions.iceberg = "0.5.0"
+  docsBaseURL = ""
+
+[[params.social]]
+  title = "Community"
+  icon = "comments"
+  rel_url = "community"
+[[params.social]]
+  title = "github"
+  icon = "github"
+  url = "https://github.com/Netease/arctic"
+[[params.social]]
+  title = "slack"
+  icon = "slack"
+  url = "https://join.slack.com/t/apache-iceberg/shared_invite/zt-1jyaasx2a-TxE4z_ubxDkTFS7UFDHnjw"  
+
+[outputFormats.SearchIndex]
+baseName = "landingpagesearch"
+mediaType = "application/json"
+
+[outputs]
+home = [ "HTML", "RSS", "SearchIndex" ]
+
+[menu]
+  versions = [
+    { name = "latest", url = "/docs/latest", weight = 1 },
+  ]
+
+  topnav = [
+    { name = "Quickstart", weight = 100 },
+    { name = "Setup", parent = "Quickstart", url = "/quickstart-setup", weight = 101 },
+    { name = "Quick Demo", parent = "Quickstart", url = "/quick-demo", weight = 102 },
+    { name = "Docs", weight = 200 },
+    { name = "0.5.0", parent = "Docs", url = "/docs/latest", weight = 201 },
+    { name = "Benchmark", weight = 300 },
+    { name = "Benchmark Report", parent = "Benchmark", url = "/benchmark-report", weight = 301 },
+    { name = "Benchmark Guide", parent = "Benchmark", url = "/benchmark-guide", weight = 302 },
+    { name = "Download", url = "/download", weight = 400 },
+    { name = "Roadmap", url = "/roadmap", weight = 500 },
+    { name = "Community", weight = 600 },
+    { name = "Join Community", parent = "Community", url = "/join-community", weight = 601 },
+    { name = "How to contribute", parent = "Community", url = "/how-to-contribute", weight = 602 },
+  ]
+
+[markup.goldmark.renderer]
+unsafe= true
