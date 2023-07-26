@@ -9,15 +9,45 @@ sectionPagesMenu = "main"
   search = true
   description = "Amoro is a Lakehouse management system built on open data lake formats."
   docsBaseURL = ""
+  githuburl = "https://github.com/Netease/arctic"
 
 [[params.social]]
-  title = "Community"
-  icon = "comments"
-  rel_url = "community"
+  title = "Github"
+  icon = "github-fill"
+  url = "https://github.com/NetEase/arctic"
 [[params.social]]
-  title = "github"
-  icon = "github"
-  url = "https://github.com/Netease/arctic"
+  title = "Issue Tracking"
+  icon = "slack-square-fill"
+  url = "https://github.com/NetEase/arctic/issues"
+[[params.social]]
+  title = "Wechat"
+  icon = "wechat-fill"
+  url = "javascript:void();"
+
+[[params.features]]
+  title = "Self-managed"
+  desc = "Automatically compact small files and change files, regularly delete expired data to ensure the quality of table queries, and reduce system costs."
+  icon = "Self-managed"
+[[params.features]]
+  title = "Multiple Formats"
+  desc = "Support different table formats to meet different scenario requirements and provide them with unified management capabilities."
+  icon = "Multiple-Formats"
+[[params.features]]
+  title = "Catalog Service"
+  desc = "Provide a unified metadata management service for all computing engines, which can also be combined with existing metadata services."
+  icon = "Catalog-Service"
+[[params.features]]
+  title = "Rich Plugins"
+  desc = "Support different table formats to meet different scenario requirements and provide them with unified management capabilities."
+  icon = "Rich-Plugins"
+[[params.features]]
+  title = "Management tools"
+  desc = "Visual management tools provide rich monitoring and management capabilities to help users get started easily."
+  icon = "Management-tools"
+[[params.features]]
+  title = "Infrastructure Idependent"
+  desc = "Can be easily deployed and used in private environments, cloud environments, hybrid cloud environments, and multi-cloud environments."
+  icon = "Infrastructure-Idependent"
 
 [outputFormats.SearchIndex]
 baseName = "landingpagesearch"
