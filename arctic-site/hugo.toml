@@ -60,18 +60,18 @@ home = [ "HTML", "RSS", "SearchIndex" ]
 
   topnav = [
     { name = "Quickstart", weight = 100 },
-    { name = "Setup", parent = "Quickstart", url = "/quickstart-setup", weight = 101 },
-    { name = "Quick Demo", parent = "Quickstart", url = "/quick-demo", weight = 102 },
+    { name = "Setup", parent = "Quickstart", url = "/quickstart-setup/", weight = 101 },
+    { name = "Quick Demo", parent = "Quickstart", url = "/quick-demo/", weight = 102 },
     { name = "Docs", weight = 200 },
-    { name = "0.5.0", parent = "Docs", url = "/docs/latest", weight = 201 },
+    { name = "0.5.0", parent = "Docs", url = "/docs/latest/", weight = 201 },
     { name = "Benchmark", weight = 300 },
-    { name = "Benchmark Report", parent = "Benchmark", url = "/benchmark-report", weight = 301 },
-    { name = "Benchmark Guide", parent = "Benchmark", url = "/benchmark-guide", weight = 302 },
-    { name = "Download", url = "/download", weight = 400 },
-    { name = "Roadmap", url = "/roadmap", weight = 500 },
+    { name = "Benchmark Report", parent = "Benchmark", url = "/benchmark-report/", weight = 301 },
+    { name = "Benchmark Guide", parent = "Benchmark", url = "/benchmark-guide/", weight = 302 },
+    { name = "Download", url = "/download/", weight = 400 },
+    { name = "Roadmap", url = "/roadmap/", weight = 500 },
     { name = "Community", weight = 600 },
-    { name = "Join Community", parent = "Community", url = "/join-community", weight = 601 },
-    { name = "How to contribute", parent = "Community", url = "/how-to-contribute", weight = 602 },
+    { name = "Join Community", parent = "Community", url = "/join-community/", weight = 601 },
+    { name = "How to contribute", parent = "Community", url = "/how-to-contribute/", weight = 602 },
   ]
 
 [markup.goldmark.renderer]
