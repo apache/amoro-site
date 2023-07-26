@@ -14,7 +14,7 @@
 <!-- - limitations under the License.-->
 {{ if not .Params.disableSidebar }}
 <div class="sidebar markdown-body">
-    <div id="full">
+    <div id="sidebar-full">
         {{ partial "search.html" . }}
         {{ partial "search-results.html" . }}
         <hr>
@@ -29,15 +29,11 @@
                 <li>
 <!--                    Use this line below if you want the active section in the sidebar to be highlighted-->
 <!--                    <a id="{{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}" href="#">-->
-                    <a class="chevron-toggle {{if not (or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .)) }} collapsed{{end}}" data-toggle="collapse" data-parent="full" href="#{{ $validateName }}">
-                        <div class="fa-caret">
-                        <i class="fa fa-caret-right"></i>
-                        <i class="fa fa-caret-down"></i>
-                        </div>
+                    <a class="top-menu chevron-toggle {{if not (or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .)) }} collapsed{{end}}" data-toggle="collapse" href="#{{ $validateName }}">
                         <span>{{ .Name }}{{ .Post }}</span>
                     </a>
                 </li>
-        <div id="{{ $validateName }}" class="{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}collapse in{{ else }}collapse{{end}}">
+        <div id="{{ $validateName }}" class="{{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}collapse in{{ else }}collapse in{{end}}">
                 <ul class="sub-menu">
                     {{ range .Children }}
                         <li>

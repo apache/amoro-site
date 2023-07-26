@@ -21,8 +21,8 @@ section {
 
 topsection {
     display: flex;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
 body,
@@ -203,7 +203,7 @@ p.copyright {
 }
 
 .top-navbar-logo {
-    height: 25px;
+    height: 30px;
     vertical-align: top;
 }
 
@@ -345,11 +345,12 @@ i {
 }
 
 .chevron-toggle .fa-caret-down,
-.chevron-toggle.collapsed .fa-caret-right {
+.chevron-toggle.collapsed .fa-caret-down {
     display: inherit;
 }
+
 .chevron-toggle .fa-caret-right,
-.chevron-toggle.collapsed .fa-caret-down {
+.chevron-toggle.collapsed .fa-caret-right {
     display: none;
 }
 
@@ -427,6 +428,7 @@ i {
     margin-bottom: 0;
     height: 50px;
 }
+
 .navbar-fixed-top {
     position: sticky;
     display: flex;
@@ -597,20 +599,26 @@ hr {
 }
 
 div#full ul {
+    padding-left: 2em;
+    padding-right: 0em;
+}
+
+div#sidebar-full ul {
     padding-left: 0em;
     padding-right: 0em;
 }
 
-div#full ul.sub-menu {
-    padding-left: 1em;
+div#sidebar-full ul.sub-menu {
+    padding-left: 30px;
 }
 
 a.top-menu {
     padding-left: 10px;
+    font-weight: bold;
 }
 
 .navbar-brand {
-    padding: 15px 0px;
+    padding: 10px 0px;
 }
 
 @media screen and (max-width: 720px) {
