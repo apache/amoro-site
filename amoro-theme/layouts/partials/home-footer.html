@@ -1,0 +1,20 @@
+<div id="home-footer">
+  <div class="content">
+    <div class="title">Join Community</div>
+    <div class="btns">
+      {{range .Site.Params.social}}
+      {{if eq .title "Wechat"}}
+      <span class="btn btn-primary wechat-btn">
+        <span class="img-title"><img class="" src="{{ .Site.BaseURL }}/img/{{ .icon }}.png"></img>{{.title}}</span>
+        <span class="wechat-img"><img src="{{ .Site.BaseURL }}/img/wechat-group.png"/></span>
+      </span>
+      {{else}}
+      <a target="_blank" href="{{ .url }}" class="btn btn-primary">
+        <span class="img-title"><img class="" src="{{ .Site.BaseURL }}/img/{{ .icon }}.png"></img>{{.title}}</span>
+      </a>
+      {{end}}
+
+      {{end}}
+    </div>
+  </div>
+</div>
