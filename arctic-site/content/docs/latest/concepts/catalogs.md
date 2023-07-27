@@ -18,13 +18,13 @@ ON (c.ID = o.CUSTOMER_ID)
 
 过去数据湖围绕 HMS 来管理元数据，遗憾的是 HMS 不支持 multi-catalog，导致引擎在数据湖上的功能存在一定限制，比如有些用户希望用 spark 通过指定 catalog 名称在不同 Hive 集群之间做联邦计算，需要用户在上层重构一套 Hive catalog plugin。其次，数据湖格式正在从 Hive 单极走向 Iceberg，Delta 以及 Hudi 多家争鸣的格局，新型的数据湖 format 对公有云更加友好，也会促进数据湖上云的进程，在这些背景下，需要一套面向 multi-catalog 的管理系统帮助用户治理不同环境，不同 format 的数据湖。
 
-用户可以在 Arctic 中为不同环境，不同集群以及不同的 table format 创建 catalog，再利用 Flink、Spark、Trino 的 multi-catalog 功能实现多集群、多格式的联邦计算。同时，配置在 catalog 中的属性可以被所有表和用户共享，避免了重复设置。Arctic 通过 multi-catalog 的设计，为数据平台提供元数据中心的支持。
+用户可以在 Amoro 中为不同环境，不同集群以及不同的 table format 创建 catalog，再利用 Flink、Spark、Trino 的 multi-catalog 功能实现多集群、多格式的联邦计算。同时，配置在 catalog 中的属性可以被所有表和用户共享，避免了重复设置。Amoro 通过 multi-catalog 的设计，为数据平台提供元数据中心的支持。
 
-AMS 和 HMS 协同使用时，相当于使用 HMS 作为 AMS 的存储底座，结合 [native Iceberg format](table-formats.md#iceberg-format)，用户可以在不引入任何 Arctic 依赖的情况下，使用 AMS 的 multi-catalog 管理功能。
+AMS 和 HMS 协同使用时，相当于使用 HMS 作为 AMS 的存储底座，结合 [native Iceberg format](table-formats.md#iceberg-format)，用户可以在不引入任何 Amoro 依赖的情况下，使用 AMS 的 multi-catalog 管理功能。
 
 ## How to use
 
-在 Arctic v0.4 之后，引入了 catalog 管理功能，所有表的创建都在 catalog 下完成，用户可以在 catalogs 模块中创建，编辑和删除 catalog，创建 catalog 时需要配置 metastore，table format 以及环境配置信息，了解更多请参阅：[Managing catalogs](../guides/managing-catalogs.md) 
+在 Amoro v0.4 之后，引入了 catalog 管理功能，所有表的创建都在 catalog 下完成，用户可以在 catalogs 模块中创建，编辑和删除 catalog，创建 catalog 时需要配置 metastore，table format 以及环境配置信息，了解更多请参阅：[Managing catalogs](../guides/managing-catalogs.md) 
 
 ???+ 注意
 
@@ -33,9 +33,9 @@ AMS 和 HMS 协同使用时，相当于使用 HMS 作为 AMS 的存储底座，�
 在实践中，推荐按照下面的方式创建 catalog：
 
 - 如果希望和 HMS 协同使用，Metastore 选择 Hive，format 根据需求选择 Mixed Hive 或 Iceberg
-- 如果希望使用 Arctic 提供的 Mixed Iceberg format，Metastore 选择 Arctic
+- 如果希望使用 Amoro 提供的 Mixed Iceberg format，Metastore 选择 Amoro
 
-目前 Arctic catalog 创建时只能选择一种 table format，这主要考虑到引擎在使用 catalog 时会解析成特定的数据源，一对一的形式是符合直觉的，另一方面，直接使用 HMS 时可以突破这个限制，比如 Iceberg 社区提供的 SessionCatalog 实现，未来 Arctic 会考虑为用户提供更加灵活的管理方式。
+目前 Amoro catalog 创建时只能选择一种 table format，这主要考虑到引擎在使用 catalog 时会解析成特定的数据源，一对一的形式是符合直觉的，另一方面，直接使用 HMS 时可以突破这个限制，比如 Iceberg 社区提供的 SessionCatalog 实现，未来 Amoro 会考虑为用户提供更加灵活的管理方式。
 
 ## Future work
 

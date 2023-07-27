@@ -5,7 +5,7 @@ disableSidebar: true
 ---
 # Roadmap
 
-This roadmap displays the workings that the Arctic community plans to complete in 2023 and their priorities. Each item is associated with a Github issue, where you can learn about its specific design and latest developments.
+This roadmap displays the workings that the Amoro community plans to complete in 2023 and their priorities. Each item is associated with a Github issue, where you can learn about its specific design and latest developments.
 
 # Priority 1
 

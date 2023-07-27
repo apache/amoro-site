@@ -25,7 +25,7 @@ In addition, when defining a catalog, you also need to select the table format u
 You can create a catalog in the AMS frontend:
 ![create_catalog](../images/admin/create_catalog.png)
 
-### Configure baasic information
+### Configure basic information
 
 - name: catalog name, only numbers, letters, _, - , starting with letters are supported (lower case letters are recommended)
 - type: Internal Catalog or External Catalog

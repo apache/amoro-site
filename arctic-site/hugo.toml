@@ -9,16 +9,16 @@ sectionPagesMenu = "main"
   search = true
   description = "Amoro is a Lakehouse management system built on open data lake formats."
   docsBaseURL = ""
-  githuburl = "https://github.com/Netease/arctic"
+  githuburl = "https://github.com/Netease/amoro"
 
 [[params.social]]
   title = "Github"
   icon = "github-fill"
-  url = "https://github.com/NetEase/arctic"
+  url = "https://github.com/NetEase/amoro"
 [[params.social]]
   title = "Issue Tracking"
   icon = "slack-square-fill"
-  url = "https://github.com/NetEase/arctic/issues"
+  url = "https://github.com/NetEase/amoro/issues"
 [[params.social]]
   title = "Wechat"
   icon = "wechat-fill"
@@ -38,7 +38,7 @@ sectionPagesMenu = "main"
   icon = "Catalog-Service"
 [[params.features]]
   title = "Rich Plugins"
-  desc = "Support different table formats to meet different scenario requirements and provide them with unified management capabilities."
+  desc = "Offers a wide selection of external plugins to meet different scenarios such as automatic data optimizing, data analysis."
   icon = "Rich-Plugins"
 [[params.features]]
   title = "Management tools"

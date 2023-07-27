@@ -6,7 +6,7 @@ disableSidebar: true
 
 # Download
 
-Please choose an Arctic version to download from the blowing tables, the latest release is recommended.
+Please choose an Amoro version to download from the blowing tables, the latest release is recommended.
 
 
 ## The latest release

@@ -21,8 +21,8 @@ section {
 
 topsection {
     display: flex;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 body,
@@ -203,7 +203,7 @@ p.copyright {
 }
 
 .top-navbar-logo {
-    height: 30px;
+    height: 25px;
     vertical-align: top;
 }
 
@@ -601,6 +601,16 @@ hr {
 div#full ul {
     padding-left: 2em;
     padding-right: 0em;
+}
+
+#sidebar-full{
+	height: 100%;
+	overflow: hidden;
+}
+
+#sidebar-full .sidebar-menu{
+	overflow: auto;
+	height: calc(100% - 80px);
 }
 
 div#sidebar-full ul {

@@ -5,15 +5,15 @@ disableSidebar: true
 ---
 # Setup
 
-This guilde describes two ways to deploy the Arctic demo environment: using docke-compose or release packages. If you want to deploy by compiling the source code, please refer to [Deployment](/docs/latest/deployment).
+This guide describes two ways to deploy the Amoro demo environment: using docke-compose or release packages. If you want to deploy by compiling the source code, please refer to [Deployment](/docs/latest/deployment/).
 
 ## Setup from Docker-Compose
 
-The fastest way to deploy a [Quick Demo](/quick-demo) environment is to use docker-compose.
+The fastest way to deploy a [Quick Demo](/quick-demo/) environment is to use docker-compose.
 
 ### Requirements
 
-Before starting to deploy Arctic based on Docker, please make sure that you have installed the docker-compose environment on your host. For information on how to install Docker, please refer to: [Install Docker](https://docs.docker.com/get-docker/).
+Before starting to deploy Amoro based on Docker, please make sure that you have installed the docker-compose environment on your host. For information on how to install Docker, please refer to: [Install Docker](https://docs.docker.com/get-docker/).
 
 {{< hint info >}}
 It is recommended to perform the operation on Linux or MacOS. If you are using a Windows system, you can consider using WSL2. For information on how to enable WSL2 and install Docker, please refer to [Windows Installation](https://docs.docker.com/desktop/install/windows-install/).
@@ -23,11 +23,11 @@ After completing the Docker installation, please make sure that the docker-compo
 
 ### Bring up demo cluster
 
-Before starting, please prepare a clean directory as the workspace for Arctic Demo deployment, and obtain the Arctic demo deployment script:
+Before starting, please prepare a clean directory as the workspace for Amoro Demo deployment, and obtain the Amoro demo deployment script:
 
 ```shell
-cd <ARCTIC-WORKSPACE>
-wget https://raw.githubusercontent.com/NetEase/arctic/master/docker/demo-cluster.sh
+cd <AMORO-WORKSPACE>
+wget https://raw.githubusercontent.com/NetEase/amoro/master/docker/demo-cluster.sh
 ```
 
 Execute the following shell command to launch a demo cluster using docker-compose:
@@ -54,7 +54,7 @@ e76597faa82b   ams                             Up About a minute
 
 ## Setup from binary release
 
-If it is not convenient to install Docker and related tools, you can also deploy the Arctic demo cluster directly through the Arctic release package.
+If it is not convenient to install Docker and related tools, you can also deploy the Amoro demo cluster directly through the Amoro release package.
 
 ### Requirements
 
@@ -63,22 +63,22 @@ Please make sure that there is no `HADOOP_HOME` or `HADOOP_CONF_DIR` in the envi
 
 ### Setup AMS
 
-Prepare a clean directory as the workspace for the Arctic demo cluster, and execute the following command to download Arctic and start AMS:
+Prepare a clean directory as the workspace for the Amoro demo cluster, and execute the following command to download Amoro and start AMS:
 
 ```shell
-cd <ARCTIC-WORKSPACE>
+cd <AMORO-WORKSPACE>
 
-# Rplace version value with the latest Arctic version if needed
-export ARCTIC_VERSION=0.5.0
+# Rplace version value with the latest Amoro version if needed
+export AMORO_VERSION=0.5.0
 
 # Download the binary package of AMS
-wget https://github.com/NetEase/arctic/releases/download/v${ARCTIC_VERSION}/arctic-${ARCTIC_VERSION}-bin.zip
+wget https://github.com/NetEase/amoro/releases/download/v${AMORO_VERSION}/amoro-${AMORO_VERSION}-bin.zip
 
 # Unzip the pakage
-unzip arctic-${ARCTIC-VERSION}-bin.zip
+unzip amoro-${AMORO-VERSION}-bin.zip
 
 # Start AMS by script
-cd arctic-${ARCTIC-VERSION} && ./bin/ams.sh start
+cd amoro-${AMORO-VERSION} && ./bin/ams.sh start
 ```
 
 Access [http://127.0.0.1:1630/](http://127.0.0.1:1630/) with a browser and log in to the system with `admin/admin`. If you can log in successfully, it means that the deployment of AMS is successful.
@@ -88,10 +88,10 @@ Access [http://127.0.0.1:1630/](http://127.0.0.1:1630/) with a browser and log i
 Before starting the Quick Demo, you also need to deploy the Flink execution environment. Execute the following command to download the Flink binary distribution package:
 
 ```shell
-cd <ARCTIC-WORKSPACE>
+cd <AMORO-WORKSPACE>
 
-# Rplace version value with the latest Arctic version if needed
-ARCTIC_VERSION=0.5.0
+# Rplace version value with the latest Amoro version if needed
+AMORO_VERSION=0.5.0
 ICEBERG_VERSION=1.1.0
 FLINK_VERSION=1.15.3
 FLINK_MAJOR_VERSION=1.15
@@ -99,7 +99,7 @@ FLINK_HADOOP_SHADE_VERSION=2.7.5
 APACHE_FLINK_URL=archive.apache.org/dist/flink
 MAVEN_URL=https://repo1.maven.org/maven2
 FLINK_CONNECTOR_URL=${MAVEN_URL}/org/apache/flink
-ARCTIC_CONNECTOR_URL=${MAVEN_URL}/com/netease/arctic
+AMORO_CONNECTOR_URL=${MAVEN_URL}/com/netease/amoro
 ICEBERG_CONNECTOR_URL=${MAVEN_URL}/org/apache/iceberg
 
 # Download FLink binary package
@@ -110,14 +110,14 @@ tar -zxvf flink-${FLINK_VERSION}-bin-scala_2.12.tgz
 cd flink-${FLINK_VERSION}
 # Download Flink Hadoop dependency
 wget ${FLINK_CONNECTOR_URL}/flink-shaded-hadoop-2-uber/${HADOOP_VERSION}-10.0/flink-shaded-hadoop-2-uber-${HADOOP_VERSION}-10.0.jar
-# Download Flink Arctic Connector
-wget ${ARCTIC_CONNECTOR_URL}/arctic-flink-runtime-${FLINK_MAJOR_VERSION}/${ARCTIC_VERSION}/arctic-flink-runtime-${FLINK_MAJOR_VERSION}-${ARCTIC_VERSION}.jar
+# Download Flink Aoro Connector
+wget ${AMORO_CONNECTOR_URL}/amoro-flink-runtime-${FLINK_MAJOR_VERSION}/${AMORO_VERSION}/amoro-flink-runtime-${FLINK_MAJOR_VERSION}-${AMORO_VERSION}.jar
 # Download Flink Iceberg Connector
 wget ${FLINK_CONNECTOR_URL}/iceberg-flink-runtime-${FLINK_MAJOR_VERSION}/${ICEBERG_VERSION}/iceberg-flink-runtime-${FLINK_MAJOR_VERSION}-${ICEBERG_VERSION}.jar
 
 # Copy the necessary JAR files to the lib directory
 mv flink-shaded-hadoop-2-uber-${HADOOP_VERSION}-10.0.jar lib
-mv arctic-flink-runtime-${FLINK_MAJOR_VERSION}-${ARCTIC_VERSION}.jar lib
+mv amoro-flink-runtime-${FLINK_MAJOR_VERSION}-${AMORO_VERSION}.jar lib
 mv iceberg-flink-runtime-${FLINK_MAJOR_VERSION}-${ICEBERG_VERSION}.jar lib
 cp examples/table/ChangelogSocketExample.jar lib
 ```

@@ -5,9 +5,9 @@ disableSidebar: true
 ---
 # Quick Demo
 
-This guide outlines the basic process of using Arctic, allowing you to quickly experience its core features. You can choose to use either the `Iceberg Format` or the `Mixed-Iceberg Format` to complete the entire process. 
+This guide outlines the basic process of using Amoro, allowing you to quickly experience its core features. You can choose to use either the `Iceberg Format` or the `Mixed-Iceberg Format` to complete the entire process. 
 
-If you are more interested in the `Mixed-Hive Format`, you can refer to: [Mixed-Hive Format](/docs/latest/mixed-hive). For specific information on the different formats supported by Arctic, please refer to: [Table Format](/docs/latest/format-overview).
+If you are more interested in the `Mixed-Hive Format`, you can refer to: [Mixed-Hive Format](/docs/latest/mixed-hive/). For specific information on the different formats supported by Amoro, please refer to: [Table Format](/docs/latest/format-overview/).
 
 Before starting the quick demo, some steps are required to prepare the environment. Here are two ways to complete the necessary preparation:
 
@@ -16,9 +16,13 @@ Before starting the quick demo, some steps are required to prepare the environme
 
 ## Prepare steps
 
-### Create catalog
+### Create optimizer group
 
 Open [http://localhost:1630](http://localhost:1630) in a browser, enter `admin/admin` to log in to the dashboard.
+
+
+### Create catalog
+
 Click on `Catalogs` in the sidebar, click on the `+` button under Catalog List to create a test catalog, and name it to `demo_catalog`:
 
 {{% codetabs "CreateCatalog" %}}
@@ -26,13 +30,13 @@ Click on `Catalogs` in the sidebar, click on the `+` button under Catalog List t
 {{% addtab "Mixed-Iceberg Format" "spark-queries" "spark-shell" %}}
 {{% tabcontent "spark-sql"  %}}
 
-To use the Iceberg Format, select `Type` as `Internal Catalog`, and choose `Table Format` as `Iceberg`.
+To use the Iceberg Format, select `Type` as `Internal Catalog`, and choose `Iceberg` as `Table Format`.
 ![Create catalog](../images/quickstart/create-catalog.png)
 
 {{% /tabcontent %}}
 {{% tabcontent "spark-shell" %}}
 
-To use the Mixed-Iceberg Format, select `Type` as `Internal Catalog`, and choose `Table Format` as `Mixed-Iceberg`.
+To use the Mixed-Iceberg Format, select `Type` as `Internal Catalog`, and choose `Mixed-Iceberg` as `Table Format`.
 ![Create catalog](../images/quickstart/create-catalog.png)
 
 {{% /tabcontent %}}
@@ -256,7 +260,7 @@ Query the content of the test table by `Terminal` again, you will get the follow
 
 ### Check self-optimizing
 
-As new data is written to the table, Arctic will automatically trigger self-optimizing on the table.
+As new data is written to the table, Amoro will automatically trigger self-optimizing on the table.
 
 Click on `Tables` in the sidebar, select the test table to enter the table details page, switch to the `Optimizing` tab, where you can see all the self-optimizing tasks on the table.
 
