@@ -611,6 +611,7 @@ div#full ul {
 #sidebar-full .sidebar-menu{
 	overflow: auto;
 	height: calc(100% - 80px);
+    margin-top: 10px;
 }
 
 div#sidebar-full ul {
