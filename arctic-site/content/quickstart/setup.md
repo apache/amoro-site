@@ -113,7 +113,7 @@ wget ${FLINK_CONNECTOR_URL}/flink-shaded-hadoop-2-uber/${HADOOP_VERSION}-10.0/fl
 # Download Flink Aoro Connector
 wget ${AMORO_CONNECTOR_URL}/amoro-flink-runtime-${FLINK_MAJOR_VERSION}/${AMORO_VERSION}/amoro-flink-runtime-${FLINK_MAJOR_VERSION}-${AMORO_VERSION}.jar
 # Download Flink Iceberg Connector
-wget ${FLINK_CONNECTOR_URL}/iceberg-flink-runtime-${FLINK_MAJOR_VERSION}/${ICEBERG_VERSION}/iceberg-flink-runtime-${FLINK_MAJOR_VERSION}-${ICEBERG_VERSION}.jar
+wget ${ICEBERG_CONNECTOR_URL}/iceberg-flink-runtime-${FLINK_MAJOR_VERSION}/${ICEBERG_VERSION}/iceberg-flink-runtime-${FLINK_MAJOR_VERSION}-${ICEBERG_VERSION}.jar
 
 # Copy the necessary JAR files to the lib directory
 mv flink-shaded-hadoop-2-uber-${HADOOP_VERSION}-10.0.jar lib

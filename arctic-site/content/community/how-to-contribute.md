@@ -19,4 +19,4 @@ In the process of using Amoro, if you have any questions, suggestions, or improv
 
 ## Contributing Guide
 
-See [Contributing](/contributing) for more details on how to contribute to Amoro.
+See [Contributing](https://github.com/NetEase/amoro/blob/master/CONTRIBUTING.md) for more details on how to contribute to Amoro.

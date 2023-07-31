@@ -22,7 +22,7 @@ Open [http://localhost:1630](http://localhost:1630) in a browser, enter `admin/a
 
 Click on `Catalogs` in the sidebar, choose `Optimizer Groups` annd click `Add Group` button to create a new group befre creating catalog:
 
-![Create groip](../images/quickstart/create_group.png)
+![Create groip](../images/quickstart/create-group.png)
 
 ### Create catalog
 
@@ -33,13 +33,13 @@ Click on `Optimizing` in the sidebar, click on the `+` button under Catalog List
 {{% tabcontent "spark-sql"  %}}
 
 To use the Iceberg Format, select `Type` as `Internal Catalog`, and choose `Iceberg` as `Table Format`.
-![Create catalog](../images/quickstart/create-catalog.png)
+![Create iceberg catalog](../images/quickstart/create-iceberg-catalog.png)
 
 {{% /tabcontent %}}
 {{% tabcontent "spark-shell" %}}
 
 To use the Mixed-Iceberg Format, select `Type` as `Internal Catalog`, and choose `Mixed-Iceberg` as `Table Format`.
-![Create catalog](../images/quickstart/create-catalog.png)
+![Create mixed catalog](../images/quickstart/create-mixed-catalog.png)
 
 {{% /tabcontent %}}
 {{% /codetabs %}}
@@ -59,13 +59,17 @@ If you deployed the demo environment through binary release:
 
 Click on `Optimizing` in the sidebar, select the `Optimizer Group` tab, and click the `scale-out` operation for group `local`.
 
-![Optimizers](../images/quickstart/ScaleOut.png)
+![Scale out optimizer](../images/quickstart/scale-out-optimizer.png)
 
 Set the concurrency of the optimizer to 1 and click `OK`.
 
 Then you can switch the tab to `Optimizer`, you can find the newly launched optimizer here.
 
-![Optimizers](../images/quickstart/Optimizing.png)
+![Optimizers](../images/quickstart/optimizers.png)
+
+{{< hint info >}}
+You may need to wait for up to 30 seconds for the optimizer to register with AMS.
+{{< /hint >}}
 
 ## Demo setps
 
@@ -83,8 +87,7 @@ USE db;
 CREATE TABLE IF NOT EXISTS user (
     id INT,
     name string,
-    ts TIMESTAMP,
-    PRIMARY KEY(id)
+    ts TIMESTAMP
 ) USING iceberg 
 PARTITIONED BY (days(ts));
 
@@ -93,7 +96,7 @@ INSERT OVERWRITE user VALUES
 (2, "frank", timestamp("2022-07-02 09:11:00")),
 (3, "lee", timestamp("2022-07-02 10:11:00"));
 
-SELECT * FROM user ;
+SELECT * FROM user;
 ```
 {{% /tabcontent %}}
 {{% tabcontent "spark-shell" %}}
@@ -113,7 +116,7 @@ INSERT OVERWRITE user VALUES
 (2, "frank", timestamp("2022-07-02 09:11:00")),
 (3, "lee", timestamp("2022-07-02 10:11:00"));
 
-SELECT * FROM user ;
+SELECT * FROM user;
 ```
 {{% /tabcontent %}}
 {{% /codetabs %}}
@@ -150,10 +153,25 @@ Enter the following SQL statements one by one to start the Flink ingestion job s
 -- Create Flink catalog, replace the URL with 'thrift://localhost:1260/demo_catalog' you deployed the demo environment through binary release
 CREATE CATALOG iceberg_catalog WITH (
   'type' = 'iceberg',
-  'catalog-type' = 'custom',
-  'catalog-impl' = 'com.netease.arctic.catalog.IcebergInternalCatalog',
-  'metastore.url'='thrift://ams:1260/demo_catalog'
+  'catalog-impl' = 'org.apache.iceberg.rest.RESTCatalog',
+  'uri'='http://127.0.0.1:1630/api/iceberg/rest',
+  'warehouse'='local_catalog'
 );
+
+-- Recreate table with Flink as Only Flink support primary key for iceberg format table
+DROP TABLE `iceberg_catalog`.`db`.`user`;
+
+CREATE TABLE IF NOT EXISTS `iceberg_catalog`.`db`.`user` (
+    id INT,
+    name string,
+    ts TIMESTAMP_LTZ,
+    PRIMARY KEY(id) NOT ENFORCED
+) with ('format-version'='2', 'write.upsert.enabled'='true');
+
+INSERT INTO iceberg_catalog.`db`.`user` (id, name, ts) VALUES 
+(1, 'eric', CAST('2022-07-01 12:32:00' AS TIMESTAMP)),
+(2, 'frank', CAST('2022-07-02 09:11:00' AS TIMESTAMP)),
+(3, 'lee', CAST('2022-07-02 10:11:00' AS TIMESTAMP));
 
 -- Create CDC socket source table
 CREATE TABLE cdc_source(
@@ -237,7 +255,7 @@ INSERT|6|mars|2022-07-02 11:19:10
 Wait for at least 10 seconds (depending on the checkpoint interval configured in flink-conf.yaml), open the `Dashboard` and go to the `Terminal` page, then execute:
 
 ```sql
-SELECT * FROM db.user ORDER BY id ;
+SELECT * FROM db.user ORDER BY id;
 ```
 
 You will get the following execution result:
@@ -264,10 +282,10 @@ As new data is written to the table, Amoro will automatically trigger self-optim
 
 Click on `Tables` in the sidebar, select the test table to enter the table details page, switch to the `Optimizing` tab, where you can see all the self-optimizing tasks on the table.
 
-![Table optimized history](../images/quickstart/table-optimized-history.png)
+![Table optimizing history](../images/quickstart/table-optimizing-history.png)
 
 You can also enter the `Optimizing` page through the the sidebar to view the current optimizing status of all tables.
 
-![Table optimizing](../images/quickstart/table-optimizing.png)
+![Table optimizing status](../images/quickstart/table-optimizing-status.png)
 
 For more information on Self-Optimizing, please refer to: [Self-optimizing](/docs/latest/concepts/self-optimizing)
