@@ -17,32 +17,32 @@
   - under the License.
   -->
 
-# Arctic Documentation Site
+# Amoro Documentation Site
 
-This repository contains the documentation for [Arctic](https://github.com/NetEase/arctic).
-It's built with [Hugo](https://gohugo.io/) and hosted at https://arctic.netease.com.
+This repository contains the documentation for [Amoro](https://github.com/NetEase/amoro).
+It's built with [Hugo](https://gohugo.io/) and hosted at https://amoro.netease.com.
 
 # Structure
 
-The Arctic documentation site is actually constructed from two hugo sites. The first, is the site page. The second site, 
-is the documentation site which contains the full Arctic documentation. The site page and
-documentation sites are completely self-contained in the `./arctic-site` and `./arctic-docs` directories, respectively.
+The Amoro documentation site is actually constructed from two hugo sites. The first, is the site page. The second site, 
+is the documentation site which contains the full Amoro documentation. The site page and
+documentation sites are completely self-contained in the `./amoro-site` and `./amoro-docs` directories, respectively.
 
 ## Relationship to the Arctic Repository
 
 All markdown pages that are specific to an Arctic version are maintained in the Arctic repository. All pages common across all version
 releases are kept here in the Arctic-docs repo.
 
-`NetEase/arctic`
-- The `docs` folder in the [Arctic repository](https://github.com/NetEase/arctic) contains all the markdown docs used by the **versioned** docs site.
+`NetEase/amoro`
+- The `docs` folder in the [Amoro repository](https://github.com/NetEase/amoro) contains all the markdown docs used by the **versioned** docs site.
 
-`NetEase/arctic-docs`
-- The `arctic-docs/content/docs` folder is the target folder when copying the docs over during a version release
-- The `arctic-site/content/common` folder is where you can find the common markdown files shared across all versions
+`NetEase/amoro-docs`
+- The `amoro-docs/content/docs` folder is the target folder when copying the docs over during a version release
+- The `amoro-site/content/common` folder is where you can find the common markdown files shared across all versions
 
 During each new release, the release manager will:
 1. Create a branch in this repo from main named for the release version
-2. Copy the contents under `docs` in the iceberg repo to `./arctic-docs/content/docs` in the **release** branch
+2. Copy the contents under `docs` in the iceberg repo to `./amoro-docs/content/docs` in the **release** branch
 3. Update the latest branch HEAD to point to the release branch HEAD
 
 # How to Contribute
@@ -63,31 +63,31 @@ PRs should be opened against the iceberg repo, not the iceberg-docs repo.
 
 ## Reporting Issues
 
-All issues related to the doc website should still be submitted to the [Arctic repository](https://github.com/NetEase/arctic).
+All issues related to the doc website should still be submitted to the [Amoro repository](https://github.com/NetEase/amoro).
 The GitHub Issues feature of this repository is disabled.
 
 ## Running Locally
 
 Clone this repository to run the website locally:
 ```shell
-git clone git@github.com:NetEase/arctic-docs.git
-cd arctic-docs
+git clone git@github.com:NetEase/amoro-docs.git
+cd amoro-docs
 ```
 
 To start the site page site locally, run:
 ```shell
-(cd arctic-site && hugo serve)
+(cd amoro-site && hugo serve)
 ```
 
 To start the documentation site locally, run:
 ```shell
-(cd arctic-docs && hugo serve)
+(cd amoro-docs && hugo serve)
 ```
 
 If you would like to see how the latest website looks based on the documentation in the Iceberg repository, you can copy docs to this repository by:
 ```shell
-rm -rf arctic-docs/content/docs
-cp -r <path to arctic repo>/docs docs/content/docs
+rm -rf amoro-docs/content/docs
+cp -r <path to amoro repo>/docs docs/content/docs
 ```
 
 ## Scanning For Broken Links
@@ -103,16 +103,16 @@ where you need to test relative links between the two sites. This can be achieve
 `baseURL` and `publishDir` values passed to the CLI. You can then run the site with any local live server, such as the
 [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extension for VSCode.
 
-First, change into the `arctic-site` directory and build the site. Use `-b` and `-d` to set `baseURL` and `publishDir`, respectively.
+First, change into the `amoro-site` directory and build the site. Use `-b` and `-d` to set `baseURL` and `publishDir`, respectively.
 ```
 cd arctic-site
 hugo -b http://localhost:5500/ -d ../public
 ```
 
-Next, change into the `arctic-docs` directory and do the same thing. Remember that the docs-site is deployed to a `docs/<VERSION>` url, relative to the landing-page site. Since the landing-page was deployed to `../publish` in the example
+Next, change into the `amoro-docs` directory and do the same thing. Remember that the docs-site is deployed to a `docs/<VERSION>` url, relative to the landing-page site. Since the landing-page was deployed to `../publish` in the example
 above, the example below usees `../public/docs/latest` to deploy a `latest` version docs-site.
 ```
-cd ../arctic-docs
+cd ../amoro-docs
 hugo -b http://localhost:5500/docs/latest/ -d ../public/docs/latest
 ```
 
