@@ -12,7 +12,7 @@ menu:
 
 ## CREATE TABLE
 
-To create an MixedFormat table under an Arctic Catalog, you can use `USING ARCTIC` to specify the provider in the
+To create an MixedFormat table under an Amoro Catalog, you can use `USING ARCTIC` to specify the provider in the
 `CREATE TABLE` statement. If the Catalog type is Hive, the created table will be a Hive-compatible table.
 
 ```sql

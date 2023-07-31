@@ -8,8 +8,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url(../img/intro-bg.webp) center center no-repeat;
-  background-color: rgb(100, 160, 174);
+  background: url(../img/banner.svg) center center no-repeat;
+  background-color: #ECEDF3;
 }
 
 #intro-new .intro-content {

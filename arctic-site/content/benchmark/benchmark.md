@@ -158,13 +158,13 @@ The figure above shows a performance comparison of Iceberg 、Mixed-Iceberg and 
 
 The following are the specific results of each test group:
 
-![Amoro Iceberg Hudi 100 warehouse performence on TPCC 0-30 minutes](../images/chbenchmark/Amoro-Iceberg-Hudi_100_warehouse_performence_on_TPCC_0-30_minutes.png)
+![Amoro Iceberg Hudi 100 warehouse performence on TPCC 0-30 minutes](../images/chbenchmark/Arctic-Iceberg-Hudi_100_warehouse_performence_on_TPCC_0-30_minutes.png)
 
-![Amoro Iceberg Hudi 100 warehouse performence on TPCC 30-60 minutes](../images/chbenchmark/Amoro-Iceberg-Hudi_100_warehouse_performence_on_TPCC_30-60_minutes.png)
+![Amoro Iceberg Hudi 100 warehouse performence on TPCC 30-60 minutes](../images/chbenchmark/Arctic-Iceberg-Hudi_100_warehouse_performence_on_TPCC_30-60_minutes.png)
 
-![Amoro Iceberg Hudi 100 warehouse performence on TPCC 60-90 minutes](../images/chbenchmark/Amoro-Iceberg-Hudi_100_warehouse_performence_on_TPCC_60-90_minutes.png)
+![Amoro Iceberg Hudi 100 warehouse performence on TPCC 60-90 minutes](../images/chbenchmark/Arctic-Iceberg-Hudi_100_warehouse_performence_on_TPCC_60-90_minutes.png)
 
-![Amoro Iceberg Hudi 100 warehouse performence on TPCC 90-120 minutes](../images/chbenchmark/Amoro-Iceberg-Hudi_100_warehouse_performence_on_TPCC_90-120_minutes.png)
+![Amoro Iceberg Hudi 100 warehouse performence on TPCC 90-120 minutes](../images/chbenchmark/Arctic-Iceberg-Hudi_100_warehouse_performence_on_TPCC_90-120_minutes.png)
 
 ## Conclusion
 

@@ -11,7 +11,7 @@ menu:
 # Flink DataStream
 
 ## Reading with DataStream
-Arctic supports reading data in Batch or Streaming mode through Java API.
+Amoro supports reading data in Batch or Streaming mode through Java API.
 
 ### Batch mode
 Using Batch mode to read the full and incremental data in the FileStore.
@@ -27,7 +27,7 @@ InternalCatalogBuilder catalogBuilder =
         .metastoreUrl("thrift://<url>:<port>/<catalog_name>");
 
 TableIdentifier tableId = TableIdentifier.of("catalog_name", "database_name", "test_table");
-ArcticTableLoader tableLoader = ArcticTableLoader.of(tableId, catalogBuilder);
+AmoroTableLoader tableLoader = AmoroTableLoader.of(tableId, catalogBuilder);
 
 Map<String, String> properties = new HashMap<>();
 //  Default is true.
@@ -45,7 +45,7 @@ DataStream<RowData> batch =
 batch.print();
 
 // Submit and execute the task
-env.execute("Test Arctic Batch Read");
+env.execute("Test Amoro Batch Read");
 ``` 
 
 The map properties contain below keys, **currently only valid for non-primary key tables**:
@@ -59,7 +59,7 @@ The map properties contain below keys, **currently only valid for non-primary ke
 |end-snapshot-id|(none )|String|No|Need to cooperate with start-snapshot-id to read incremental data in two intervals (snapshot1, snapshot2]| 
 
 ### Streaming mode
-Arctic supports reading incremental data in FileStore or LogStore through Java API in Streaming mode
+Amoro supports reading incremental data in FileStore or LogStore through Java API in Streaming mode
 
 ### Streaming mode (LogStore)
 ```java 
@@ -70,9 +70,9 @@ InternalCatalogBuilder catalogBuilder =
         .metastoreUrl("thrift://<url>:<port>/<catalog_name>");
 
 TableIdentifier tableId = TableIdentifier.of("catalog_name", "database_name", "test_table");
-ArcticTableLoader tableLoader = ArcticTableLoader.of(tableId, catalogBuilder);
+AmoroTableLoader tableLoader = AmoroTableLoader.of(tableId, catalogBuilder);
 
-ArcticTable table = ArcticUtils.load(tableLoader);
+AmoroTable table = AmoroUtils.load(tableLoader);
 // Read table All fields. If you only read some fields, you can construct the schema yourself, for example: 
 // Schema userSchema = new Schema(new ArrayList<Types.NestedField>() {{
 //   add(Types.NestedField.optional(0, "f_boolean", Types.BooleanType.get()));
@@ -94,7 +94,7 @@ DataStream<RowData> stream = env.fromSource(source, WatermarkStrategy.noWatermar
 stream.print();
 
 // Submit and execute the task
-env.execute("Test Arctic Stream Read");
+env.execute("Test Amoro Stream Read");
 ```
 
 ### Streaming mode (FileStore)
@@ -102,7 +102,7 @@ env.execute("Test Arctic Stream Read");
 StreamExecutionEnvironment env = ...;
 InternalCatalogBuilder catalogBuilder = ...;
 TableIdentifier tableId = ...;
-ArcticTableLoader tableLoader = ...;
+AmoroTableLoader tableLoader = ...;
 
 Map<String, String> properties = new HashMap<>();
 // default is true 
@@ -120,12 +120,12 @@ DataStream<RowData> stream =
 stream.print();
 
 // Submit and execute the task
-env.execute("Test Arctic Stream Read");
+env.execute("Test Amoro Stream Read");
 
 StreamExecutionEnvironment env = ...; 
 InternalCatalogBuilder catalogBuilder = ...; 
 TableIdentifier tableId = ...; 
-ArcticTableLoader tableLoader = ...; 
+AmoroTableLoader tableLoader = ...; 
 Map properties = new HashMap<>(); 
 // default is true properties.put("streaming", "true"); 
 DataStream stream = 
@@ -140,21 +140,21 @@ DataStream stream =
 stream.print(); 
 
 // Submit and execute the task 
-env.execute("Test Arctic Stream Read"); 
+env.execute("Test Amoro Stream Read"); 
 ``` 
 DataStream API supports reading primary key tables and non-primary key tables. The configuration items supported by properties can refer to Querying With SQL [chapter Hint Option](flink-dml.md#filestore)
 
 ## Writing with DataStream
-Arctic table supports writing data to LogStore or FileStore through Java API
+Amoro table supports writing data to LogStore or FileStore through Java API
 
 ### Overwrite data
-Arctic table currently Only supports the existing data in the dynamic Overwrite table of the non-primary key table
+Amoro table currently Only supports the existing data in the dynamic Overwrite table of the non-primary key table
 
 ```java
 DataStream<RowData> input = ...;
 InternalCatalogBuilder catalogBuilder = ...;
 TableIdentifier tableId = ...;
-ArcticTableLoader tableLoader = ...;
+AmoroTableLoader tableLoader = ...;
 
 TableSchema FLINK_SCHEMA = TableSchema.builder()
     .field("id", DataTypes.INT())
@@ -170,18 +170,18 @@ FlinkSink
     .build();
 
 // Submit and execute the task
-env.execute("Test Arctic Overwrite");
-DataStream input = ...; InternalCatalogBuilder catalogBuilder = ...; TableIdentifier tableId = ...; ArcticTableLoader tableLoader = ...; TableSchema FLINK_SCHEMA = TableSchema.builder() .field("id", DataTypes.INT()) .field ("name", DataTypes.STRING()) .field("op_time", DataTypes.TIMESTAMP_WITH_LOCAL_TIME_ZONE()) .build(); FlinkSink .forRowData(input) .tableLoader(tableLoader) .overwrite(true) .flinkSchema(FLINK_SCHEMA) .build(); // Submit and execute the task env.execute(“Test Arctic Overwrite”); 
+env.execute("Test Amoro Overwrite");
+DataStream input = ...; InternalCatalogBuilder catalogBuilder = ...; TableIdentifier tableId = ...; AmoroTableLoader tableLoader = ...; TableSchema FLINK_SCHEMA = TableSchema.builder() .field("id", DataTypes.INT()) .field ("name", DataTypes.STRING()) .field("op_time", DataTypes.TIMESTAMP_WITH_LOCAL_TIME_ZONE()) .build(); FlinkSink .forRowData(input) .tableLoader(tableLoader) .overwrite(true) .flinkSchema(FLINK_SCHEMA) .build(); // Submit and execute the task env.execute(“Test Amoro Overwrite”); 
 ```
 
 ### Appending data
-For the Arctic table, it supports specifying to write data to FileStore or LogStore through Java API.
+For the Amoro table, it supports specifying to write data to FileStore or LogStore through Java API.
 
 ```java
 DataStream<RowData> input = ...;
 InternalCatalogBuilder catalogBuilder = ...;
 TableIdentifier tableId = ...;
-ArcticTableLoader tableLoader = ...;
+AmoroTableLoader tableLoader = ...;
 
 TableSchema FLINK_SCHEMA = TableSchema.builder()
     .field("id", DataTypes.INT())
@@ -189,7 +189,7 @@ TableSchema FLINK_SCHEMA = TableSchema.builder()
     .field("op_time", DataTypes.TIMESTAMP_WITH_LOCAL_TIME_ZONE())
     .build();
 
-ArcticTable table = ArcticUtils.loadArcticTable(tableLoader);
+AmoroTable table = AmoroUtils.loadAmoroTable(tableLoader);
 
 table.properties().put("arctic.emit.mode", "log,file");
 
@@ -200,7 +200,7 @@ FlinkSink
     .flinkSchema(FLINK_SCHEMA)
     .build();
 
-env.execute("Test Arctic Append");
+env.execute("Test Amoro Append");
 ```
 The DataStream API supports writing to primary key tables and non-primary key tables. The configuration items supported by properties can refer to Writing With SQL [chapter Hint Options](flink-dml.md#insert-into)
 

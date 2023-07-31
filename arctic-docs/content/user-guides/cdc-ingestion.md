@@ -58,7 +58,7 @@ The following example will show how MySQL CDC data is written to a Mixed-Iceberg
 
 **Requirements**
 
-Please add [Flink Connector MySQL CDC](https://repo1.maven.org/maven2/com/ververica/flink-connector-mysql-cdc/2.3.0/flink-connector-mysql-cdc-2.3.0.jar) and [Arctic](../../download) Jars to the lib directory of the Flink engine package.
+Please add [Flink Connector MySQL CDC](https://repo1.maven.org/maven2/com/ververica/flink-connector-mysql-cdc/2.3.0/flink-connector-mysql-cdc-2.3.0.jar) and [Amoro](../../download) Jars to the lib directory of the Flink engine package.
 
 ```sql
 CREATE TABLE products (
@@ -310,12 +310,12 @@ The following example will show how to write CDC data from multiple MySQL tables
 
 **Requirements**
 
-Please add [Flink Connector MySQL CDC](https://mvnrepository.com/artifact/com.ververica/flink-connector-mysql-cdc/2.3.0) and [Arctic](https://mvnrepository.com/artifact/com.netease.arctic/arctic-flink-runtime-1.14/0.4.1) dependencies to your Maven project's pom.xml file.
+Please add [Flink Connector MySQL CDC](https://mvnrepository.com/artifact/com.ververica/flink-connector-mysql-cdc/2.3.0) and [Amoro](https://mvnrepository.com/artifact/com.netease.arctic/arctic-flink-runtime-1.14/0.4.1) dependencies to your Maven project's pom.xml file.
 
 ```java
 import com.netease.arctic.flink.InternalCatalogBuilder;
-import com.netease.arctic.flink.table.ArcticTableLoader;
-import com.netease.arctic.flink.util.ArcticUtils;
+import com.netease.arctic.flink.table.AmoroTableLoader;
+import com.netease.arctic.flink.util.AmoroUtils;
 import com.netease.arctic.flink.write.FlinkSink;
 import com.netease.arctic.table.TableIdentifier;
 import com.ververica.cdc.connectors.mysql.source.MySqlSource;
@@ -347,7 +347,7 @@ import static com.ververica.cdc.connectors.mysql.table.MySqlReadableMetadata.DAT
 import static com.ververica.cdc.connectors.mysql.table.MySqlReadableMetadata.TABLE_NAME;
 import static java.util.stream.Collectors.toMap;
 
-public class MySqlCDC2ArcticExample {
+public class MySqlCDC2AmoroExample {
   public static void main(String[] args) throws Exception {
     List<Tuple2<ObjectPath, ResolvedCatalogTable>> pathAndTable = initSourceTables();
     Map<String, RowDataDebeziumDeserializeSchema> debeziumDeserializeSchemas = getDebeziumDeserializeSchemas(
@@ -376,7 +376,7 @@ public class MySqlCDC2ArcticExample {
           e -> RowRowConverter.create(e.f1.getResolvedSchema().toPhysicalRowDataType())))))
       .name("split stream");
 
-    // create Arctic sink and insert into cdc data
+    // create Amoro sink and insert into cdc data
     InternalCatalogBuilder catalogBuilder = InternalCatalogBuilder.builder().metastoreUrl(
       "thrift://<ip>:<port>/<catalog_name_in_metastore>");
     Map<String, TableSchema> sinkTableSchemas = new HashMap<>();
@@ -388,11 +388,11 @@ public class MySqlCDC2ArcticExample {
     for (Map.Entry<String, TableSchema> entry : sinkTableSchemas.entrySet()) {
       TableIdentifier tableId =
         TableIdentifier.of("yourCatalogName", "yourDatabaseName", entry.getKey());
-      ArcticTableLoader tableLoader = ArcticTableLoader.of(tableId, catalogBuilder);
+      AmoroTableLoader tableLoader = AmoroTableLoader.of(tableId, catalogBuilder);
 
       FlinkSink.forRowData(process.getSideOutput(new OutputTag<RowData>(entry.getKey()){}))
         .flinkSchema(entry.getValue())
-        .table(ArcticUtils.loadArcticTable(tableLoader))
+        .table(AmoroUtils.loadAmoroTable(tableLoader))
         .tableLoader(tableLoader).build();
     }
 

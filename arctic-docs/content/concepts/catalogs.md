@@ -29,16 +29,16 @@ moving from a single Hive-centric approach to a landscape of competing formats s
 cloud-friendly and will facilitate the migration of data lakes to the cloud. In this context, a management system that supports multi-catalog is
 needed to help users govern data lakes with different environments and formats.
 
-Users can create catalogs in Arctic for different environments, clusters, and table formats, and leverage the multi-catalog feature in Flink, Spark
+Users can create catalogs in Amoro for different environments, clusters, and table formats, and leverage the multi-catalog feature in Flink, Spark
 and Trino to enable federated computation across multiple clusters and formats. Additionally, properties configured in catalogs can be shared by all
-tables and users, avoiding duplication. By leveraging the multi-catalog design, Arctic provides support for a metadata center in data platforms.
+tables and users, avoiding duplication. By leveraging the multi-catalog design, Amoro provides support for a metadata center in data platforms.
 
 When AMS and HMS are used together, HMS serves as the storage foundation for AMS. With the [Iceberg Format](../iceberg-format), users can leverage the
-multi-catalog management functionality of AMS without introducing any Arctic dependencies.
+multi-catalog management functionality of AMS without introducing any Amoro dependencies.
 
 ## How to use
 
-Arctic v0.4 introduced the catalog management feature, where table creation is performed under a catalog. Users can create, edit, and delete catalogs
+Amoro v0.4 introduced the catalog management feature, where table creation is performed under a catalog. Users can create, edit, and delete catalogs
 in the catalogs module, which requires configuration of metastore, table format, and environment information upon creation. For more information,
 please refer to the documentation: [Managing catalogs](../managing-catalogs)
 
@@ -46,11 +46,11 @@ In practice, it is recommended to create a catalog as follows:
 
 - If you want to collaborate with HMS, it is recommended to choose Hive as the `Metastore`, and choose Mixed-Hive or Iceberg as the `Format`
 according to your needs.
-- If you want to use the Mixed-Iceberg Format provided by Arctic, it is recommended to choose Arctic as the `Metastore`.
+- If you want to use the Mixed-Iceberg Format provided by Amoro, it is recommended to choose Amoro as the `Metastore`.
 
-Currently, only one table format can be selected when creating an Arctic catalog. This is mainly because the engine will parse the catalog into a
+Currently, only one table format can be selected when creating an Amoro catalog. This is mainly because the engine will parse the catalog into a
 specific data source when using it, and a one-to-one format is intuitive. On the other hand, this limitation can be bypassed when using HMS directly,
-such as the SessionCatalog implementation provided by the Iceberg community. In the future, Arctic will consider providing users with more flexible
+such as the SessionCatalog implementation provided by the Iceberg community. In the future, Amoro will consider providing users with more flexible
 management methods.
 
 ## Future work

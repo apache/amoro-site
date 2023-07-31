@@ -10,7 +10,7 @@ menu:
 ---
 # Deployment
 
-You can choose to download the stable release package from [download page](/download), or the source code form [Github](https://github.com/NetEase/arctic) and compile it according to the README.
+You can choose to download the stable release package from [download page](/download), or the source code form [Github](https://github.com/NetEase/amoro) and compile it according to the README.
 
 ## System requirements
 
@@ -23,21 +23,21 @@ You can choose to download the stable release package from [download page](/down
 ## Download the distribution
 
 All released package can be downaloded from [download page](/download).
-You can download arctic-x.y.z-bin.zip (x.y.z is the release number), and you can also download the runtime packages for each engine version according to the engine you are using.
-Unzip it to create the arctic-x.y.z directory in the same directory, and then go to the arctic-x.y.z directory.
+You can download amoro-x.y.z-bin.zip (x.y.z is the release number), and you can also download the runtime packages for each engine version according to the engine you are using.
+Unzip it to create the amoro-x.y.z directory in the same directory, and then go to the amoro-x.y.z directory.
 
 ## Source code compilation
 
 You can build based on the master branch without compiling Trino. The compilation method and the directory of results are described below
 
 ```shell
-git clone https://github.com/NetEase/arctic.git
-cd arctic
+git clone https://github.com/NetEase/amoro.git
+cd amoro
 base_dir=$(pwd) 
 mvn clean package -DskipTests -pl '!Trino'
 cd dist/target/
 ls
-arctic-x.y.z-bin.zip # AMS release pakcage
+amoro-x.y.z-bin.zip # AMS release pakcage
 dist-x.y.z-tests.jar
 dist-x.y.z.jar
 archive-tmp/
@@ -45,17 +45,17 @@ maven-archiver/
 
 cd ${base_dir}/flink/v1.12/flink-runtime/target
 ls 
-arctic-flink-runtime-1.12-x.y.z-tests.jar
-arctic-flink-runtime-1.12-x.y.z.jar # Flink 1.12 runtime package
-original-arctic-flink-runtime-1.12-x.y.z.jar
+amoro-flink-runtime-1.12-x.y.z-tests.jar
+amoro-flink-runtime-1.12-x.y.z.jar # Flink 1.12 runtime package
+original-amoro-flink-runtime-1.12-x.y.z.jar
 maven-archiver/
 
 cd ${base_dir}/spark/v3.1/spark-runtime/target
 ls
-arctic-spark-3.1-runtime-0.4.0.jar # Spark v3.1 runtime package)
-arctic-spark-3.1-runtime-0.4.0-tests.jar
-arctic-spark-3.1-runtime-0.4.0-sources.jar
-original-arctic-spark-3.1-runtime-0.4.0.jar
+amoro-spark-3.1-runtime-0.4.0.jar # Spark v3.1 runtime package)
+amoro-spark-3.1-runtime-0.4.0-tests.jar
+amoro-spark-3.1-runtime-0.4.0-sources.jar
+original-amoro-spark-3.1-runtime-0.4.0.jar
 ```
 
 If you need to compile the Trino module at the same time, you need to install jdk17 locally and configure `toolchains.xml` in the user's ${user.home}/.m2/ directory, then run mvn
@@ -128,10 +128,10 @@ owners.
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
 mysql>
-mysql> create database arctic;
+mysql> create database amoro;
 Query OK, 1 row affected (0.01 sec)
 
-mysql> use arctic;
+mysql> use amoro;
 Database changed
 mysql> source {ARCTIC_HOME}/conf/mysql/ams-mysql-init.sql
 ```
@@ -143,7 +143,7 @@ ams:
   database:
     type: mysql
     jdbc-driver-class: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/arctic?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&useAffectedRows=true&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/amoro?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&useAffectedRows=true&useSSL=false
     username: root
     password: root
 ```
@@ -171,12 +171,12 @@ AMS provides implementations of `LocalContainer` and `FlinkContainer` by default
 ```yaml
 containers:
   - name: localContainer
-    container-impl: com.netease.arctic.optimizer.LocalOptimizerContainer
+    container-impl: com.netease.amoro.optimizer.LocalOptimizerContainer
     properties:
       export.JAVA_HOME: "/opt/java"   # JDK environment
   
   - name: flinkContainer
-    container-impl: com.netease.arctic.optimizer.FlinkOptimizerContainer
+    container-impl: com.netease.amoro.optimizer.FlinkOptimizerContainer
     properties:
       flink-home: "/opt/flink/"                                     # The installation directory of Flink
       export.JVM_ARGS: "-Djava.security.krb5.conf=/opt/krb5.conf"   # Submitting Flink jobs with Java parameters, such as Kerberos parameters.
@@ -203,10 +203,10 @@ ams:
 
 ## Start AMS
 
-Enter the directory arctic-x.y.z and execute bin/ams.sh start to start AMS.
+Enter the directory amoro-x.y.z and execute bin/ams.sh start to start AMS.
 
 ```shell
-cd arctic-x.y.z
+cd amoro-x.y.z
 bin/ams.sh start
 ```
 

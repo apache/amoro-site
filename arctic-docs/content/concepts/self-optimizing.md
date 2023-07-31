@@ -20,7 +20,7 @@ analysis scenarios, challenges arise. For example:
 - CDC ingestion and streaming updates generate excessive redundant data
 - Using the new data lake format leads to orphan files and expired snapshots.
 
-These issues can significantly affect the performance and cost of data analysis. Therefore, Arctic has introduced a Self-optimizing mechanism to
+These issues can significantly affect the performance and cost of data analysis. Therefore, Amoro has introduced a Self-optimizing mechanism to
 create an out-of-the-box Streaming Lakehouse management service that is as user-friendly as a traditional database or data warehouse. The new table
 format is used for this purpose. Self-optimizing involves various procedures such as file compaction, deduplication, and sorting.
 
@@ -30,9 +30,9 @@ The architecture and working mechanism of Self-optimizing are shown in the figur
 
 The Optimizer is a component responsible for executing Self-optimizing tasks. It is a resident process managed by AMS. AMS is responsible for
 detecting and planning Self-optimizing tasks for tables, and then scheduling them to Optimizers for distributed execution in real-time. Finally, AMS
-is responsible for submitting the optimizing results. Arctic achieves physical isolation of Optimizers through the Optimizer Group.
+is responsible for submitting the optimizing results. Amoro achieves physical isolation of Optimizers through the Optimizer Group.
 
-The core features of Arctic's Self-optimizing are:
+The core features of Amoro's Self-optimizing are:
 
 - Automated, Asynchronous and Transparent — Continuous background detecting of file changes, asynchronous distributed execution of optimizing tasks,
 transparent and imperceptible to users
@@ -50,9 +50,9 @@ fragment file generation, it can significantly degrade reading performance.
 competition and waste of CPU/IO/Memory, slows down the optimization speed, and further intensify read amplification.
 
 Frequent execution of optimizing is necessary to alleviate read amplification, but it can lead to write amplification. The design of self-optimizing
-needs trade off between read and write amplification. Arctic's Self-optimizing takes inspiration from the Generational Garbage Collection algorithm
+needs trade off between read and write amplification. Amoro's Self-optimizing takes inspiration from the Generational Garbage Collection algorithm
 in the JVM. Files are divided into Fragments and Segments based on their sizes, and different Self-optimizing processes executed on Fragments and
-Segments are classified into two types: minor and major. Therefore, Arctic v0.4 introduces two parameters to define Fragments and Segments:
+Segments are classified into two types: minor and major. Therefore, Amoro v0.4 introduces two parameters to define Fragments and Segments:
 
 ```SQL
 -- Target file Size for Self-optimizing 
@@ -83,7 +83,7 @@ of Segment files can meet performance requirements, however:
 
 At this stage, the reading performance problem is no longer caused by the read amplification issue resulting from small file size and file format.
 Instead, it is due to the presence of excessive redundant data that needs to be merged and cleaned up during merge-on-read. To address this problem,
-Arctic introduces major optimizing which merges Segment files to clean up redundant data and control its amount to a level that is favorable to
+Amoro introduces major optimizing which merges Segment files to clean up redundant data and control its amount to a level that is favorable to
 reading. Minor optimizing has already performed multiple rounds of deduplication, and major optimizing is not scheduled frequently to avoid write
 amplification issues. Additionally, Full optimizing merges all files in the target space into a single file, which is a special case of
 major optimizing.
@@ -104,7 +104,7 @@ read-friendly format. The input-output relationships of Minor, Major, and Full o
 ## Self-optimizing scheduling policy
 
 AMS determines the Scheduling Policy to sequence the self-optimization process for different tables. The actual resources allocated for
-Self-optimizing for each table are determined based on the chosen Scheduling Policy. Quota is used by Arctic to define the expected resource usage for
+Self-optimizing for each table are determined based on the chosen Scheduling Policy. Quota is used by Amoro to define the expected resource usage for
 each table, while Quota occupation represents the percentage of actual resource usage compared to the expected usage. The AMS page allows viewing of
 the Quota and Quota occupation for each table's Self-optimizing:
 

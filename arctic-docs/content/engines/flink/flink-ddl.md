@@ -26,7 +26,7 @@ Where `<catalog_name>` is the user-defined name of the Flink catalog, and `<conf
 
 | Key                                    | Default Value | Type    | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 |----------------------------------------|---------------|---------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| metastore.url                          | (none)        | String  | Yes      | The URL for Arctic Metastore is thrift://`<ip>`:`<port>`/`<catalog_name_in_metastore>`.<br>If high availability is enabled for AMS, it can also be specified in the form of zookeeper://{zookeeper-server}/{cluster-name}/{catalog-name}.                                                                                                                                                                                                                             |
+| metastore.url                          | (none)        | String  | Yes      | The URL for Amoro Metastore is thrift://`<ip>`:`<port>`/`<catalog_name_in_metastore>`.<br>If high availability is enabled for AMS, it can also be specified in the form of zookeeper://{zookeeper-server}/{cluster-name}/{catalog-name}.                                                                                                                                                                                                                             |
 | default-database<img width=100/>       | default       | String  | No       | The default database to use                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | property-version                       | 1             | Integer | No       | Catalog properties version, this option is for future backward compatibility                                                                                                                                                                                                                                                                                                                                                                                          |
 
@@ -82,7 +82,7 @@ Currently, most of the syntax supported by [Flink SQL create table](https://nigh
 
 - PARTITION BY (column1, column2, …): configure Flink partition fields, but Flink does not yet support hidden partitions.
 - PRIMARY KEY (column1, column2, …): configure primary keys.
-- WITH ('key'='value', …): configure Arctic Table properties.
+- WITH ('key'='value', …): configure Amoro Table properties.
 
 Currently, configuration of computed columns and watermark fields is not supported.
 
@@ -97,7 +97,7 @@ CREATE TABLE `arctic_catalog`.`arctic_db`.`test_table` (
     'key' = 'value'
 );
 ```
-Arctic tables support hidden partitions, but Flink does not support function-based partitions. Therefore, currently only partitions with the same value can be created through Flink SQL.
+Amoro tables support hidden partitions, but Flink does not support function-based partitions. Therefore, currently only partitions with the same value can be created through Flink SQL.
 
 Alternatively, tables can be created without creating a Flink catalog:
 ```sql
@@ -114,7 +114,7 @@ CREATE TABLE `test_table` (
     'arctic.table' = ''
 );
 ```
-where `<metastore.url>` is the URL of the Arctic Metastore, and `arctic.catalog`, `arctic.database` and `arctic.table` are the catalog name, database name and table name of this table under the AMS, respectively.
+where `<metastore.url>` is the URL of the Amoro Metastore, and `arctic.catalog`, `arctic.database` and `arctic.table` are the catalog name, database name and table name of this table under the AMS, respectively.
 
 ### CREATE TABLE LIKE
 Create a table with the same table structure, partitions, and table properties as an existing table. This can be achieved using CREATE TABLE LIKE.

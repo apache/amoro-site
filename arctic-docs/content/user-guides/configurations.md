@@ -12,7 +12,7 @@ menu:
 
 ## Multi-level configuration management
 
-Arctic provides configurations that can be configured at the `Catalog`, `Table`, and `Engine` levels. The configuration 
+Amoro provides configurations that can be configured at the `Catalog`, `Table`, and `Engine` levels. The configuration 
 priority is given first to the `Engine`, followed by the `Table`, and finally by the `Catalog`. 
 
 - Catalog: Generally, we recommend 

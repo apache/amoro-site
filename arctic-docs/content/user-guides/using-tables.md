@@ -81,7 +81,7 @@ modification statement to complete the table modification. The current `Terminal
 more information on modifying tables, please refer to the syntax guide [Spark DDL](../spark/spark-ddl.md#alter-table).
 
 ## Upgrade a Hive table
-Arctic supports Mixed-Hive format  [Mixed-Hive format](../concepts/table-formats.md#mixed-hive-format), which combines the capabilities of Hive formats to directly implement new table formats on top of Hive. For the features that Mixed-Hive tables have after upgrading, please refer to Mixed-Hive  [Mixed-Hive](../concepts/table-formats.md#mixed-hive-format) in the Table Formats concept.
+Amoro supports Mixed-Hive format  [Mixed-Hive format](../concepts/table-formats.md#mixed-hive-format), which combines the capabilities of Hive formats to directly implement new table formats on top of Hive. For the features that Mixed-Hive tables have after upgrading, please refer to Mixed-Hive  [Mixed-Hive](../concepts/table-formats.md#mixed-hive-format) in the Table Formats concept.
 
 After logging into the AMS dashboard, select a table under a certain Hive Catalog from the `Tables` menu to perform the upgrade operation.
 
@@ -95,7 +95,7 @@ On the upgrade page, select the primary key for the table and add additional par
 
 ## Configure self-optimizing
 
-Arctic provides a self-optimizing feature, which requires an active optimizer in the Optimizer Group configured for the table.
+Amoro provides a self-optimizing feature, which requires an active optimizer in the Optimizer Group configured for the table.
 
 ### Modify optimizer group
 To use an optimizer launched under a specific  [Optimizer Group](managing-optimizers.md#optimizer-group) to perform self-optimization, you need to modify the `self-optimizing.group` parameter of the table to specify a specific resource pool for the table. 

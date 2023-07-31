@@ -10,7 +10,7 @@ menu:
 ---
 # Managing Optimizers
 
-The optimizer is the execution unit for performing self-optimizing tasks on a table. To isolate optimizing tasks on different tables and support the deployment of optimizers in different environments, Arctic has proposed the concepts of optimizer containers and optimizer groups:
+The optimizer is the execution unit for performing self-optimizing tasks on a table. To isolate optimizing tasks on different tables and support the deployment of optimizers in different environments, Amoro has proposed the concepts of optimizer containers and optimizer groups:
 
 * Optimizer container: Encapsulate the deployment method of optimizers, there are three implementations for now: `flink container` based on Flink streaming job, `local container` based on Java Application, and `external container` based on manually started by users.
 * Optimizer group: A collection of optimizers, where each table must select an optimizer group to perform optimizing tasks on it. Tables under the same optimizer group contribute resources to each other, and tables under different optimizer groups can be isolated in terms of optimizer resources.
@@ -68,7 +68,7 @@ contain several optimizers with the same container implementation to facilitate 
 
 ### Add optimizer group
 
-You can add an optimizer group on the Arctic dashboard by following these steps:
+You can add an optimizer group on the Amoro dashboard by following these steps:
 
 1.Click the "Add Group" button in the top left corner of the `Optimizer Groups` page.
 ![add-optimizer-group](../images/admin/add-optimizer-group.png)
@@ -132,7 +132,7 @@ The description of the relevant parameters is shown in the following table:
 |----------|-------------|
 | -ytm EXECUTOR_TASKMANAGER_MEMORY | Flink task task manager memory Size. |
 | -yjm EXECUTOR_JOBMANAGER_MEMORY  | Flink task job mamanger memory Size. |
-| ARCTIC_HOME | Arctic home directory |
+| ARCTIC_HOME | Amoro home directory |
 | -a AMS_THRIFT_SERVER_URL | The address of the AMS thrift service, for example: thrift://127.0.0.1:1261, can be obtained from the config.yaml configuration. |
 | -g OPTIMIZE_GROUP_NAME | Group name created in advance under external container. |
 | -p EXECUTOR_PARALLELISM | Optimizer parallelism usage. |

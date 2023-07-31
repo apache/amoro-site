@@ -18,7 +18,7 @@ for more information.
 # Mixed Format
 
 
-To use Arctic in a Spark shell, use the --packages option:
+To use Amoro in a Spark shell, use the --packages option:
 
 ```bash
 spark-shell --packages com.netease.arctic:arctic-spark-3.3-runtime:0.5.0
@@ -31,12 +31,12 @@ spark-shell --packages com.netease.arctic:arctic-spark-3.3-runtime:0.5.0
 
 ```
 ${SPARK_HOME}/bin/spark-sql \
-    --conf spark.sql.extensions=com.netease.arctic.spark.ArcticSparkExtensions \
-    --conf spark.sql.catalog.local_catalog=com.netease.arctic.spark.ArcticSparkCatalog \
+    --conf spark.sql.extensions=com.netease.arctic.spark.AmoroSparkExtensions \
+    --conf spark.sql.catalog.local_catalog=com.netease.arctic.spark.AmoroSparkCatalog \
     --conf spark.sql.catalog.local_catalog.url=thrift://${AMS_HOST}:${AMS_PORT}/${AMS_CATALOG_NAME}
 ```
 
-> Arctic manages the Catalog through AMS, and Spark catalog needs to be mapped to Arctic Catalog via URL, 
+> Amoro manages the Catalog through AMS, and Spark catalog needs to be mapped to Amoro Catalog via URL, 
 > in the following format:
 > `thrift://${AMS_HOST}:${AMS_PORT}/${AMS_CATALOG_NAME}`, 
 > The arctic-spark-connector will automatically download the Hadoop site configuration file through 
@@ -82,7 +82,7 @@ For more information on Spark DDL related to tables, please refer to [Spark DDL]
 
 ## Writing to the table
 
-If you are using Spark SQL, you can use the `INSERT OVERWRITE` or `INSERT` SQL statement to write data to an Arctic table.
+If you are using Spark SQL, you can use the `INSERT OVERWRITE` or `INSERT` SQL statement to write data to an Amoro table.
 
 ```
 -- insert values into unkeyed table
@@ -101,7 +101,7 @@ insert overwrite test3 values
 
 > If you are using Static Overwrite, you cannot define transforms on partition fields.
 
-Alternatively, you can use the DataFrame API to write data to an Arctic table within a JAR job.
+Alternatively, you can use the DataFrame API to write data to an Amoro table within a JAR job.
 
 ``` 
 val df = spark.read().load("/path-to-table")

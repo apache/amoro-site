@@ -20,11 +20,13 @@ Before starting the quick demo, some steps are required to prepare the environme
 
 Open [http://localhost:1630](http://localhost:1630) in a browser, enter `admin/admin` to log in to the dashboard.
 
+Click on `Catalogs` in the sidebar, choose `Optimizer Groups` annd click `Add Group` button to create a new group befre creating catalog:
+
+![Create groip](../images/quickstart/create_group.png)
 
 ### Create catalog
 
-Click on `Catalogs` in the sidebar, click on the `+` button under Catalog List to create a test catalog, and name it to `demo_catalog`:
-
+Click on `Optimizing` in the sidebar, click on the `+` button under Catalog List to create a test catalog, and name it to `demo_catalog`:
 {{% codetabs "CreateCatalog" %}}
 {{% addtab "Iceberg Format" "spark-queries" "spark-sql" %}}
 {{% addtab "Mixed-Iceberg Format" "spark-queries" "spark-shell" %}}
@@ -55,9 +57,7 @@ If you deployed the demo environment through binary release:
 
 ### Start optimizers
 
-Under the default configuration of AMS, there is an optimizer group named `local`. you need to scale out an optimizer under this group.
-
-Click on `Resource` in the sidebar, select the `Optimizer Group` tab, and click the `scale-out` operation for group `local`.
+Click on `Optimizing` in the sidebar, select the `Optimizer Group` tab, and click the `scale-out` operation for group `local`.
 
 ![Optimizers](../images/quickstart/ScaleOut.png)
 
@@ -91,7 +91,7 @@ PARTITIONED BY (days(ts));
 INSERT OVERWRITE user VALUES 
 (1, "eric", timestamp("2022-07-01 12:32:00")),
 (2, "frank", timestamp("2022-07-02 09:11:00")),
-(3, "lee", timestamp("2022-07-01 10:11:00"));
+(3, "lee", timestamp("2022-07-02 10:11:00"));
 
 SELECT * FROM user ;
 ```
@@ -111,7 +111,7 @@ PARTITIONED BY (days(ts));
 INSERT OVERWRITE user VALUES 
 (1, "eric", timestamp("2022-07-01 12:32:00")),
 (2, "frank", timestamp("2022-07-02 09:11:00")),
-(3, "lee", timestamp("2022-07-01 10:11:00"));
+(3, "lee", timestamp("2022-07-02 10:11:00"));
 
 SELECT * FROM user ;
 ```
@@ -250,7 +250,7 @@ Continue to send the following data into the socket channel:
 DELETE|1|eric|2022-07-01 12:32:00
 INSERT|7|randy|2022-07-03 19:11:00
 DELETE|4|rock|2022-07-02 09:01:00
-DELETE|3|lee|2022-07-01 10:11:00
+DELETE|3|lee|2022-07-02 10:11:00
 
 ```
 

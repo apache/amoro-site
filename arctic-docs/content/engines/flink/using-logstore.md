@@ -11,16 +11,16 @@ menu:
 # Using Logstore
 Due to the limitations of traditional offline data warehouse architectures in supporting real-time business needs, real-time data warehousing has experienced rapid evolution in recent years. In the architecture of real-time data warehousing, Apache Kafka is often used as the storage system for real-time data. However, this also brings about the issue of data disconnection between offline data warehouses.
 
-Developers often need to pay attention to data stored in HDFS as well as data in Kafka, which increases the complexity of business development. Therefore, Arctic proposes the addition of an optional parameter, "LogStore enabled" (`log-store.enabled`), to the table configuration. This allows for retrieving data with sub-second and minute-level latency by operating on a single table while ensuring the eventual consistency of data from both sources.
+Developers often need to pay attention to data stored in HDFS as well as data in Kafka, which increases the complexity of business development. Therefore, Amoro proposes the addition of an optional parameter, "LogStore enabled" (`log-store.enabled`), to the table configuration. This allows for retrieving data with sub-second and minute-level latency by operating on a single table while ensuring the eventual consistency of data from both sources.
 
 ## Real-Time data in LogStore
-Arctic tables provide two types of storage: FileStore and LogStore. FileStore stores massive full data, while LogStore stores real-time incremental data.
+Amoro tables provide two types of storage: FileStore and LogStore. FileStore stores massive full data, while LogStore stores real-time incremental data.
 
 Real-time data can provide second-level data visibility and ensure data consistency without enabling LogStore transactions.
 
 Its underlying storage system can be connected to external message queuing middleware, currently supporting only Kafka and Pulsar.
 
-Users can enable LogStore by configuring the following parameters when creating an Arctic table. For specific configurations, please refer to [LogStore related configurations](../configurations.md#logstore).
+Users can enable LogStore by configuring the following parameters when creating an Amoro table. For specific configurations, please refer to [LogStore related configurations](../configurations.md#logstore).
 
 ## Overview
 
@@ -42,9 +42,9 @@ Kafka as LogStore Version Description:
 
 ### Prerequisites for using LogStore
 
-When creating an Arctic table, LogStore needs to be enabled.
+When creating an Amoro table, LogStore needs to be enabled.
 
-- You can create a table after selecting a specific Catalog on the Arctic [Dashboard](http://localhost:1630) - Terminal page
+- You can create a table after selecting a specific Catalog on the Amoro [Dashboard](http://localhost:1630) - Terminal page
 
 ```sql
 CREATE TABLE db.log_table (
@@ -82,7 +82,7 @@ CREATE TABLE db.log_table (
 ![Introduce](../../images/flink/auto-writer.png){:height=“80%“ width=“80%“}
 </center>
 
-Arctic Connector writes data to LogStore and ChangeStore at the same time through double-write operations, without opening Kafka transactions to ensure data consistency between the two, because opening transactions will bring a few minutes of delay to downstream tasks (the specific delay time depends on upstream tasks checkpoint interval).
+Amoro Connector writes data to LogStore and ChangeStore at the same time through double-write operations, without opening Kafka transactions to ensure data consistency between the two, because opening transactions will bring a few minutes of delay to downstream tasks (the specific delay time depends on upstream tasks checkpoint interval).
 
 ```sql
 INSERT INTO db.log_table /*+ OPTIONS('arctic.emit.mode'='log') */

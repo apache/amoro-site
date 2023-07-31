@@ -9,9 +9,9 @@ menu:
         weight: 500
 ---
 # Metrics
-Arctic provides both table-level and platform-level metrics to help users understand the runtime status of the current table.
+Amoro provides both table-level and platform-level metrics to help users understand the runtime status of the current table.
 ## Table metrics
-The Arctic Tables details page provides multiple tabs to display the status of the table from various dimensions, mainly including:
+The Amoro Tables details page provides multiple tabs to display the status of the table from various dimensions, mainly including:
 
 | **Tab Name**   | **Description**                                               |
 | ------------ | ------------------------------------------------------------ |

@@ -15,11 +15,11 @@ Users can import more test or online clusters through the Catalog management fun
 please read the following guidelines and select the appropriate creation according to your actual needs.
 
 ## Create catalog
-In Arctic, the catalog is a namespace for a group of libraries and tables. Under the catalog, it is further divided into different databases, and under each database, there are different tables. The name of a table in Arctic is uniquely identified by the format `catalog.database.table`. In practical applications, a catalog generally corresponds to a metadata service, such as the commonly used Hive Metastore in big data.
+In Amoro, the catalog is a namespace for a group of libraries and tables. Under the catalog, it is further divided into different databases, and under each database, there are different tables. The name of a table in Amoro is uniquely identified by the format `catalog.database.table`. In practical applications, a catalog generally corresponds to a metadata service, such as the commonly used Hive Metastore in big data.
 
-AMS can also serve as a metadata service. In order to differentiate the storage method of metadata, Arctic classifies the catalog type into `Internal Catalog` and `External Catalog`. Catalogs that use AMS as the metadata service are internal catalogs, while others are external catalogs. When creating an external catalog, you need to select the storage backend for its metadata, such as Hive, Hadoop, or Custom.
+AMS can also serve as a metadata service. In order to differentiate the storage method of metadata, Amoro classifies the catalog type into `Internal Catalog` and `External Catalog`. Catalogs that use AMS as the metadata service are internal catalogs, while others are external catalogs. When creating an external catalog, you need to select the storage backend for its metadata, such as Hive, Hadoop, or Custom.
 
-In addition, when defining a catalog, you also need to select the table format used under it. Currently, Arctic supports the following table formats:
+In addition, when defining a catalog, you also need to select the table format used under it. Currently, Amoro supports the following table formats:
 [Iceberg](../iceberg-format) 、[Mixed-Hive](../mixed-hive-format)、[Mixed-Iceberg](../mixed-iceberg-format).
 
 You can create a catalog in the AMS frontend:
@@ -54,7 +54,7 @@ Common properties include:
 We recommend users to create a Catalog following the guidelines below：
 
 - If you want to use it in conjunction with HMS, choose `External Catalog` for the `Type` and `Hive Metastore` for the `Metastore`, and choose the table format based on your needs, Mixed-Hive or Iceberg.
-- If you want to use Mixed-Iceberg provided by arctic, choose `Internal Catalog` for the `Type` and `Mixed-Iceberg` for the table format.
+- If you want to use Mixed-Iceberg provided by amoro, choose `Internal Catalog` for the `Type` and `Mixed-Iceberg` for the table format.
 
 ## Delete catalog
 When a user needs to delete a Catalog, they can go to the details page of the Catalog and click the Remove button at the bottom of the page to perform the deletion.

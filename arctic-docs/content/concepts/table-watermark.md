@@ -20,9 +20,9 @@ warehouses, data freshness, query performance, and cost form a tripartite parado
 
 <img src="../images/concepts/fressness_cost_performance.png" alt="Fressness, cost and performance" width="60%" height="60%">
 
-Arctic offers a resolution to the tripartite paradox for users by utilizing AMS management functionality and a self-optimizing mechanism. Unlike
+Amoro offers a resolution to the tripartite paradox for users by utilizing AMS management functionality and a self-optimizing mechanism. Unlike
 traditional data warehouses, Lakehouse tables are utilized in a multitude of data pipelines, AI, and BI scenarios. Measuring data freshness is
-crucially important for data developers, analysts, and administrators, and Arctic addresses this challenge by adopting the watermark concept in stream
+crucially important for data developers, analysts, and administrators, and Amoro addresses this challenge by adopting the watermark concept in stream
 computing to gauge table freshness.
 
 ## Table watermark
