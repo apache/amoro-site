@@ -16,12 +16,12 @@ Amoro provides configurations that can be configured at the `Catalog`, `Table`, 
 priority is given first to the `Engine`, followed by the `Table`, and finally by the `Catalog`. 
 
 - Catalog: Generally, we recommend 
-users to set default values for tables through the [Catalog properties configuration](../manage-catalogs), such as Self-optimizing related configurations.
+users to set default values for tables through the [Catalog properties configuration](../managing-catalogs/#configure-properties), such as Self-optimizing related configurations.
 - Table: We also recommend users to 
-specify customized configurations when [Create Table](../user-guides/using-tables.md#create-table), which can also be 
-modified through [Alter Table](../user-guides/using-tables.md#modify-table) operations. 
+specify customized configurations when [Create Table](../using-tables/#create-table), which can also be 
+modified through [Alter Table](../using-tables/#modify-table) operations. 
 - Engine: If tuning is required in the engines, then consider configuring it at the engine level, refer to 
-[Spark](/spark-configuration) and [Flink](/flink-dml).
+[Spark](../spark-configuration/) and [Flink](../flink-dml/).
 
 ## Self-optimizing configurations
 

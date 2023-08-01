@@ -12,7 +12,7 @@ menu:
 # Iceberg Format
 
 The Iceberg Format can be accessed using the Connector provided by Iceberg.
-Refer to the documentation at [Iceberg Spark Connector](https://iceberg.apache.org/docs/latest/getting-started/#) 
+Refer to the documentation at [Iceberg Spark Connector](https://iceberg.apache.org/docs/latest/getting-started/) 
 for more information.
 
 # Mixed Format
@@ -46,7 +46,7 @@ ${SPARK_HOME}/bin/spark-sql \
 > The AMS_PORT is the port number of the AMS service's thrift API interface, with a default value of 1260
 > The AMS_CATALOG_NAME is the name of the Catalog you want to access on AMS.
 
-Regarding detailed configurations for Spark, please refer to [Spark Configurations](spark-conf.md)
+Regarding detailed configurations for Spark, please refer to [Spark Configurations](../spark-configuration/)
 
 
 ## Creating a table
@@ -78,7 +78,7 @@ create table test2 (id int, data string, ts timestamp) using arctic partitioned 
 create table test3 (id int, data string, ts timestamp, primary key(id)) using arctic partitioned by (days(ts));
 ```
 
-For more information on Spark DDL related to tables, please refer to [Spark DDL](spark-ddl.md)
+For more information on Spark DDL related to tables, please refer to [Spark DDL](../spark-ddl/)
 
 ## Writing to the table
 
@@ -108,7 +108,7 @@ val df = spark.read().load("/path-to-table")
 df.writeTo('test_db.table1').overwritePartitions()
 ```
 
-For more information on writing to tables, please refer to [Spark Writes](spark-writes.md)
+For more information on writing to tables, please refer to [Spark Writes](../spark-writes/)
 
 ## Reading from the table
 
@@ -128,4 +128,4 @@ from test_db.test3.change group by data;
 ```
 
 
-For more information on reading from tables, please refer to [Spark Queries](spark-queries.md)
+For more information on reading from tables, please refer to [Spark Queries](../spark-queries/)

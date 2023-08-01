@@ -11,7 +11,7 @@ menu:
 # Using Tables
 
 The SQL execution tool `Terminal` is provided in AMS dashboard to help users quickly create, modify and delete tables.
-It is also available in [Spark](../spark-ddl) and [Flink](../flink-ddl) and other engines to manage tables using SQL.
+It is also available in [Spark](../spark-ddl/) and [Flink](../flink-ddl/) and other engines to manage tables using SQL.
 
 ## Create table
 After logging into AMS dashboard, go to `Terminal`, enter the table creation statement and execute it to complete the table creation.
@@ -34,11 +34,11 @@ tblproperties(
   'table.watermark-allowed-lateness-second' = '60');
 ```
 
-Currently, terminal uses Spark Engine for SQL execution. For more information on the syntax of creating tables, refer to [Spark DDL](../spark/spark-ddl.md#create-table). Different Catalogs create different table formats, refer to [Create Catalog](managing-catalogs.md#catalog)
+Currently, terminal uses Spark Engine for SQL execution. For more information on the syntax of creating tables, refer to [Spark DDL](../spark-ddl/#create-table). Different Catalogs create different table formats, refer to [Create Catalog](../managing-catalogs/#create-catalog)
 
 ### Configure LogStore
-As described in [Mixed streaming format](../concepts/table-formats.md#mixed-streaming-format), mixed streaming format may consist of several components, and BaseStore and ChangeStore will be automatically created upon table creation.
-LogStore, as an optional component, requires separate configuration to specify, The complete configuration for LogStore can be found in [LogStore Configuration](../configurations.md#logstore).
+As described in [Mixed Iceberg format](../mixed-iceberg-format/), mixed Iceberg format may consist of several components, and BaseStore and ChangeStore will be automatically created upon table creation.
+LogStore, as an optional component, requires separate configuration to specify, The complete configuration for LogStore can be found in [LogStore Configuration](../configurations/#logstore-configurations).
 
 In the example above, the Kafka cluster 127.0.0.1:9092 and the topic local_catalog.test_db.test_log_store.log_store are used as the LogStore for the new table. 
 Before executing the above statement, you need to manually create the corresponding topic in the Kafka cluster or enable the automatic creation of topics feature for the cluster.
@@ -78,10 +78,10 @@ Watermark configuration is only supported in Mixed-Hive format and Mixed-Iceberg
 
 After logging into the AMS dashboard, go to the `Terminal` and enter the 
 modification statement to complete the table modification. The current `Terminal` uses Spark Engine to execute SQL. For 
-more information on modifying tables, please refer to the syntax guide [Spark DDL](../spark/spark-ddl.md#alter-table).
+more information on modifying tables, please refer to the syntax guide [Spark DDL](../spark-ddl#alter-statement).
 
 ## Upgrade a Hive table
-Amoro supports Mixed-Hive format  [Mixed-Hive format](../concepts/table-formats.md#mixed-hive-format), which combines the capabilities of Hive formats to directly implement new table formats on top of Hive. For the features that Mixed-Hive tables have after upgrading, please refer to Mixed-Hive  [Mixed-Hive](../concepts/table-formats.md#mixed-hive-format) in the Table Formats concept.
+Amoro supports [Mixed-Hive format](../mixed-hive-format/) table, which combines the capabilities of Hive formats to directly implement new table formats on top of Hive.
 
 After logging into the AMS dashboard, select a table under a certain Hive Catalog from the `Tables` menu to perform the upgrade operation.
 
@@ -98,7 +98,7 @@ On the upgrade page, select the primary key for the table and add additional par
 Amoro provides a self-optimizing feature, which requires an active optimizer in the Optimizer Group configured for the table.
 
 ### Modify optimizer group
-To use an optimizer launched under a specific  [Optimizer Group](managing-optimizers.md#optimizer-group) to perform self-optimization, you need to modify the `self-optimizing.group` parameter of the table to specify a specific resource pool for the table. 
+To use an optimizer launched under a specific optimizer group to perform self-optimizing, you need to modify the `self-optimizing.group` parameter of the table to specify a specific resource pool for the table. 
 The setting method is as follows:
 
 ```sql
@@ -117,7 +117,7 @@ ALTER TABLE test_db.test_log_store set tblproperties (
     'self-optimizing.quota' = '0.1');
 ```
 
-For more information, please refer to [Self-optimizing quota](../concepts/self-optimizing#self-optimizing-quota)。
+For more information, please refer to [Self-optimizing quota](../self-optimizing/#quota)。
 
 ### Adjust optimizing parameters
 
@@ -129,7 +129,7 @@ ALTER TABLE test_db.test_log_store set tblproperties (
     'self-optimizing.major.trigger.interval' = '3600000');
 ```
 
-More optimization parameter adjustment refer to [Self-optimizing configuration](../configurations.md#Self-optimizing)。
+More optimization parameter adjustment refer to [Self-optimizing configuration](../configurations/#self-optimizing-configurations)。
 
 ### Enable or disable self-optimizing
 
@@ -152,4 +152,4 @@ Here is an example of how to delete a table：
 DROP TABLE test_db.test_log_store;
 ```
 
-The current terminal is using the Spark engine to execute SQL. For more information about deleting tables, you can refer to  [Spark DDL](../spark/spark-ddl.md#drop-table).
+The current terminal is using the Spark engine to execute SQL. For more information about deleting tables, you can refer to  [Spark DDL](../spark-ddl/#drop-table).

@@ -86,7 +86,7 @@ Three additional columns will be included in the query result, which are:
 | `MAP(k,v)`     | `MAP(k,v)`                    |
 
 ### Trino uses proxy user to access Hadoop cluster.
-By default, when Trino queries Amoro, it uses the Hadoop user configured in the [catalog creation](../../ch/guides/managing-catalogs.md#catalog) to access the Hadoop cluster.
+By default, when Trino queries Amoro, it uses the Hadoop user configured in the [catalog creation](../managing-catalogs/#create-catalog) to access the Hadoop cluster.
 To use Trino's user to access the Hadoop cluster, you need enable Hadoop impersonation by adding the arctic.hdfs.impersonation.enabled=true parameter in the Amoro catalog configuration file located in the {trino_home}/etc/catalog directory, as follows.
 
 ```tex
@@ -97,6 +97,6 @@ arctic.hdfs.impersonation.enabled=true
 `arctic.hdfs.impersonation.enabled` default false
 
 {{< hint info >}}
-To use Hadoop impersonation, you need to enable the proxy feature for the Hadoop user configured in the [catalog creation](../guides/managing-catalogs.md#catalog) in the Hadoop cluster beforehand，
+To use Hadoop impersonation, you need to enable the proxy feature for the Hadoop user configured in the [catalog creation](../managing-catalogs/#create-catalog) in the Hadoop cluster beforehand，
 and make sure that it can proxy the Trino querying user. Please refer to [Hadoop Proxy User](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/Superusers.html#Configurations) for more information.
 {{</hint>}}

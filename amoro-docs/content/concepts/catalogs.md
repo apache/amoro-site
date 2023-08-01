@@ -33,14 +33,14 @@ Users can create catalogs in Amoro for different environments, clusters, and tab
 and Trino to enable federated computation across multiple clusters and formats. Additionally, properties configured in catalogs can be shared by all
 tables and users, avoiding duplication. By leveraging the multi-catalog design, Amoro provides support for a metadata center in data platforms.
 
-When AMS and HMS are used together, HMS serves as the storage foundation for AMS. With the [Iceberg Format](../iceberg-format), users can leverage the
+When AMS and HMS are used together, HMS serves as the storage foundation for AMS. With the [Iceberg Format](../iceberg-format/), users can leverage the
 multi-catalog management functionality of AMS without introducing any Amoro dependencies.
 
 ## How to use
 
 Amoro v0.4 introduced the catalog management feature, where table creation is performed under a catalog. Users can create, edit, and delete catalogs
 in the catalogs module, which requires configuration of metastore, table format, and environment information upon creation. For more information,
-please refer to the documentation: [Managing catalogs](../managing-catalogs)
+please refer to the documentation: [Managing catalogs](../managing-catalogs/)
 
 In practice, it is recommended to create a catalog as follows:
 

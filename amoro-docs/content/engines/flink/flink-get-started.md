@@ -89,14 +89,11 @@ cp ../arctic-flink-runtime-1.12-0.3.0.jar lib
 cp ../flink-shaded-hadoop-2-uber-${HADOOP_VERSION}-10.0.jar lib
 ```
 
-### Hive compatibility
-Starting from Amoro version 0.3.1, Hive compatibility is supported, and data in Amoro Hive compatible tables can be read/written through Flink. When operating on Hive-compatible tables through Flink, the following points should be noted:
+### Mixed Hive format
+Starting from Amoro version 0.3.1, Mixed Hive format is supported, and data in Amoro  Mixed Hive format tables can be read/written through Flink. When operating on Mixed Hive format tables through Flink, the following points should be noted:
 
 1. Flink Runtime Jar does not include the content of the Jar packages that Hive depends on. You need to manually put the [Hive-dependent Jar package](https://repo1.maven.org/maven2/org/apache/hive/hive-exec/2.1.1/hive-exec-2.1.1.jar) in the flink/lib directory;
 2. When creating partitioned tables, the partition field needs to be placed in the last column; when there are multiple partition fields, they need to be placed at the end;
-3. For Hive-compatible tables, the [table creation method](flink-ddl.md) and [reading/writing method](flink-dml.md) are consistent with non-Hive-compatible Amoro tables;
-4. Hive version 2.1.1 is supported.
-
 
 ## Frequently Asked Questions
 

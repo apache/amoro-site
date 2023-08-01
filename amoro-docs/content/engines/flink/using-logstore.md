@@ -20,7 +20,7 @@ Real-time data can provide second-level data visibility and ensure data consiste
 
 Its underlying storage system can be connected to external message queuing middleware, currently supporting only Kafka and Pulsar.
 
-Users can enable LogStore by configuring the following parameters when creating an Amoro table. For specific configurations, please refer to [LogStore related configurations](../configurations.md#logstore).
+Users can enable LogStore by configuring the following parameters when creating an Amoro table. For specific configurations, please refer to [LogStore related configurations](../configurations/#logstore-configurations).
 
 ## Overview
 
@@ -77,10 +77,7 @@ CREATE TABLE db.log_table (
 
 ### Double write LogStore and FileStore
 
-<center>
-
-![Introduce](../../images/flink/auto-writer.png){:height=“80%“ width=“80%“}
-</center>
+![Introduce](../../images/flink/auto-writer.png)
 
 Amoro Connector writes data to LogStore and ChangeStore at the same time through double-write operations, without opening Kafka transactions to ensure data consistency between the two, because opening transactions will bring a few minutes of delay to downstream tasks (the specific delay time depends on upstream tasks checkpoint interval).
 
@@ -88,7 +85,5 @@ Amoro Connector writes data to LogStore and ChangeStore at the same time through
 INSERT INTO db.log_table /*+ OPTIONS('arctic.emit.mode'='log') */
 SELECT id, name, ts from sourceTable;
 ```
-
-For the configuration of LogStore, please refer to [here](../../configurations.md#logstore-configurations), and for the configuration of consuming Kafka, please refer to [here](flink-dml.md#logstore).
 
 > Currently, only the Apache Flink engine implements the dual-write LogStore and FileStore.

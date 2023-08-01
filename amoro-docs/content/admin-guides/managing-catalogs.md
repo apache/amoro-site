@@ -20,10 +20,10 @@ In Amoro, the catalog is a namespace for a group of libraries and tables. Under 
 AMS can also serve as a metadata service. In order to differentiate the storage method of metadata, Amoro classifies the catalog type into `Internal Catalog` and `External Catalog`. Catalogs that use AMS as the metadata service are internal catalogs, while others are external catalogs. When creating an external catalog, you need to select the storage backend for its metadata, such as Hive, Hadoop, or Custom.
 
 In addition, when defining a catalog, you also need to select the table format used under it. Currently, Amoro supports the following table formats:
-[Iceberg](../iceberg-format) 、[Mixed-Hive](../mixed-hive-format)、[Mixed-Iceberg](../mixed-iceberg-format).
+[Iceberg](../iceberg-format/) 、[Mixed-Hive](../mixed-hive-format/)、[Mixed-Iceberg](../mixed-iceberg-format/).
 
 You can create a catalog in the AMS frontend:
-![create_catalog](../images/admin/create_catalog.png)
+![create_catalog](../images/admin/create-catalog.png)
 
 ### Configure basic information
 

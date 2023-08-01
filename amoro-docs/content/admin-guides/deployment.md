@@ -10,7 +10,7 @@ menu:
 ---
 # Deployment
 
-You can choose to download the stable release package from [download page](/download), or the source code form [Github](https://github.com/NetEase/amoro) and compile it according to the README.
+You can choose to download the stable release package from [download page](../../download/), or the source code form [Github](https://github.com/NetEase/amoro) and compile it according to the README.
 
 ## System requirements
 
@@ -22,7 +22,7 @@ You can choose to download the stable release package from [download page](/down
 
 ## Download the distribution
 
-All released package can be downaloded from [download page](/download).
+All released package can be downaloded from [download page](../../download/).
 You can download amoro-x.y.z-bin.zip (x.y.z is the release number), and you can also download the runtime packages for each engine version according to the engine you are using.
 Unzip it to create the amoro-x.y.z directory in the same directory, and then go to the amoro-x.y.z directory.
 
@@ -189,7 +189,7 @@ containers:
 
 The Terminal module in the AMS Dashboard allows users to execute SQL directly on the platform. Currently, the Terminal backend supports two implementations: `local` and `kyuubi`.
 In local mode, an embedded Spark environment will be started in AMS. In kyuubi mode, an additional kyuubi service needs to be deployed.
-The configuration for kyuubi mode can refer to: [Using Kyuubi with Terminal](../using-kyuubi). Below is the configuration for the local mode:
+The configuration for kyuubi mode can refer to: [Using Kyuubi with Terminal](../using-kyuubi/). Below is the configuration for the local mode:
 
 ```yaml
 ams:

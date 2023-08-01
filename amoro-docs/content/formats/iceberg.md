@@ -18,7 +18,7 @@ However, as data and delete files are written, the read performance and availabi
 
 <img src="../images/formats/iceberg_format.png" alt="Iceberg Format" width="70%" height="70%">
 
-Starting from Amoro v0.4, Iceberg format including v1 and v2 is supported. Users only need to register Iceberg's catalog in Amoro to host the table for Amoro maintenance. For detailed operation steps, please refer to[Managing Catalogs](../managing-catalogs).
+Starting from Amoro v0.4, Iceberg format including v1 and v2 is supported. Users only need to register Iceberg's catalog in Amoro to host the table for Amoro maintenance. For detailed operation steps, please refer to [Managing Catalogs](../managing-catalogs/).
 Amoro maintains the performance and economic availability of Iceberg tables with minimal read/write costs through means such as small file merging, eq-delete file conversion to pos-delete files, duplicate data elimination, and file cleaning, and Amoro has no intrusive impact on the functionality of Iceberg.
 
 Iceberg format has full upward and downward compatibility features, and in general, users do not have to worry about the compatibility of the Iceberg version used by the engine client with the Iceberg version on which Amoro depends.

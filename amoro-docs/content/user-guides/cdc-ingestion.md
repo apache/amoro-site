@@ -11,7 +11,7 @@ menu:
 # CDC Ingestion
 CDC stands for Change Data Capture, which is a broad concept, as long as it can capture the change data, it can be called CDC. [Flink CDC](https://github.com/ververica/flink-cdc-connectors) is a Log message-based data capture tool, all the inventory and incremental data can be captured. Taking MySQL as an example, it can easily capture Binlog data through Debezium and process the calculations in real time to send them to the data lake. The data lake can then be queried by other engines.
 
-This section will show how to ingest one table or multiple tables into the data lake for both [Iceberg](../formats/iceberg.md) format and [Mixed-Iceberg](../formats/mixed-iceberg.md) format.
+This section will show how to ingest one table or multiple tables into the data lake for both [Iceberg](../iceberg-format/) format and [Mixed-Iceberg](../mixed-iceberg-format/) format.
 ## Ingest into one table
 ### Iceberg format
 The following example will show how MySQL CDC data is written to an Iceberg table.
@@ -58,7 +58,7 @@ The following example will show how MySQL CDC data is written to a Mixed-Iceberg
 
 **Requirements**
 
-Please add [Flink Connector MySQL CDC](https://repo1.maven.org/maven2/com/ververica/flink-connector-mysql-cdc/2.3.0/flink-connector-mysql-cdc-2.3.0.jar) and [Amoro](../../download) Jars to the lib directory of the Flink engine package.
+Please add [Flink Connector MySQL CDC](https://repo1.maven.org/maven2/com/ververica/flink-connector-mysql-cdc/2.3.0/flink-connector-mysql-cdc-2.3.0.jar) and [Amoro](../../../download/) Jars to the lib directory of the Flink engine package.
 
 ```sql
 CREATE TABLE products (
