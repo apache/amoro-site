@@ -26,7 +26,7 @@ sectionPagesMenu = "main"
 
 [[params.features]]
   title = "Self-optimizing"
-  desc = "Continuously optimizing tables, including compacting small files, change files, regularly delete expired files to to keep high query performance and reducing storage costs."
+  desc = "Continuously optimizing tables, including compacting small files, change files, regularly delete expired files to keep high query performance and reducing storage costs."
   icon = "Self-managed"
 [[params.features]]
   title = "Multiple Formats"
@@ -38,7 +38,7 @@ sectionPagesMenu = "main"
   icon = "Catalog-Service"
 [[params.features]]
   title = "Rich Plugins"
-  desc = "Provide various plugins to integrate with other systems, like continuously optimizing with Flink and data analysis with Saprk and Kyuubi."
+  desc = "Provide various plugins to integrate with other systems, like continuously optimizing with Flink and data analysis with Spark and Kyuubi."
   icon = "Rich-Plugins"
 [[params.features]]
   title = "Management Tools"
