@@ -20,26 +20,29 @@
 
 #intro-new .title {
   font-size: 56px;
+  color: #0036A1;
 }
 
 #intro-new .desc {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 500;
-  line-height: 28px;
+  margin-top: 20px;
 }
 
 #intro-new .btns {
-  margin-top: 40px;
+  margin-top: 30px;
   font-size: 0px;
 }
+
 #intro-new .btn-primary {
-  background: #2a72ff;
+  background: #ECEDF3;
   margin-right: 16px;
   padding: 13px 32px;
   font-size: 16px;
   font-weight: 500;
   border-radius: 8px;
   margin-bottom: 12px;
+  color: #0036A1;
 }
 
 #home-section {

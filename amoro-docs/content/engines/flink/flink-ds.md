@@ -142,7 +142,7 @@ stream.print();
 // Submit and execute the task 
 env.execute("Test Amoro Stream Read"); 
 ``` 
-DataStream API supports reading primary key tables and non-primary key tables. The configuration items supported by properties can refer to Querying With SQL [chapter Hint Option](flink-dml.md#filestore)
+DataStream API supports reading primary key tables and non-primary key tables. The configuration items supported by properties can refer to Querying With SQL [chapter Hint Option](../flink-dml/)
 
 ## Writing with DataStream
 Amoro table supports writing data to LogStore or FileStore through Java API
@@ -202,10 +202,10 @@ FlinkSink
 
 env.execute("Test Amoro Append");
 ```
-The DataStream API supports writing to primary key tables and non-primary key tables. The configuration items supported by properties can refer to Writing With SQL [chapter Hint Options](flink-dml.md#insert-into)
+The DataStream API supports writing to primary key tables and non-primary key tables. The configuration items supported by properties can refer to Writing With SQL [chapter Hint Options](../flink-dml/)
 
 > **TIPS**
 >
-> arctic.emit.mode contains log, you need to configure log-store.enabled = true [Enable Log Configuration](flink-dml.md#log)
+> arctic.emit.mode contains log, you need to configure log-store.enabled = true [Enable Log Configuration](../flink-dml/)
 >
 > arctic.emit.mode When file is included, the primary key table will only be written to ChangeStore, and the non-primary key table will be directly written to BaseStore.

@@ -17,7 +17,7 @@ Compared with Iceberg format, Mixed-Iceberg format provides more features:
 - Transaction conflict resolution mechanism that enables concurrent writes with the same primary key
 
 The design intention of Mixed-Iceberg format is to provide a storage layer for stream-batch integration and offline-real-time unified data warehouses for big data platforms based on data lakes. 
-Under this goal-driven approach, Amoro designs mixed Iceberg format as a three-tier structure, with each level named after a different TableStore:
+Under this goal-driven approach, Amoro designs Mixed-Iceberg format as a three-tier structure, with each level named after a different TableStore:
 
 ![Mixed-Iceberg format](../images/formats/mixed_format.png)
 
