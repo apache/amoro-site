@@ -32,7 +32,7 @@ Self-optimizing configurations are applicable to both Iceberg Format and Mixed s
 | self-optimizing.enabled                             | true             | Enables Self-optimizing                                |
 | self-optimizing.group                               | default          | Optimizer group for Self-optimizing                                   |
 | self-optimizing.quota                               | 0.1              | Quota for Self-optimizing, indicating the CPU resource the table can take up                       |
-| self-optimizing.num-retries                         | 5                | Number of retries after failure of Self-optimizing                       |
+| self-optimizing.execute.num-retries                         | 5                | Number of retries after failure of Self-optimizing                       |
 | self-optimizing.target-size                         | 134217728(128MB) | Target size for Self-optimizing                           |
 | self-optimizing.max-file-count                      | 10000            | Maximum number of files processed by a Self-optimizing process              |               |
 | self-optimizing.fragment-ratio                      | 8                | The fragment file size threshold. We could divide self-optimizing.target-size by this ratio to get the actual fragment file size           |
@@ -49,10 +49,10 @@ Data-cleaning configurations are applicable to both Iceberg Format and Mixed str
 |---------------------------------------------|-----------|------------------------------------|
 | table-expire.enabled                        | true      | Enables periodically expire table                      |
 | change.data.ttl.minutes                     | 10080(7 days) | Time to live in minutes for data of ChangeStore                |
-| snapshot.change.keep.minutes                | 10080(7 days) | Table-Expiration keeps the latest snapshots of ChangeStore within a specified time in minutes            |
 | snapshot.base.keep.minutes                  | 720(12 hours) | Table-Expiration keeps the latest snapshots of BaseStore within a specified time in minutes                |
 | clean-orphan-file.enabled                   | false     | Enables periodically clean orphan files                       |
 | clean-orphan-file.min-existing-time-minutes | 2880(2 days)  | Cleaning orphan files keeps the files modified within a specified time in minutes |
+| clean-independent-delete-files.enabled      | true      | Whether to enable cleaning of independent delete files |
 
 ## Mixed Format configurations
 
@@ -65,6 +65,7 @@ If using Iceberg Format，please refer to [Iceberg configurations](https://icebe
 | read.split.open-file-cost          | 4194304(4MB)    | The estimated cost to open a file                        |
 | read.split.planning-lookback       | 10               | Number of bins to consider when combining input splits               |
 | read.split.target-size              | 134217728(128MB)| Target size when combining data input splits                     |
+| read.split.delete-ratio            | 0.05             | When the ratio of delete files is below this threshold, the read task will be split into more tasks to improve query speed |
 
 ### Writing configurations
 
