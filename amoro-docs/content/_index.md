@@ -60,12 +60,12 @@ Amoro support multiple processing engines for Mixed format as below:
 
 Amoro makes it easier for users to handle the challenges of writing to a real-time data lake, such as ingesting append-only event logs or CDC data from databases.
 In these scenarios, the rapid increase of fragment and redundant files cannot be ignored.
-To address this issue, Amoro provides a pluggable streaming data self-managed mechanism that automatically compacts fragment files and removes expired data, ensuring high-quality table queries while reducing system costs.
+To address this issue, Amoro provides a pluggable streaming data self-optimizing mechanism that automatically compacts fragment files and removes expired data, ensuring high-quality table queries while reducing system costs.
 
-### Building a product on top of a lake-native architecture
+### Stream-and-batch-fused data pipeline
+
+Whether in the AI or BI business field , the requirement for real-time analysis is becoming increasingly high. The traditional approach of using one streaming job to complete all data processing from the source to the end is no longer applicable. There is an increasing demand for layered construction of streaming data pipeline, and the traditional layered construction approach based on message queues can cause a inconsistency problem between the streaming and batch data processing. Building a unified stream-and-batch-fused pipeline based on new data lake formats is the future direction for solving these problems. Amoro fully leverages the characteristics of the new data lake table formats about unified streaming and batch processing, not only ensuring the quality of data in the streaming pileline but also enhancing critical features such as incremental reading for CDC data and streaming dimension table association, helping users to build a stream-and-batch-fused data pipeline.
+
+### Cloud-native Lakehouse
 
 Currently, most data platforms and products are tightly coupled with their underlying infrastructure(such as the storage layer). The migration of infrastructure, such as switching to cloud-native OSS, may require extensive adaptation efforts or even be impossible. However, Amoro provides an infra-decoupled, lake-native architecture built on top of the infrastructure. This allows products based on Amoro to interact with the underlying infrastructure through a unified interface (Amoro Catalog service), protecting upper-layer products from the impact of infrastructure switch.
-
-### Stream-and-batch-fused data warehouse
-
-In order to fully leverage the complementary features of different data lake and data warehouse technologies, users tend to deploy multiple type of data clusters, which results in the same data being stored separately in data lake and data warehouse clusters, leading to issues such as data redundancy, data inconsistency, and data silos. Amoro provides self-optimizing, data constraints, monitoring, permissions management and other capabilities on top of the data lake, enhancing the data management capabilities of the data lake technology. This enables it to replace traditional data warehouses and achieve stream-and-batch-fused data warehouse on integrated storage.

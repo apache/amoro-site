@@ -10,8 +10,7 @@ menu:
 ---
 # Managing Catalogs
 
-In the default AMS configuration, we have initialized a cluster named `local_catalog` based on the local file system for your testing convenience.
-Users can import more test or online clusters through the Catalog management function provided by the AMS Dashboard. Before adding a new Catalog,
+Users can import your test or online clusters through the catalog management function provided by the AMS Dashboard. Before adding a new Catalog,
 please read the following guidelines and select the appropriate creation according to your actual needs.
 
 ## Create catalog

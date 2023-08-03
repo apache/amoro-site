@@ -295,6 +295,7 @@ div.sidebar {
     font-size: 16px;
     min-width: 15rem;
     list-style-type: none;
+    padding-right: 5px;
 }
 
 .sidebar hr {
