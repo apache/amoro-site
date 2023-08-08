@@ -20,13 +20,13 @@ Before starting the quick demo, some steps are required to prepare the environme
 
 Open [http://localhost:1630](http://localhost:1630) in a browser, enter `admin/admin` to log in to the dashboard.
 
-Click on `Catalogs` in the sidebar, choose `Optimizer Groups` annd click `Add Group` button to create a new group befre creating catalog:
+Click on `Optimizing` in the sidebar, choose `Optimizer Groups` and click `Add Group` button to create a new group befre creating catalog:
 
-![Create groip](../images/quickstart/create-group.png)
+![Create group](../images/quickstart/create-group.png)
 
 ### Create catalog
 
-Click on `Optimizing` in the sidebar, click on the `+` button under Catalog List to create a test catalog, and name it to `demo_catalog`:
+Click on `Catalogs` in the sidebar, click on the `+` button under Catalog List to create a test catalog, and name it to `demo_catalog`:
 {{% codetabs "CreateCatalog" %}}
 {{% addtab "Iceberg Format" "spark-queries" "spark-sql" %}}
 {{% addtab "Mixed-Iceberg Format" "spark-queries" "spark-shell" %}}
