@@ -233,10 +233,10 @@ FROM cdc_source;
 {{% /tabcontent %}}
 {{% /codetabs %}}
 
-Open a new terminal. If you deployed the demo environment using Docker-Compose, you can use the following command to reopen a terminal of the Flink container. The required commands are already installed inside the container.
+Open a new terminal. If you deployed the demo environment using Docker-Compose, you can use the following command to reopen a terminal of the container. The required commands are already installed inside the container.
 
 ```shell
-docker exec -it flink bash
+docker exec -it ams bash
 ```
 
 Execute the following command in the newly opened terminal. It will open a socket channel to the `cdc_source` table, allowing us to insert some test data into the table.
