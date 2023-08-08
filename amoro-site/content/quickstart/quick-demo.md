@@ -125,21 +125,25 @@ Click on the `RUN` button uppon the SQL editor, and wait for the SQL query to fi
 
 ### Start Flink ingestion job
 
-If you have prepared the environment using Docker-Compose and the Flink cluster has been automatically started, you can directly open the Flink dashboard by visiting [http://localhost:8081](http://localhost:8081).
+If you have prepared the environment using Docker-Compose, you can open a terminal in docker using the following command:
 
-If you have deployed Flink locally using a binary package, you can start the standalone Flink cluster using the following command:
+```shell
+docker exec -it ams bash
+```
+
+Then you can start the standalone Flink cluster using the following command:
 
 ```shell
 cd <FLINK_DIR>
+
 ./bin/start-cluster.sh
 ```
+
+After you start the Flink cluster, you can open the Flink dashboard by visiting [http://localhost:8081](http://localhost:8081).
 
 Then execute the following command to start the Flink SQL Client:
 
 ```shell
-# Open the bash for docker container, skip this step if you have NOT prepared the environment using Docker-Compose
-docker exec -it flink bash
-
 ./bin/sql-client.sh embedded
 ```
 
@@ -150,12 +154,11 @@ Enter the following SQL statements one by one to start the Flink ingestion job s
 {{% addtab "Mixed-Iceberg Format" "spark-queries" "spark-shell" %}}
 {{% tabcontent "spark-sql"  %}}
 ```sql
--- Create Flink catalog, replace the URL with 'thrift://localhost:1260/demo_catalog' you deployed the demo environment through binary release
 CREATE CATALOG iceberg_catalog WITH (
   'type' = 'iceberg',
   'catalog-impl' = 'org.apache.iceberg.rest.RESTCatalog',
   'uri'='http://127.0.0.1:1630/api/iceberg/rest',
-  'warehouse'='local_catalog'
+  'warehouse'='demo_catalog'
 );
 
 -- Recreate table with Flink as Only Flink support primary key for iceberg format table
@@ -199,10 +202,9 @@ FROM cdc_source;
 {{% /tabcontent %}}
 {{% tabcontent "spark-shell" %}}
 ```sql
--- Create Flink catalog, replace the URL with 'thrift://localhost:1260/demo_catalog' you deployed the demo environment through binary release
 CREATE CATALOG arctic_catalog WITH (
   'type' = 'arctic',
-  'metastore.url'='thrift://ams:1260/demo_catalog'
+  'metastore.url'='thrift://127.0.0.1:1260/demo_catalog'
 );
 
 -- Create CDC socket source table
