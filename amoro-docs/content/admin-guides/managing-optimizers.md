@@ -124,16 +124,17 @@ Currently, only pptimizer scaled through the dashboard can be released on dashbo
 You can submit optimizer in your own Flink task development platform or local Flink environment with the following configuration. The main parameters include:
 
 ```shell
-flink run -m yarn-cluster  -ytm {EXECUTOR_TASKMANAGER_MEMORY} -yjm {EXECUTOR_JOBMANAGER_MEMORY}  -c com.netease.arctic.optimizer.flink.FlinkOptimizer  {ARCTIC_HOME}/plugin/optimize/OptimizeJob.jar -a {AMS_THRIFT_SERVER_URL} -g {OPTIMIZE_GROUP_NAME} -p {EXECUTOR_PARALLELISM} -m {EXECUTOR_MEMORY}  --hb 60000
+flink run -m yarn-cluster  -ytm {EXECUTOR_TASKMANAGER_MEMORY} -yjm {EXECUTOR_JOBMANAGER_MEMORY}  -c com.netease.arctic.optimizer.flink.FlinkOptimizer  {AMORO_HOME}/plugin/optimize/OptimizeJob.jar -a {AMS_THRIFT_SERVER_URL} -g {OPTIMIZE_GROUP_NAME} -p {EXECUTOR_PARALLELISM} -m {EXECUTOR_MEMORY}  --hb 10000
 ```
 The description of the relevant parameters is shown in the following table:
 
 | Property | Description |
 |----------|-------------|
-| -ytm EXECUTOR_TASKMANAGER_MEMORY | Flink task task manager memory Size. |
-| -yjm EXECUTOR_JOBMANAGER_MEMORY  | Flink task job mamanger memory Size. |
-| ARCTIC_HOME | Amoro home directory |
+| -ytm EXECUTOR_TASKMANAGER_MEMORY | Flink task task manager memory size. |
+| -yjm EXECUTOR_JOBMANAGER_MEMORY  | Flink task job mamanger memory size. |
+| AMORO_HOME | Amoro home directory |
 | -a AMS_THRIFT_SERVER_URL | The address of the AMS thrift service, for example: thrift://127.0.0.1:1261, can be obtained from the config.yaml configuration. |
 | -g OPTIMIZE_GROUP_NAME | Group name created in advance under external container. |
 | -p EXECUTOR_PARALLELISM | Optimizer parallelism usage. |
-| -m EXECUTOR_MEMORY | Optimizer memory usage. |
+| -m EXECUTOR_MEMORY | Optimizer memory usage, generally it can be calculated through: `EXECUTOR_JOBMANAGER_MEMORY + EXECUTOR_TASKMANAGER_MEMORY * EXECUTOR_PARALLELISM`. |
+| -hb 10000 | Heart beat interval with ams, should be smaller than configuration `ams.optimizer.heart-beat-timeout` in AMS configuration `conf/config.yaml` which is 60000 milliseconds by default |
