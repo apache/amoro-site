@@ -33,7 +33,7 @@ wget https://raw.githubusercontent.com/NetEase/amoro/master/docker/demo-cluster.
 Execute the following shell command to launch a demo cluster using docker-compose:
 
 ```shell
-bash demo-cluster.sh start
+bash demo-cluster.sh -v 0.5.0 start
 ```
 
 After executing the above command, there will be a `data` directory in the workspace directory for sharing files between different docker containers. You can use the following command to view all the running Docker containers:
