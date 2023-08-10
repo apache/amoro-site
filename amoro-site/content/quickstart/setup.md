@@ -43,11 +43,7 @@ docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}"
 
 CONTAINER ID   NAMES                           STATUS
 eee36c86b89f   datanode                        Up About a minute
-a77265d3b3d0   flink                           Up About a minute
-ed0773a69e56   lakehouse-benchmark-ingestion   Up About a minute
-76ee38376c50   lakehouse-benchmark             Up About a minute
 f1af63be0154   namenode                        Up About a minute
-ff352a0008d5   mysql                           Up About a minute
 e76597faa82b   ams                             Up About a minute
 ```
 
@@ -92,7 +88,7 @@ cd <AMORO-WORKSPACE>
 
 # Rplace version value with the latest Amoro version if needed
 AMORO_VERSION=0.5.0
-ICEBERG_VERSION=1.1.0
+ICEBERG_VERSION=1.3.0
 FLINK_VERSION=1.15.3
 FLINK_MAJOR_VERSION=1.15
 FLINK_HADOOP_SHADE_VERSION=2.7.5
