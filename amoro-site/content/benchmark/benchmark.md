@@ -152,7 +152,7 @@ The figure above shows a performance comparison of Iceberg and Mixed-Iceberg tab
 
 ### Dynamic result
 
-![Amoro Iceberg Hudi 100 warehouse performence with TPCC time](../images/chbenchmark/Amoro-Iceberg-Hudi_100_warehouse_performence_with_TPCC_time.png)
+![Amoro Iceberg Hudi 100 warehouse performence with TPCC time](../images/chbenchmark/Arctic-Iceberg-Hudi_100_warehouse_performence_with_TPCC_time.png)
 
 The figure above shows a performance comparison of Iceberg 、Mixed-Iceberg and Hudi table formats for querying dynamic data. The test recorded the results of running TPC-C for different time periods.
 
