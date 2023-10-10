@@ -128,7 +128,7 @@ Click on the `RUN` button uppon the SQL editor, and wait for the SQL query to fi
 If you have prepared the environment using Docker-Compose, you can open a terminal in docker using the following command:
 
 ```shell
-docker exec -it ams bash
+docker exec -it quickdemo bash
 ```
 
 Then you can start the standalone Flink cluster using the following command:
@@ -236,14 +236,18 @@ FROM cdc_source;
 Open a new terminal. If you deployed the demo environment using Docker-Compose, you can use the following command to reopen a terminal of the container. The required commands are already installed inside the container.
 
 ```shell
-docker exec -it ams bash
+docker exec -it quickdemo bash
 ```
 
 Execute the following command in the newly opened terminal. It will open a socket channel to the `cdc_source` table, allowing us to insert some test data into the table.
 
 ```shell
-nc -lk 9999
+nc -l -p 9999 -k
 ```
+
+{{< hint info >}}
+if you are in MacOS and run quick demo in local. run `nc -lk 9999` instead.
+{{< /hint >}}
 
 Send the following content into the socket channel, and make sure to add a break line after the last line of data to ensure that the last line of data is correctly sent.
 
