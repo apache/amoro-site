@@ -48,12 +48,13 @@ You can create a catalog in the AMS frontend:
 Common properties include:
 - warehouse: Warehouse **must be configured**, as it determines where our database and table files should be placed
 - catalog-impl: when the metastore is **Custom**, an additional catalog-impl must be defined, and the user must put the jar package for the custom catalog implementation into the **{ARCTIC_HOME}/lib** directory, **and the service must be restarted to take effect**
+- table-filter: Configure a regular expression to filter tables in the catalog. The matching will be done in the format of `database.table`. For example, if it is set to `(A\.a)|(B\.b)`, it will ignore all tables except for table `a` in database `A` and table `b` in database `B`
 - table.*: If you want to add the same table configuration to all tables under a catalog, you can add `table.` before the configuration key to indicate that it is a table-level configuration. For example, `table.self-optimizing.group`
 
 We recommend users to create a Catalog following the guidelines below：
 
 - If you want to use it in conjunction with HMS, choose `External Catalog` for the `Type` and `Hive Metastore` for the `Metastore`, and choose the table format based on your needs, Mixed-Hive or Iceberg.
-- If you want to use Mixed-Iceberg provided by amoro, choose `Internal Catalog` for the `Type` and `Mixed-Iceberg` for the table format.
+- If you want to use Mixed-Iceberg provided by Amoro, choose `Internal Catalog` for the `Type` and `Mixed-Iceberg` for the table format.
 
 ## Delete catalog
 When a user needs to delete a Catalog, they can go to the details page of the Catalog and click the Remove button at the bottom of the page to perform the deletion.

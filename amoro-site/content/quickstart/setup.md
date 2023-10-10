@@ -33,7 +33,7 @@ wget https://raw.githubusercontent.com/NetEase/amoro/master/docker/demo-cluster.
 Execute the following shell command to launch a demo cluster using docker-compose:
 
 ```shell
-bash demo-cluster.sh -v 0.5.0 start
+bash demo-cluster.sh start
 ```
 
 After executing the above command, there will be a `data` directory in the workspace directory for sharing files between different docker containers. You can use the following command to view all the running Docker containers:
@@ -65,7 +65,7 @@ Prepare a clean directory as the workspace for the Amoro demo cluster, and execu
 cd <AMORO-WORKSPACE>
 
 # Rplace version value with the latest Amoro version if needed
-export AMORO_VERSION=0.5.0
+export AMORO_VERSION=0.5.1
 
 # Download the binary package of AMS
 wget https://github.com/NetEase/amoro/releases/download/v${AMORO_VERSION}/amoro-${AMORO_VERSION}-bin.zip
@@ -87,7 +87,7 @@ Before starting the Quick Demo, you also need to deploy the Flink execution envi
 cd <AMORO-WORKSPACE>
 
 # Rplace version value with the latest Amoro version if needed
-AMORO_VERSION=0.5.0
+AMORO_VERSION=0.5.1
 ICEBERG_VERSION=1.3.0
 FLINK_VERSION=1.15.3
 FLINK_MAJOR_VERSION=1.15

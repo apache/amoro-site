@@ -1,5 +1,5 @@
 ---
-title: "Spark Conriguration"
+title: "Spark Configuration"
 url: spark-configuration
 aliases:
     - "spark/configuration"
@@ -40,13 +40,13 @@ spark.sql.catalog.arctic_catalog=com.netease.arctic.spark.ArcticSparkCatalog
 spark.sql.catalog.arctic_catalog.url=thrift://${AMS_HOST}:${AMS_PORT}/${AMS_CATALOG_NAME_HIVE}
 ```
 
-In a standalone ArcticSparkCatalog scenario, only Mixed-Format tables can be created and accessed in the corresponding
+In a standalone AmoroSparkCatalog scenario, only Mixed-Format tables can be created and accessed in the corresponding
 catalog
 
 ### Using Mixed-Format in session catalog
 
 If you want to access both existing Hive tables or Spark datasource tables and Mixed-Format tables in Spark,
-you can use the ArcticSparkSessionCatalog as the implementation of the Spark default session catalog.
+you can use the AmoroSparkSessionCatalog as the implementation of the Spark default session catalog.
 The configuration method is as follows.
 
 ```properties
@@ -64,9 +64,9 @@ When using the `ArcticSparkSessionCatalog` as the implementation of the `spark_c
   the clause contains `using arctic`, a Mixed-Format table will be created. Otherwise, the default Spark implementation
   will be used to create the table.
 
-When using the ArcticSparkSessionCatalog, there are several points to keep in mind:
+When using the `ArcticSparkSessionCatalog`, there are several points to keep in mind:
 
-- ArcticSparkSessionCatalog can only be configured under the `spark_catalog`
+- `ArcticSparkSessionCatalog` can only be configured under the `spark_catalog`
 - The `spark.sql.catalogImplementation` must be configured as `HIVE`
 - Catalogs registered on AMS must use a Metastore of the `Hive` type.
 
