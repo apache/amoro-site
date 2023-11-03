@@ -15,13 +15,19 @@ The Iceberg Format can be accessed using the Connector provided by Iceberg.
 Refer to the documentation at [Iceberg Spark Connector](https://iceberg.apache.org/docs/latest/getting-started/) 
 for more information.
 
+# Paimon Format
+
+The Paimon Format can be accessed using the Connector provided by Paimon.
+Refer to the documentation at [Paimon Spark Connector](https://paimon.apache.org/docs/master/engines/spark3/)
+for more information.
+
 # Mixed Format
 
 
 To use Amoro in a Spark shell, use the --packages option:
 
 ```bash
-spark-shell --packages com.netease.amoro:amoro-spark-3.3-runtime:0.5.1
+spark-shell --packages com.netease.amoro:amoro-spark-3.3-runtime:0.5.0
 ```
 
 > If you want to include the connector in your Spark installation, add the `amoro-spark-3.3-runtime` Jar to

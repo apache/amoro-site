@@ -30,7 +30,7 @@ sectionPagesMenu = "main"
   icon = "Self-managed"
 [[params.features]]
   title = "Multiple Formats"
-  desc = "Support different table formats such as Iceberg, Mixed-Iceberg and Mixed-Hive to meet different scenario requirements and provide them with unified management capabilities."
+  desc = "Support different table formats such as Iceberg, Paimon, Mixed-Iceberg and Mixed-Hive to meet different scenario requirements and provide them with unified management capabilities."
   icon = "Multiple-Formats"
 [[params.features]]
   title = "Catalog Service"
@@ -64,8 +64,9 @@ home = [ "HTML", "RSS", "SearchIndex" ]
     { name = "Quick Demo", parent = "Quickstart", url = "/quick-demo/", weight = 102 },
     { name = "Docs", weight = 200 },
     { name = "latest", parent = "Docs", url = "/docs/latest/", weight = 201 },
-    { name = "0.5.1", parent = "Docs", url = "/docs/latest/", weight = 202 },
-    { name = "0.5.0", parent = "Docs", url = "/docs/0.5.0/", weight = 203 },
+    { name = "0.6.0", parent = "Docs", url = "/docs/latest/", weight = 202 },
+    { name = "0.5.1", parent = "Docs", url = "/docs/0.5.1/", weight = 203 },
+    { name = "0.5.0", parent = "Docs", url = "/docs/0.5.0/", weight = 204 },
     { name = "Benchmark", weight = 300 },
     { name = "Benchmark Report", parent = "Benchmark", url = "/benchmark-report/", weight = 301 },
     { name = "Benchmark Guide", parent = "Benchmark", url = "/benchmark-guide/", weight = 302 },

@@ -7,7 +7,7 @@ disableSidebar: true
 
 This guide outlines the basic process of using Amoro, allowing you to quickly experience its core features. You can choose to use either the `Iceberg Format` or the `Mixed-Iceberg Format` to complete the entire process. 
 
-If you are more interested in the `Mixed-Hive Format`, you can refer to: [Mixed-Hive Format](/docs/latest/mixed-hive-format/). For specific information on the different formats supported by Amoro, please refer to: [Table Format](/docs/latest/formats-overview/).
+If you are more interested in the `Mixed-Hive Format` or the `Paimon Format`, you can refer to: [Mixed-Hive Format](/docs/latest/mixed-hive-format/) and [Paimon Format](/docs/latest/paimon-format/). For specific information on the different formats supported by Amoro, please refer to: [Table Format](/docs/latest/formats-overview/).
 
 Before starting the quick demo, some steps are required to prepare the environment. Here are two ways to complete the necessary preparation:
 
