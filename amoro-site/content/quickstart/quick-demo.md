@@ -63,7 +63,7 @@ Click on `Optimizing` in the sidebar, select the `Optimizer Group` tab, and clic
 
 Set the concurrency of the optimizer to 1 and click `OK`.
 
-Then you can switch the tab to `Optimizer`, you can find the newly launched optimizer here.
+Then you can switch the tab to `Optimizers`, you can find the newly launched optimizer here.
 
 ![Optimizers](../images/quickstart/optimizers.png)
 
