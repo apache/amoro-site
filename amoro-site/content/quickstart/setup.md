@@ -39,12 +39,12 @@ bash demo-cluster.sh start
 After executing the above command, there will be a `data` directory in the workspace directory for sharing files between different docker containers. You can use the following command to view all the running Docker containers:
 
 ```shell
-docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}"
+$ docker ps --format "table {{.ID}}\t{{.Names}}\t{{.Status}}"
 
-CONTAINER ID   NAMES                           STATUS
-eee36c86b89f   datanode                        Up About a minute
-f1af63be0154   namenode                        Up About a minute
-e76597faa82b   ams                             Up About a minute
+CONTAINER ID   NAMES       STATUS
+2a0d326c668f   datanode    Up 1 minutes
+8e6b1c36e6ba   namenode    Up 1 minutes
+1e11fb8187b3   quickdemo   Up 1 minutes
 ```
 
 
@@ -65,7 +65,7 @@ Prepare a clean directory as the workspace for the Amoro demo cluster, and execu
 cd <AMORO-WORKSPACE>
 
 # Rplace version value with the latest Amoro version if needed
-export AMORO_VERSION=0.5.1
+export AMORO_VERSION=0.6.0
 
 # Download the binary package of AMS
 wget https://github.com/NetEase/amoro/releases/download/v${AMORO_VERSION}/amoro-${AMORO_VERSION}-bin.zip
@@ -87,7 +87,7 @@ Before starting the Quick Demo, you also need to deploy the Flink execution envi
 cd <AMORO-WORKSPACE>
 
 # Rplace version value with the latest Amoro version if needed
-AMORO_VERSION=0.5.1
+AMORO_VERSION=0.6.0
 ICEBERG_VERSION=1.3.0
 FLINK_VERSION=1.15.3
 FLINK_MAJOR_VERSION=1.15
