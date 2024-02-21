@@ -12,10 +12,11 @@ This roadmap displays the workings that the Amoro community plans to complete in
 * [Support managing tables with multiple formats under one Catalog](https://github.com/NetEase/amoro/issues/1061)
 * [Support automatically generating and managing Tags and Branchs for Table](https://github.com/NetEase/amoro/issues/1354)
 * [Provide standard SQL management instructions and command-line tools](https://github.com/NetEase/amoro/issues/1357)
+* [Support integration with Apache Paimon](https://github.com/NetEase/amoro/issues/1269)
+* [Integration with Kubernetes](https://github.com/NetEase/amoro/issues/1917)
 
 # Priority 2
 
-* [Support integration with Apache Paimon](https://github.com/NetEase/amoro/issues/1269)
 * [Support insert part of columns of arctic table with flink in streaming mode](https://github.com/NetEase/amoro/issues/256)
 * [Support sorting table data during the self-optimizing process](https://github.com/NetEase/amoro/issues/1360)
 * [Support integration with Apache Hudi](https://github.com/NetEase/amoro/issues/220)
