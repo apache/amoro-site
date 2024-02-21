@@ -2,11 +2,11 @@
 title: "Paimon"
 url: paimon-format
 aliases:
-    - "formats/paimon"
+- "formats/paimon"
 menu:
-    main:
-        parent: Formats
-        weight: 200
+main:
+parent: Formats
+weight: 200
 ---
 # Paimon Format
 
