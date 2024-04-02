@@ -49,6 +49,7 @@ jobs:
           publish_dir: ./output/docs/latest
           publish_branch: asf-site
           destination_dir: ./output/docs/latest
+          keep_files: true
 
   deploy-versioned-docs-page:
     if: github.ref != 'refs/heads/master'
