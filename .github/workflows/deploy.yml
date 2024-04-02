@@ -26,7 +26,29 @@ jobs:
           publish_branch: asf-site
           destination_dir: ./output
           keep_files: true
-  deploy-docs-page:
+    deploy-latest-docs-page:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Build
+        run: cd amoro-docs && hugo -b https://amoro.apache.org/docs/latest -d ../output/docs/latest
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./output/docs/latest
+          publish_branch: asf-site
+          destination_dir: ./output/docs/latest
+  deploy-versioned-docs-page:
     if: github.ref != 'refs/heads/master'
     runs-on: ubuntu-20.04
     continue-on-error: true
