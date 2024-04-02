@@ -5,19 +5,21 @@ disableSidebar: true
 ---
 # Roadmap
 
-This roadmap displays the workings that the Amoro community plans to complete in 2023 and their priorities. Each item is associated with a Github issue, where you can learn about its specific design and latest developments.
+This roadmap displays the workings that the Amoro community plans to complete in 2024 and their priorities. Each item is associated with a Github issue, where you can learn about its specific design and latest developments.
 
 # Priority 1
 
-* [Support managing tables with multiple formats under one Catalog](https://github.com/apache/incubator-amoro/issues/1061)
-* [Support automatically generating and managing Tags and Branchs for Table](https://github.com/apache/incubator-amoro/issues/1354)
-* [Provide standard SQL management instructions and command-line tools](https://github.com/apache/incubator-amoro/issues/1357)
-* [Support integration with Apache Paimon](https://github.com/apache/incubator-amoro/issues/1269)
-* [Integration with Kubernetes](https://github.com/apache/incubator-amoro/issues/1917)
+* [Refactor AMS using function and process api](https://github.com/apache/incubator-amoro/issues/2596)
+* [Add metric collection for ams](https://github.com/apache/incubator-amoro/issues/1528)
+* [Support table sorting process](https://github.com/apache/incubator-amoro/issues/1360)
+* [Serverless process: automatic scaling for process resources](https://github.com/apache/incubator-amoro/issues/2531)
+* [Monitor the health status of tables](https://github.com/apache/incubator-amoro/issues/2532)
+* [Improve Mixed format](https://github.com/apache/incubator-amoro/issues/2533)
 
 # Priority 2
 
-* [Support insert part of columns of arctic table with flink in streaming mode](https://github.com/apache/incubator-amoro/issues/256)
-* [Support sorting table data during the self-optimizing process](https://github.com/apache/incubator-amoro/issues/1360)
-* [Support integration with Apache Hudi](https://github.com/apache/incubator-amoro/issues/220)
-* [Support aggregation keys for mixed-format tables](https://github.com/apache/incubator-amoro/issues/1359)
+* [Support Apache Hudi](https://github.com/apache/incubator-amoro/discussions/2258)
+* [Support ingestion process](https://github.com/apache/incubator-amoro/discussions/2535)
+* [Maintain secondary indexes on tables](https://github.com/apache/incubator-amoro/discussions/2536)
+* [Collect scan metrics and improve optimizing rules based on them](https://github.com/apache/incubator-amoro/discussions/2537)
+* [Enhance the management capabilities of the Paimon format](https://github.com/apache/incubator-amoro/discussions/2538)
