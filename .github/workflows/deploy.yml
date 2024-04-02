@@ -44,7 +44,7 @@ jobs:
           extended: true
 
       - name: Build
-        run: cd docs && hugo -b https://amoro.apache.org/docs/${{ steps.vars.outputs.branch_name }}/ -d ../output/docs/${{ steps.vars.outputs.branch_name }}
+        run: cd amoro-docs && hugo -b https://amoro.apache.org/docs/${{ steps.vars.outputs.branch_name }}/ -d ../output/docs/${{ steps.vars.outputs.branch_name }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
