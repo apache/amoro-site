@@ -9,16 +9,16 @@ sectionPagesMenu = "main"
   search = true
   description = "Management system for Lakehouse"
   docsBaseURL = ""
-  githuburl = "https://github.com/Netease/amoro"
+  githuburl = "https://github.com/apache/incubator-amoro"
 
 [[params.social]]
   title = "Github"
   icon = "github-fill"
-  url = "https://github.com/NetEase/amoro"
+  url = "https://github.com/apache/incubator-amoro"
 [[params.social]]
   title = "Issue Tracking"
   icon = "slack-square-fill"
-  url = "https://github.com/NetEase/amoro/issues"
+  url = "https://github.com/apache/incubator-amoro/issues"
 [[params.social]]
   title = "Wechat"
   icon = "wechat-fill"

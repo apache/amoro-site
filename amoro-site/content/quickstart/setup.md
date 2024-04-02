@@ -27,7 +27,7 @@ Before starting, please prepare a clean directory as the workspace for Amoro Dem
 
 ```shell
 cd <AMORO-WORKSPACE>
-wget https://raw.githubusercontent.com/NetEase/amoro/master/docker/demo-cluster.sh
+wget https://raw.githubusercontent.com/apache/incubator-amoro/master/docker/demo-cluster.sh
 ```
 
 Execute the following shell command to launch a demo cluster using docker-compose:
@@ -68,7 +68,7 @@ cd <AMORO-WORKSPACE>
 export AMORO_VERSION=0.6.0
 
 # Download the binary package of AMS
-wget https://github.com/NetEase/amoro/releases/download/v${AMORO_VERSION}/amoro-${AMORO_VERSION}-bin.zip
+wget https://github.com/apache/incubator-amoro/releases/download/v${AMORO_VERSION}/amoro-${AMORO_VERSION}-bin.zip
 
 # Unzip the pakage
 unzip amoro-${AMORO-VERSION}-bin.zip
@@ -95,7 +95,7 @@ FLINK_HADOOP_SHADE_VERSION=2.7.5
 APACHE_FLINK_URL=archive.apache.org/dist/flink
 MAVEN_URL=https://repo1.maven.org/maven2
 FLINK_CONNECTOR_URL=${MAVEN_URL}/org/apache/flink
-AMORO_CONNECTOR_URL=${MAVEN_URL}/com/netease/amoro
+AMORO_CONNECTOR_URL=${MAVEN_URL}/com/apache/incubator-amoro
 ICEBERG_CONNECTOR_URL=${MAVEN_URL}/org/apache/iceberg
 
 # Download FLink binary package
