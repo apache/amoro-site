@@ -19,8 +19,8 @@
 
 # Amoro Documentation Site
 
-This repository contains the documentation for [Amoro](https://github.com/NetEase/amoro).
-It's built with [Hugo](https://gohugo.io/) and hosted at https://amoro.netease.com.
+This repository contains the documentation for [Amoro](https://github.com/apache/incubator-amoro).
+It's built with [Hugo](https://gohugo.io/) and hosted at https://amoro.apche.org.
 
 # Structure
 
@@ -28,50 +28,47 @@ The Amoro documentation site is actually constructed from two hugo sites. The fi
 is the documentation site which contains the full Amoro documentation. The site page and
 documentation sites are completely self-contained in the `./amoro-site` and `./amoro-docs` directories, respectively.
 
-## Relationship to the Arctic Repository
+## Relationship to the Amoro Repository
 
-All markdown pages that are specific to an Arctic version are maintained in the Arctic repository. All pages common across all version
-releases are kept here in the Arctic-docs repo.
+All markdown pages that are specific to an Amoro version are maintained in the incubator-amoro repository. All pages common across all version
+releases are kept here in the incubator-amoro-site repo.
 
-`NetEase/amoro`
-- The `docs` folder in the [Amoro repository](https://github.com/NetEase/amoro) contains all the markdown docs used by the **versioned** docs site.
+`apache/incubator-amoro`
+- The `docs` folder in the [Amoro repository](https://github.com/apache/incubator-amoro) contains all the markdown docs used by the **versioned** docs site.
 
-`NetEase/amoro-docs`
-- The `amoro-docs/content/docs` folder is the target folder when copying the docs over during a version release
-- The `amoro-site/content/common` folder is where you can find the common markdown files shared across all versions
+`apache/incubator-amoro`
+- The `amoro-docs/content` folder is the target folder when copying the docs over during a version release
+- The `amoro-site/content` folder is where you can find the common markdown files shared across all versions
 
 During each new release, the release manager will:
-1. Create a branch in this repo from main named for the release version
-2. Copy the contents under `docs` in the iceberg repo to `./amoro-docs/content/docs` in the **release** branch
+1. Create a branch in this repo from master named for the release version
+2. Copy the contents under `docs` in the amoro repo to `./amoro-docs/content` in the **release** branch
 3. Update the latest branch HEAD to point to the release branch HEAD
 
 # How to Contribute
 
 ## Submitting Pull Requests
 
-Changes to the markdown contents for **version** specific pages should be submitted directly in the Iceberg repository.
+Changes to the markdown contents for **version** specific pages should be submitted directly in the Amoro repository.
 
-Changes to the markdown contents for common pages should be submitted to this repository against the `main` branch.
+Changes to the markdown contents for common pages should be submitted to this repository against the `master` branch.
 
-Changes to the website appearance (e.g. HTML, CSS changes) should be submitted to this repository against the `main` branch.
+Changes to the website appearance (e.g. HTML, CSS changes) should be submitted to this repository against the `master` branch.
 
-Changes to the documentation of old Iceberg versions should be submitted to this repository against the specific version branch.
+Changes to the documentation of old Amoro versions should be submitted to this repository against the specific version branch.
 
-In summary, you can open a PR against where you find the related markdown file. With the exception of `spec.md`, there are no duplicate
-markdown files between the `master` branch in the iceberg repo and the `main` branch in the iceberg-docs repo. For changes to `spec.md`,
-PRs should be opened against the iceberg repo, not the iceberg-docs repo.
 
 ## Reporting Issues
 
-All issues related to the doc website should still be submitted to the [Amoro repository](https://github.com/NetEase/amoro).
+All issues related to the doc website should still be submitted to the [Amoro repository](https://github.com/apache/incubator-amoro).
 The GitHub Issues feature of this repository is disabled.
 
 ## Running Locally
 
 Clone this repository to run the website locally:
 ```shell
-git clone git@github.com:NetEase/amoro-docs.git
-cd amoro-docs
+git clone git@github.com:apache/incubator-amoro-site.git
+cd amoro-site
 ```
 
 To start the site page site locally, run:
@@ -84,10 +81,10 @@ To start the documentation site locally, run:
 (cd amoro-docs && hugo serve)
 ```
 
-If you would like to see how the latest website looks based on the documentation in the Iceberg repository, you can copy docs to this repository by:
+If you would like to see how the latest website looks based on the documentation in the Amoro repository, you can copy docs to this repository by:
 ```shell
-rm -rf amoro-docs/content/docs
-cp -r <path to amoro repo>/docs docs/content/docs
+rm -rf amoro-docs/content
+cp -r <path to amoro repo>/docs docs/content
 ```
 
 ## Scanning For Broken Links
@@ -98,7 +95,7 @@ If you'd like to scan for broken links, one available tool is linkcheck that can
 
 ## Testing Both Sites Locally
 
-In some cases, it's useful to test both the landing-page site and the docs site locally. Especially in situations
+In some cases, it's useful to test both the amoro site and the docs site locally. Especially in situations
 where you need to test relative links between the two sites. This can be achieved by building both sites with custom
 `baseURL` and `publishDir` values passed to the CLI. You can then run the site with any local live server, such as the
 [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) extension for VSCode.
