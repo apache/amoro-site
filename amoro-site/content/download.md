@@ -6,16 +6,19 @@ disableSidebar: true
 
 # Download
 
-Please choose an Amoro version to download from the blowing tables, the latest release is recommended.
-
+Please choose an Amoro version to download from the following tables. It is recommended you use the latest release.
 
 ## The latest release
+
+Coming soon!
+
+## Non-Apache releases
+
+These releases were made before the Amoro project joined the ASF Incubator and have not followed the usual ASF release process.
 
 | Version | Date | Source | AMS | Flink Runtime Jars | Spark Runtime Jars | Trino Connector | Release Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | 0.6.1 (non-Apache) | 2024 Feb 21 | [source](https://github.com/apache/incubator-amoro/archive/refs/tags/v0.6.1.zip) | - [AMS(hadoop3)](https://github.com/apache/incubator-amoro/releases/download/v0.6.1/amoro-0.6.1-bin.zip) <br> - [AMS(hadoop2)](https://github.com/apache/incubator-amoro/releases/download/v0.6.1/amoro-0.6.1-bin.hadoop2.zip) | - [Flink 1.15 Runtime Jar](https://github.com/apache/incubator-amoro/releases/download/v0.6.1/amoro-flink-runtime-1.15-0.6.1.jar) <br> - [Flink 1.16 Runtime Jar](https://github.com/apache/incubator-amoro/releases/download/v0.6.1/amoro-flink-runtime-1.16-0.6.1.jar) <br> - [Flink 1.17 Runtime Jar](https://github.com/apache/incubator-amoro/releases/download/v0.6.1/amoro-flink-runtime-1.17-0.6.1.jar) <br> | - [Spark 3.1 Runtime Jar](https://github.com/apache/incubator-amoro/releases/download/v0.6.1/amoro-spark-3.1-runtime-0.6.1.jar)<br> - [Spark 3.2 Runtime Jar](https://github.com/apache/incubator-amoro/releases/download/v0.6.1/amoro-spark-3.2-runtime-0.6.1.jar)<br> - [Spark 3.3 Runtime Jar](https://github.com/apache/incubator-amoro/releases/download/v0.6.1/amoro-spark-3.3-runtime-0.6.1.jar) | [Trino Connector](https://github.com/apache/incubator-amoro/releases/download/v0.6.1/trino-amoro-0.6.1.tar.gz) | [release note](https://github.com/apache/incubator-amoro/releases/tag/v0.6.1) |
-
-## Historical versions of non-Apache
 
 | Version | Date | Source | AMS | Flink Runtime Jars | Spark Runtime Jars | Trino Connector | Release Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
