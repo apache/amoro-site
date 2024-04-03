@@ -20,7 +20,7 @@
 # Apache Amoro Documentation Site
 
 This repository contains the documentation for [Apache Amoro](https://github.com/apache/incubator-amoro).
-It's built with [Hugo](https://gohugo.io/) and hosted at https://amoro.apche.org.
+It's built with [Hugo](https://gohugo.io/) and hosted at https://amoro.apache.org.
 
 # Structure
 
