@@ -17,9 +17,9 @@
   - under the License.
   -->
 
-# Amoro Documentation Site
+# Apache Amoro Documentation Site
 
-This repository contains the documentation for [Amoro](https://github.com/apache/incubator-amoro).
+This repository contains the documentation for [Apache Amoro](https://github.com/apache/incubator-amoro).
 It's built with [Hugo](https://gohugo.io/) and hosted at https://amoro.apche.org.
 
 # Structure
@@ -28,7 +28,7 @@ The Amoro documentation site is actually constructed from two hugo sites. The fi
 is the documentation site which contains the full Amoro documentation. The site page and
 documentation sites are completely self-contained in the `./amoro-site` and `./amoro-docs` directories, respectively.
 
-## Relationship to the Amoro Repository
+## Relationship to the Apache Amoro Repository
 
 All markdown pages that are specific to an Amoro version are maintained in the incubator-amoro repository. All pages common across all version
 releases are kept here in the incubator-amoro-site repo.
