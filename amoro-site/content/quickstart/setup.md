@@ -5,7 +5,7 @@ disableSidebar: true
 ---
 # Setup
 
-This guide describes two ways to deploy the Amoro demo environment: using docke-compose or release packages. If you want to deploy by compiling the source code, please refer to [Deployment](/docs/latest/deployment/).
+This guide describes two ways to deploy the Amoro demo environment: docker-compose or release packages. If you want to deploy by compiling the source code, please refer to [Deployment](/docs/latest/deployment/).
 
 ## Setup from Docker-Compose
 
@@ -13,13 +13,13 @@ The fastest way to deploy a [Quick Demo](/quick-demo/) environment is to use doc
 
 ### Requirements
 
-Before starting to deploy Amoro based on Docker, please make sure that you have installed the docker-compose environment on your host. For information on how to install Docker, please refer to: [Install Docker](https://docs.docker.com/get-docker/).
+Before starting to deploy Amoro based on Docker, please make sure that you have installed the docker-compose environment on your host. For information on installing Docker, please refer to [Install Docker](https://docs.docker.com/get-docker/).
 
 {{< hint info >}}
-It is recommended to perform the operation on Linux or MacOS. If you are using a Windows system, you can consider using WSL2. For information on how to enable WSL2 and install Docker, please refer to [Windows Installation](https://docs.docker.com/desktop/install/windows-install/).
+Linux or MacOS is recommended for use. If you are using a Windows system, consider using WSL2. For information on how to enable WSL2 and install Docker, please refer to [Windows Installation](https://docs.docker.com/desktop/install/windows-install/).
 {{< /hint >}}
 
-After completing the Docker installation, please make sure that the docker-compose tool is installed: [Docker-Compose Installation](https://github.com/docker/compose-cli/blob/main/INSTALL.md).
+After completing the Docker installation, please make sure that the docker-compose tool is installed [Docker-Compose Installation](https://github.com/docker/compose-cli/blob/main/INSTALL.md).
 
 ### Bring up demo cluster
 
@@ -50,12 +50,12 @@ CONTAINER ID   NAMES       STATUS
 
 ## Setup from binary release
 
-If it is not convenient to install Docker and related tools, you can also deploy the Amoro demo cluster directly through the Amoro release package.
+If installing Docker and related tools is not convenient, you can also deploy the Amoro demo cluster directly through the Amoro release package.
 
 ### Requirements
 
 Before starting, please make sure that Java 8 is installed and the JAVA_HOME environment variable is set.
-Please make sure that there is no `HADOOP_HOME` or `HADOOP_CONF_DIR` in the environment variables. If there are, please unset these environment variables first.
+Please make sure that `HADOOP_HOME` or `HADOOP_CONF_DIR` is not in the environment variables. If it is, please unset it first.
 
 ### Setup AMS
 
@@ -70,18 +70,18 @@ export AMORO_VERSION=0.6.0
 # Download the binary package of AMS
 wget https://github.com/apache/incubator-amoro/releases/download/v${AMORO_VERSION}/amoro-${AMORO_VERSION}-bin.zip
 
-# Unzip the pakage
+# Unzip the package
 unzip amoro-${AMORO-VERSION}-bin.zip
 
 # Start AMS by script
 cd amoro-${AMORO-VERSION} && ./bin/ams.sh start
 ```
 
-Access [http://127.0.0.1:1630/](http://127.0.0.1:1630/) with a browser and log in to the system with `admin/admin`. If you can log in successfully, it means that the deployment of AMS is successful.
+Access [http://127.0.0.1:1630/](http://127.0.0.1:1630/) with a browser and log in to the system with `admin/admin`. If you can log in successfully, the deployment of AMS is successful.
 
 ### Setup Flink environment
 
-Before starting the Quick Demo, you also need to deploy the Flink execution environment. Execute the following command to download the Flink binary distribution package:
+Before starting the Quick Demo, you must also deploy the Flink execution environment. Execute the following command to download the Flink binary distribution package:
 
 ```shell
 cd <AMORO-WORKSPACE>
@@ -118,7 +118,7 @@ mv iceberg-flink-runtime-${FLINK_MAJOR_VERSION}-${ICEBERG_VERSION}.jar lib
 cp examples/table/ChangelogSocketExample.jar lib
 ```
 
-Finally, we need to make some modifications to the `flink-conf.yaml` configuration file.
+Finally, you must modify the `flink-conf.yaml` configuration file.
 
 ```shell
 vim conf/flink-conf.yaml
