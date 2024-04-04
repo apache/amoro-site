@@ -1,6 +1,7 @@
-# Iceberg Theme
+# Amoro Theme
 
-The Iceberg theme is a theme for use with [Hugo](https://gohugo.io/).
+The Amoro theme is a theme for use with [Hugo](https://gohugo.io/).
+The Amoro theme is copied from [Apache Iceberg Project](https://github.com/apache/iceberg-docs/tree/main/iceberg-theme) and modifications were made as needed.
 
 ## Hint Boxes
 
