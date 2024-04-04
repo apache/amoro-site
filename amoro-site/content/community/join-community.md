@@ -20,7 +20,7 @@ Amoro has three mailing lists:
   - [Subscribe](mailto:commits-subscribe@amoro.apache.org)
   - [Unsubscribe](mailto:commits-unsubscribe@amoro.apache.org)
   - [Archive](https://lists.apache.org/list.html?commits@amoro.apache.org)
-- **Private**: <private@amoro.apache.org> -- private list for the PMC to discuss sensitive issues related to the health of the project
+- **Private**: <private@amoro.apache.org> -- private list for the PPMC to discuss sensitive issues related to the health of the project
   - [Archive](https://lists.apache.org/list.html?private@amoro.apache.org)
 
 ## Roles and Responsibilities
