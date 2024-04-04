@@ -138,7 +138,6 @@
 }
 
 #home-footer {
-  background: url(../img/footer.svg) center center no-repeat;
   background-color: #e9f1f3;
   margin: 0 auto;
   display: flex;
@@ -195,4 +194,16 @@
   right: 20px;
   bottom: 48px;
   display: none;
+}
+
+#home-footer .apache {
+  text-align: center;
+}
+
+#home-footer .apache .copyright{
+  padding: 6px 10px;
+}
+
+#home-footer .apache .logo{
+  padding-top: 20px;
 }
