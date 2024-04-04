@@ -1,12 +1,13 @@
 baseURL = ""
 languageCode = "en-us"
-title = "Apache Amoro"
+title = "Apache Amoro™"
 theme = "amoro-theme"
 sectionPagesMenu = "main"
 
 [params]
   siteType = "landing-page"
   search = true
+  projectName = "Apache Amoro™"
   description = "Management system for Lakehouse"
   docsBaseURL = ""
   githuburl = "https://github.com/apache/incubator-amoro"
