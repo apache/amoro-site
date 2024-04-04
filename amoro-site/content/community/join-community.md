@@ -40,20 +40,22 @@ Everyone who contributes can become an Amoro contributor. The members will provi
 - 1 merged PR in this project
 ### Responsibilities and privileges
 - Actively participate in Amoro's  project development
-- Participate in community events (meetups, hackathons, etc.)
+- Participate in the project's mailing lists and other communication channels, community events (meetups, hackathons, etc.)
 - Learn and help others learn Amoro-related technologies
 - Be listed as an Amoro contributor
 
 ## Committer
-Committers are promoted from Contributors. They have the authority to merge master branches and are responsible for the planning and maintenance of Amoro. They are also active members who share their knowledge with the community.
+Committers are promoted from Contributors. They have the authority to commit to the project's repositories and are responsible for the planning and maintenance of Amoro. They are also active members who share their knowledge with the community.
 ### How to become a Committer?
 - Have a deep understanding of Amoro's principles and future plans
 - Have the ability to deal with various issues that arise in the project promptly
 - Lead a major development, write and revise related documents
 - Be voted in by the Amoro PPMC
 ### Responsibilities and privileges
-- Mentor and guide other memberships in the community
+- Mentor and guide other members in the community
 - Ensure continued health of the project
+- Looking after Amoro's trademarks and branding
+- Writing and submitting Incubator reports
 - Be granted write access to Amoro repositories
 - Be listed as an Amoro Committer and featured on the Amoro official website
 
@@ -65,7 +67,7 @@ PPMC members are responsible for the planning and maintenance of Amoro. They are
 - Lead project development and iterations, and steer the overall direction of the project
 - Be voted in by the Amoro PPMC
 ### Responsibilities and privileges
-- Mentor and guide other memberships in the community
+- Mentor and guide other members in the community
 - Ensure continued health of the project, such as code quality and test coverage
 - Make and approve technical design decisions
 - Define milestones and releases
