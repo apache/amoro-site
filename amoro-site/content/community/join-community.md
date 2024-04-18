@@ -4,24 +4,18 @@ url: join-community
 disableSidebar: true
 ---
 
-# Welcome to Amoro
+# Welcome to Apache Amoro (incubating)
 Amoro community is a free, open-source community project. 
 Anyone interested in the Amoro project can join the community and contribute to its development by becoming a part of it.
 
 This document describes some guidelines for joining the Amoro community.
 
 ## Mailing Lists
-Amoro has three mailing lists:
-- **Developers**: <dev@amoro.apache.org>  -- used for community discussions
-  - [Subscribe](mailto:dev-subscribe@amoro.apache.org)
-  - [Unsubscribe](mailto:dev-unsubscribe@amoro.apache.org)
-  - [Archive](https://lists.apache.org/list.html?dev@amoro.apache.org)
-- **Commits**: <commits@amoro.apache.org> -- distributes commit notifications
-  - [Subscribe](mailto:commits-subscribe@amoro.apache.org)
-  - [Unsubscribe](mailto:commits-unsubscribe@amoro.apache.org)
-  - [Archive](https://lists.apache.org/list.html?commits@amoro.apache.org)
-- **Private**: <private@amoro.apache.org> -- private list for the PPMC to discuss sensitive issues related to the health of the project
-  - [Archive](https://lists.apache.org/list.html?private@amoro.apache.org)
+
+| List Name           | Address                  | Subscribe                                              | Unsubscribe                                                | Archive                                                                |
+|---------------------|--------------------------|--------------------------------------------------------|------------------------------------------------------------|------------------------------------------------------------------------|
+| **Developer List**  | dev@amoro.apache.org     | [subscribe](mailto:dev-subscribe@amoro.apache.org)     | [unsubscribe](mailto:dev-unsubscribe@amoro.apache.org)     | [archive](https://lists.apache.org/list.html?dev@amoro.apache.org)     |
+| **Commits List**    | commits@amoro.apache.org | [subscribe](mailto:commits-subscribe@amoro.apache.org) | [unsubscribe](mailto:commits-unsubscribe@amoro.apache.org) | [archive](https://lists.apache.org/list.html?commits@amoro.apache.org) |
 
 ## Roles and Responsibilities
 Amoro community is composed of and operated by the following roles:
