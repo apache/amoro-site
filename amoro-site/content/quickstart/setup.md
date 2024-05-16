@@ -71,10 +71,10 @@ export AMORO_VERSION=0.6.0
 wget https://github.com/apache/incubator-amoro/releases/download/v${AMORO_VERSION}/amoro-${AMORO_VERSION}-bin.zip
 
 # Unzip the package
-unzip amoro-${AMORO-VERSION}-bin.zip
+unzip amoro-${AMORO_VERSION}-bin.zip
 
 # Start AMS by script
-cd amoro-${AMORO-VERSION} && ./bin/ams.sh start
+cd amoro-${AMORO_VERSION} && ./bin/ams.sh start
 ```
 
 Access [http://127.0.0.1:1630/](http://127.0.0.1:1630/) with a browser and log in to the system with `admin/admin`. If you can log in successfully, the deployment of AMS is successful.
