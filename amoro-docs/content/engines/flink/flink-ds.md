@@ -16,9 +16,9 @@ To add a dependency on Mixed-format flink connector in Maven, add the following 
   ...
   <dependency>
     <groupId>com.netease.arctic</groupId>
-    <!-- eg:amoro-flink-1.15 -->
+    <!-- For example: amoro-flink-1.15 -->
     <artifactId>amoro-flink-${flink.minor-version}</artifactId>
-    <!-- eg:0.6.1 -->
+    <!-- For example: 0.6.1 -->
     <version>${amoro-mixed-format-flink.version}</version>
   </dependency>
   ...
