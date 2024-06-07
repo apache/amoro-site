@@ -12,6 +12,7 @@ menu:
 
 ## Add maven dependency
 To add a dependency on Mixed-format flink connector in Maven, add the following to your pom.xml:
+```xml
 <dependencies>
   ...
   <dependency>
@@ -23,6 +24,7 @@ To add a dependency on Mixed-format flink connector in Maven, add the following 
   </dependency>
   ...
 </dependencies>
+```
 
 ## Reading with DataStream
 Amoro supports reading data in Batch or Streaming mode through Java API.
