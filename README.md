@@ -19,7 +19,7 @@
 
 # Apache Amoro Documentation Site
 
-This repository contains the documentation for [Apache Amoro](https://github.com/apache/incubator-amoro).
+This repository contains the documentation for [Apache Amoro](https://github.com/apache/amoro).
 It's built with [Hugo](https://gohugo.io/) and hosted at https://amoro.apache.org.
 
 # Structure
@@ -30,13 +30,13 @@ documentation sites are completely self-contained in the `./amoro-site` and `./a
 
 ## Relationship to the Apache Amoro Repository
 
-All markdown pages that are specific to an Amoro version are maintained in the incubator-amoro repository. All pages common across all version
-releases are kept here in the incubator-amoro-site repo.
+All markdown pages that are specific to an Amoro version are maintained in the apache/amoro repository. All pages common across all version
+releases are kept here in the apache/amoro-site repo.
 
-`apache/incubator-amoro`
-- The `docs` folder in the [Amoro repository](https://github.com/apache/incubator-amoro) contains all the markdown docs used by the **versioned** docs site.
+`apache/amoro`
+- The `docs` folder in the [Amoro repository](https://github.com/apache/amoro) contains all the markdown docs used by the **versioned** docs site.
 
-`apache/incubator-amoro`
+`apache/amoro-site`
 - The `amoro-docs/content` folder is the target folder when copying the docs over during a version release
 - The `amoro-site/content` folder is where you can find the common markdown files shared across all versions
 
@@ -60,14 +60,14 @@ Changes to the documentation of old Amoro versions should be submitted to this r
 
 ## Reporting Issues
 
-All issues related to the doc website should still be submitted to the [Amoro repository](https://github.com/apache/incubator-amoro).
+All issues related to the doc website should still be submitted to the [Amoro repository](https://github.com/apache/amoro).
 The GitHub Issues feature of this repository is disabled.
 
 ## Running Locally
 
 Clone this repository to run the website locally:
 ```shell
-git clone git@github.com:apache/incubator-amoro-site.git
+git clone git@github.com:apache/amoro-site.git
 cd amoro-site
 ```
 
@@ -102,7 +102,7 @@ where you need to test relative links between the two sites. This can be achieve
 
 First, change into the `amoro-site` directory and build the site. Use `-b` and `-d` to set `baseURL` and `publishDir`, respectively.
 ```
-cd arctic-site
+cd amoro-site
 hugo -b http://localhost:5500/ -d ../public
 ```
 
