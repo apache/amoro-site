@@ -162,12 +162,12 @@ CREATE TABLE IF NOT EXISTS db.user (
 ) USING mixed_iceberg 
 PARTITIONED BY (days(ts));
 
-INSERT OVERWRITE user VALUES 
+INSERT OVERWRITE db.user VALUES 
 (1, "eric", timestamp("2022-07-01 12:32:00")),
 (2, "frank", timestamp("2022-07-02 09:11:00")),
 (3, "lee", timestamp("2022-07-02 10:11:00"));
 
-SELECT * FROM user;
+SELECT * FROM db.user;
 ```
 {{% /tabcontent %}}
 {{% /codetabs %}}
