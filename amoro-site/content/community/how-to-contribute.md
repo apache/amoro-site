@@ -13,10 +13,10 @@ This page provides some orientation and resources for getting involved with the 
 
 If you have any questions, suggestions, or improvement ideas when using Amoro, you can participate in the Amoro community building through the following suggested channels.
 
-* [Issue Tracker](https://github.com/apache/incubator-amoro/issues) - for tracking bugs, ideas, plans, etc.
-* [GitHub Discussions](https://github.com/apache/incubator-amoro/discussions) - second to the mailing list for anything else you want to share or ask.
+* [Issue Tracker](https://github.com/apache/amoro/issues) - for tracking bugs, ideas, plans, etc.
+* [GitHub Discussions](https://github.com/apache/amoro/discussions) - second to the mailing list for anything else you want to share or ask.
 * WeChat Group - add `kllnn999` as a friend on WeChat and specify `Amoro lover`. You will be invited to join the Amoro WeChat group.
 
 ## Contributing Guide
 
-See [Contributing](https://github.com/apache/incubator-amoro/blob/master/CONTRIBUTING.md) for more details on contributing to Amoro.
+See [Contributing](https://github.com/apache/amoro/blob/master/CONTRIBUTING.md) for more details on contributing to Amoro.

@@ -10,16 +10,16 @@ sectionPagesMenu = "main"
   projectName = "Apache Amoro™"
   description = "Management system for Lakehouse"
   docsBaseURL = ""
-  githuburl = "https://github.com/apache/incubator-amoro"
+  githuburl = "https://github.com/apache/amoro"
 
 [[params.social]]
   title = "Github"
   icon = "github-fill"
-  url = "https://github.com/apache/incubator-amoro"
+  url = "https://github.com/apache/amoro"
 [[params.social]]
   title = "Issue Tracking"
   icon = "slack-square-fill"
-  url = "https://github.com/apache/incubator-amoro/issues"
+  url = "https://github.com/apache/amoro/issues"
 [[params.social]]
   title = "Wechat"
   icon = "wechat-fill"
@@ -60,9 +60,7 @@ home = [ "HTML", "RSS", "SearchIndex" ]
 [menu]
 
   topnav = [
-    { name = "Quickstart", weight = 100 },
-    { name = "Setup", parent = "Quickstart", url = "/quickstart-setup/", weight = 101 },
-    { name = "Quick Demo", parent = "Quickstart", url = "/quick-demo/", weight = 102 },
+    { name = "Quickstart", url = "/quick-start/", weight = 100 },
     { name = "Docs", weight = 200 },
     { name = "latest", parent = "Docs", url = "/docs/latest/", weight = 201 },
     { name = "0.6.1", parent = "Docs", url = "/docs/0.6.1/", weight = 202 },
