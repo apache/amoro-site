@@ -124,7 +124,7 @@ Then you can switch the tab to `Optimizers`, you can find the newly launched opt
 You may need to wait for up to 30 seconds for the optimizer to register with AMS.
 {{< /hint >}}
 
-## Demo setps
+## Demo steps
 
 ### Initialize tables
 
@@ -203,11 +203,11 @@ SELECT * from db.user;
 
 As new data is written to the table, Amoro will automatically trigger self-optimizing on the table.
 
-Click on `Tables` in the sidebar, select the test table to enter the table details page, switch to the `Optimizing` tab, where you can see all the self-optimizing tasks on the table.
+Click on `Tables` in the sidebar, select the test table to enter the table details page, and switch to the `Optimizing` tab, where you can see all the self-optimizing tasks on the table.
 
 ![Table optimizing history](../images/quickstart/table-optimizing-history.png)
 
-You can also enter the `Optimizing` page through the the sidebar to view the current optimizing status of all tables.
+You can also enter the `Optimizing` page through the sidebar to view the current optimizing status of all tables.
 
 ![Table optimizing status](../images/quickstart/table-optimizing-status.png)
 
