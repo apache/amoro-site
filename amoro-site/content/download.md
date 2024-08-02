@@ -8,6 +8,10 @@ disableSidebar: true
 
 Please choose an Amoro version to download from the following tables. It is recommended you use the latest release.
 
+Please verify the release with corresponding hashes(sha512), signatures and [project release KEYS](https://downloads.apache.org/incubator/amoro/KEYS).
+
+The instructions for checking hashes(sha512) and signatures is indicated on [Verify Instructions](https://www.apache.org/dyn/closer.cgi#verify) page.
+
 ## The latest release
 
 | Version | Date | Source | Binary | Release Notes |
