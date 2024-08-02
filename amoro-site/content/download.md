@@ -10,7 +10,9 @@ Please choose an Amoro version to download from the following tables. It is reco
 
 ## The latest release
 
-Coming soon!
+| Version | Date | Source | Binary | Release Notes |
+| --- | --- | --- | --- | --- |
+| 0.7.0 | 2024 Aug 2 | [source](https://www.apache.org/dyn/closer.lua/incubator/amoro/0.7.0-incubating/apache-amoro-0.7.0-incubating-src.tar.gz?action=download) ([signature](https://www.apache.org/dyn/closer.lua/incubator/amoro/0.7.0-incubating/apache-amoro-0.7.0-incubating-src.tar.gz.asc?action=download) \| [sha512](https://www.apache.org/dyn/closer.lua/incubator/amoro/0.7.0-incubating/apache-amoro-0.7.0-incubating-src.tar.gz.sha512?action=download)) |  [amoro-bin-hadoop3](https://www.apache.org/dyn/closer.lua/incubator/amoro/0.7.0-incubating/apache-amoro-0.7.0-incubating-bin-hadoop3.tar.gz?action=download) ([signature](https://www.apache.org/dyn/closer.lua/incubator/amoro/0.7.0-incubating/apache-amoro-0.7.0-incubating-bin-hadoop3.tar.gz.asc?action=download) \| [sha512](https://www.apache.org/dyn/closer.lua/incubator/amoro/0.7.0-incubating/apache-amoro-0.7.0-incubating-bin-hadoop3.tar.gz.sha512?action=download)) <br>  [amoro-bin-hadoop2](https://www.apache.org/dyn/closer.lua/incubator/amoro/0.7.0-incubating/apache-amoro-0.7.0-incubating-bin-hadoop2.tar.gz?action=download) ([signature](https://www.apache.org/dyn/closer.lua/incubator/amoro/0.7.0-incubating/apache-amoro-0.7.0-incubating-bin-hadoop2.tar.gz.asc?action=download) \| [sha512](https://www.apache.org/dyn/closer.lua/incubator/amoro/0.7.0-incubating/apache-amoro-0.7.0-incubating-bin-hadoop2.tar.gz.sha512?action=download)) | [release note](https://github.com/apache/amoro/releases/tag/v0.7.0-incubating) |
 
 ## Non-Apache releases
 

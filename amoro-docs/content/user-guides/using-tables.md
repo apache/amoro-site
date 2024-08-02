@@ -8,6 +8,22 @@ menu:
         parent: User Guides
         weight: 100
 ---
+<!--
+ - Licensed to the Apache Software Foundation (ASF) under one or more
+ - contributor license agreements.  See the NOTICE file distributed with
+ - this work for additional information regarding copyright ownership.
+ - The ASF licenses this file to You under the Apache License, Version 2.0
+ - (the "License"); you may not use this file except in compliance with
+ - the License.  You may obtain a copy of the License at
+ -
+ -   http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
 # Using Tables
 
 The SQL execution tool `Terminal` is provided in AMS dashboard to help users quickly create, modify and delete tables.
@@ -23,7 +39,7 @@ create table test_db.test_log_store(
   name string,
   op_time timestamp,
   primary key(id)
-) using arctic
+) using mixed_iceberg
 partitioned by(days(op_time))
 tblproperties(
   'log-store.enable' = 'true',
@@ -52,7 +68,7 @@ In the example above, op_time is set as the event time field of the table, and t
 To handle out-of-order writes, the permitted lateness of data when calculating the watermark is set to one minute.
 You can view the current watermark of the table in the table details on the AMS Dashboard at AMS dashboard.
 
-![arctic-table-watermark](../images/admin/watermark_table_detail.png)
+![mixed-format-table-watermark](../images/admin/watermark_table_detail.png)
 
 You can also use the following SQL statement in the `Terminal` to query the watermark of a table:
 
@@ -155,7 +171,7 @@ ALTER TABLE test_db.test_log_store set tblproperties (
     'data-expire.enabled' = 'true');
 ```
 
-### Set the data retention period
+### Set retention period
 
 The configuration for data retention duration consists of a number and a unit. For example, '90d' represents retaining data for 90 days, and '12h' indicates 12 hours.
 
@@ -164,7 +180,7 @@ ALTER TABLE test_db.test_log_store set tblproperties (
     'data-expire.retention-time' = '90d');
 ```
 
-### Select the event-time field
+### Select expiration field
 
 Data expiration requires users to specify a field for determining expiration. 
 In addition to supporting timestampz/timestamp field types for this purpose, it also supports string and long field type. 
@@ -186,13 +202,22 @@ ALTER TABLE test_db.test_log_store set tblproperties (
     'data-expire.datetime-number-format' = 'TIMESTAMP_MS');
 ```
 
-### Adjust the data expiration level
+### Adjust expiration level
 
 Data expiration supports two levels, including `PARTITION` and `FILE`. The default level is `PARTITION`, which means that AMS deletes files only when all the files within a partition have expired.
 
 ```sql
 ALTER TABLE test_db.test_log_store set tblproperties (
     'data-expire.level' = 'partition');
+```
+
+### Specify start time
+
+Amoro expire data since `LAST_COMMIT_TIME` or `CURRENT_TIME`. `LAST_COMMIT_TIME` will follow the timestamp of the table's most recent snapshot as the start time of the expiration, which ensures that the table has `data-expire.retention-time` data; while `CURRENT_TIME` will follow the current time of the service.
+
+```sql
+ALTER TABLE test_db.test_log_store set tblproperties (
+    'data-expire.base-on-rule' = 'CURRENT_TIME');
 ```
 
 ## Delete table
@@ -207,3 +232,37 @@ DROP TABLE test_db.test_log_store;
 ```
 
 The current terminal is using the Spark engine to execute SQL. For more information about deleting tables, you can refer to  [Spark DDL](../spark-ddl/#drop-table).
+
+## Explore table details
+The Amoro Tables details page provides multiple tabs to display the status of the table from various dimensions, mainly including:
+
+| **Tab Name** | **Description**                                                                                                                                                                                                                                                                          |
+|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Details      | Display the table's schema, primary key configuration, partition configuration, properties; as well as the metric information of the files stored in ChangeStore and BaseStore, including the number of files and average file size, as well as the latest submission time of the files. |
+| Files        | Display all partitions and files of the table.                                                                                                                                                                                                                                           |
+| Snapshots    | Display all snapshots of the table, which can be filtered by branch and tag.                                                                                                                                                                                                             |
+| Optimizing   | Display all the self-optimizing processes of the table, each record shows the number and average size of files before and after Optimize, as well as the execution time of each process.                                                                                                 |
+| Operations   | Display the current table's DDL historical change records.                                                                                                                                                                                                                               |
+
+![table-details](../images/admin/table_metrics.png)
+
+![table-optimize-history](../images/admin/table_optimizer_history.png)
+
+## Explore self-optimizing status
+The Optimizing page displays self-optimizing status of all tables.
+![optimizing-metrics](../images/admin/optimizer_metrics.png)
+
+
+- **Optimizing Status**: The current optimizing status of the table, including idle, pending, planning, minor, major, full, committing.
+  - idle: means that self-optimizing is not required on the table.
+  - pending: means that self-optimizing is required on the table and is waiting for resources.
+  - planning: means that self-optimizing process is being planed.
+  - minor: means that minor optimizing is being executed on the table. 
+  - major: means that major optimizing is being executed on the table.
+  - full: means that full optimizing is being executed on the table.
+  - committing: means that self-optimizing process is being committed.
+- **Duration**: The duration of the current status.
+- **File Count**: The total number of files involved in the current Self-optimizing, including base, insert, eq-delete, and pos-delete file types.
+- **File Size**: The total size of files involved in the current self-optimizing.
+- **Quota**: The proportion of self-optimizing execution time executed per unit time.
+- **Quota Occupation**: The actual Quota used for self-optimizing during execution of the table in the last hour. When optimizer resources are sufficient and the table requires more resources for self-optimizing, this value will be greater than 100%. When resources are scarce or the table requires fewer resources for self-optimizing, this value will be less than 100%.

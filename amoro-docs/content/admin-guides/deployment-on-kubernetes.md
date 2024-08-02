@@ -8,6 +8,22 @@ menu:
         parent: Admin Guides
         weight: 150
 ---
+<!--
+ - Licensed to the Apache Software Foundation (ASF) under one or more
+ - contributor license agreements.  See the NOTICE file distributed with
+ - this work for additional information regarding copyright ownership.
+ - The ASF licenses this file to You under the Apache License, Version 2.0
+ - (the "License"); you may not use this file except in compliance with
+ - the License.  You may obtain a copy of the License at
+ -
+ -   http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
 # Deploy AMS On Kubernetes
 
 ## Requirements
@@ -21,17 +37,21 @@ If you want to deploy AMS on Kubernetes, you’d better get a sense of the follo
 
 ## Amoro Official Docker Image
 
-You can find the official docker image at [Amoro Docker Hub](https://hub.docker.com/u/arctic163).
+You can find the official docker image at [Amoro Docker Hub](https://hub.docker.com/u/apache).
 
 The following are images that can be used in a production environment.
 
-**arctic163/amoro**
+**apache/amoro**
 
 This is an image built based on the Amoro binary distribution package for deploying AMS.
 
-**arctic163/optimizer-flink**
+**apache/amoro-flink-optimizer**
 
 This is an image built based on the official version of Flink for deploying the Flink optimizer.
+
+**apache/amoro-spark-optimizer**
+
+This is an image built based on the official version of Spark for deploying the Spark optimizer.
 
 ## Build AMS Docker Image
 
@@ -41,12 +61,17 @@ If you want to build images locally, you can find the `build.sh` script in the d
 ./docker/build.sh amoro
 ```
 
-or build the `optimizer-flink` image by:
+or build the `amoro-flink-optimizer` image by:
 
 ```shell
-./docker/build.sh optimizer-flink --flink-version <flink-version>
+./docker/build.sh amoro-flink-optimizer --flink-version <flink-version>
 ```
 
+or build the `amoro-spark-optimizer` image by:
+
+```shell
+./docker/build.sh amoro-spark-optimizer --spark-version <spark-version>
+```
 
 ## Get Helm Charts
 
@@ -56,7 +81,7 @@ You can obtain the latest official release chart by adding the official Helm rep
 $ helm repo add amoro https://netease.github.io/amoro/charts
 $ helm search repo amoro 
 NAME           CHART VERSION    APP VERSION        DESCRIPTION           
-amoro/amoro    0.1.0            0.6.0              A Helm chart for Amoro 
+amoro/amoro    0.1.0            0.7.0              A Helm chart for Amoro 
 
 $ helm pull amoro/amoro 
 $ tar zxvf amoro-*.tgz
@@ -65,7 +90,7 @@ $ tar zxvf amoro-*.tgz
 Alternatively, you can find the latest charts directly from the Github source code.
 
 ```shell
-$ git clone https://github.com/apache/incubator-amoro.git
+$ git clone https://github.com/apache/amoro.git
 $ cd amoro/charts
 $ helm dependency build ./amoro
 ```
@@ -84,7 +109,7 @@ After successful installation, you can access WebUI through the following comman
 $ kubectl port-forward services/<deployment-name>-amoro-rest 1630:1630
 ```
 
-Open browser to go web: http://loclhost:1630
+Open browser to go web: http://localhost:1630
 
 ## Access logs
 
@@ -156,6 +181,7 @@ image:
   repository: <your repository>
   pullPolicy: IfNotPresent
   tag: <your tag>
+imagePullSecrets: [ ]
 ```
 
 ### Configure the Flink Optimizer Container
@@ -171,22 +197,23 @@ optimizer:
     name: ~ 
     image:
       ## the image repository
-      repository: arctic163/optimizer-flink
+      repository: apache/amoro-flink-optimizer
       ## the image tag, if not set, the default value is the same with amoro image tag.
       tag: ~
+      pullPolicy: IfNotPresent
       ## the location of flink optimizer jar in image.
       jobUri: "local:///opt/flink/usrlib/optimizer-job.jar"
     properties: {
       "flink-conf.taskmanager.memory.managed.size": "32mb",
-      "flink-conf.taskmanager.memory.netwrok.max": "32mb",
-      "flink-conf.taskmanager.memory.netwrok.nin": "32mb"
+      "flink-conf.taskmanager.memory.network.max": "32mb",
+      "flink-conf.taskmanager.memory.network.min": "32mb"
     }
 ```
 
 
 ### Configure the RBAC
 
-By default, Helm Chart creates a service account, role, and role bind for Amaro deploy. 
+By default, Helm Chart creates a service account, role, and role bind for Amoro deploy. 
 You can also modify this configuration to use an existing account.
 
 ```yaml

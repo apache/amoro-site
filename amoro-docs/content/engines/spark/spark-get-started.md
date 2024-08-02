@@ -8,11 +8,27 @@ menu:
         parent: Spark
         weight: 100
 ---
+<!--
+ - Licensed to the Apache Software Foundation (ASF) under one or more
+ - contributor license agreements.  See the NOTICE file distributed with
+ - this work for additional information regarding copyright ownership.
+ - The ASF licenses this file to You under the Apache License, Version 2.0
+ - (the "License"); you may not use this file except in compliance with
+ - the License.  You may obtain a copy of the License at
+ -
+ -   http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
 # Spark Getting Started
 # Iceberg Format
 
 The Iceberg Format can be accessed using the Connector provided by Iceberg.
-Refer to the documentation at [Iceberg Spark Connector](https://iceberg.apache.org/docs/latest/getting-started/) 
+Refer to the documentation at [Iceberg Spark Connector](https://iceberg.apache.org/docs/latest/getting-started/)
 for more information.
 
 # Paimon Format
@@ -27,25 +43,25 @@ for more information.
 To use Amoro in a Spark shell, use the --packages option:
 
 ```bash
-spark-shell --packages com.netease.amoro:amoro-spark-3.3-runtime:0.5.0
+spark-shell --packages org.apache.amoro:amoro-mixed-spark-3.3-runtime:0.7.0
 ```
 
-> If you want to include the connector in your Spark installation, add the `amoro-spark-3.3-runtime` Jar to
+> If you want to include the connector in your Spark installation, add the `amoro-mixed-spark-3.3-runtime` Jar to
 > Spark's `jars` folder.
 
 ## Adding catalogs
 
 ```
 ${SPARK_HOME}/bin/spark-sql \
-    --conf spark.sql.extensions=com.netease.arctic.spark.ArcticSparkExtensions \
-    --conf spark.sql.catalog.local_catalog=com.netease.arctic.spark.ArcticSparkCatalog \
+    --conf spark.sql.extensions=org.apache.amoro.spark.MixedFormatSparkExtensions \
+    --conf spark.sql.catalog.local_catalog=org.apache.amoro.spark.MixedFormatSparkCatalog \
     --conf spark.sql.catalog.local_catalog.url=thrift://${AMS_HOST}:${AMS_PORT}/${AMS_CATALOG_NAME}
 ```
 
-> Amoro manages the Catalog through AMS, and Spark catalog needs to be mapped to Amoro Catalog via URL, 
+> Amoro manages the Catalog through AMS, and Spark catalog needs to be mapped to Amoro Catalog via URL,
 > in the following format:
-> `thrift://${AMS_HOST}:${AMS_PORT}/${AMS_CATALOG_NAME}`, 
-> The arctic-spark-connector will automatically download the Hadoop site configuration file through 
+> `thrift://${AMS_HOST}:${AMS_PORT}/${AMS_CATALOG_NAME}`,
+> The mixed-format-spark-connector will automatically download the Hadoop site configuration file through
 > the thrift protocol for accessing the HDFS cluster
 
 >
@@ -62,7 +78,7 @@ In Spark SQL command line, you can execute a create table command using the `CRE
 Before executing a create table operation, please make sure to create the `database` first.
 
 ```
--- switch to arctic catalog defined in spark conf
+-- switch to mixed catalog defined in spark conf
 use local_catalog;
 
 -- create databsae first 
@@ -75,13 +91,13 @@ Then switch to the newly created database and perform the create table operation
 use test_db;
 
 -- create a table with 3 columns
-create table test1 (id int, data string, ts timestamp) using arctic;
+create table test1 (id int, data string, ts timestamp) using mixed_iceberg;
 
 -- create a table with hidden partition
-create table test2 (id int, data string, ts timestamp) using arctic partitioned by (days(ts));
+create table test2 (id int, data string, ts timestamp) using mixed_iceberg partitioned by (days(ts));
 
 -- create a table with hidden partition and primary key
-create table test3 (id int, data string, ts timestamp, primary key(id)) using arctic partitioned by (days(ts));
+create table test3 (id int, data string, ts timestamp, primary key(id)) using mixed_iceberg partitioned by (days(ts));
 ```
 
 For more information on Spark DDL related to tables, please refer to [Spark DDL](../spark-ddl/)
@@ -126,7 +142,7 @@ from test2
 group by data;
 ```
 
-For table with primary keys defined, you can query on `ChangeStore` by `.change` 
+For table with primary keys defined, you can query on `ChangeStore` by `.change`
 
 ``` 
 select count(1) as count, data

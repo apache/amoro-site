@@ -8,6 +8,22 @@ menu:
         parent: Flink
         weight: 400
 ---
+<!--
+ - Licensed to the Apache Software Foundation (ASF) under one or more
+ - contributor license agreements.  See the NOTICE file distributed with
+ - this work for additional information regarding copyright ownership.
+ - The ASF licenses this file to You under the Apache License, Version 2.0
+ - (the "License"); you may not use this file except in compliance with
+ - the License.  You may obtain a copy of the License at
+ -
+ -   http://www.apache.org/licenses/LICENSE-2.0
+ -
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+ -->
 # Flink DataStream
 
 ## Add maven dependency
@@ -16,10 +32,10 @@ To add a dependency on Mixed-format flink connector in Maven, add the following 
 <dependencies>
   ...
   <dependency>
-    <groupId>com.netease.arctic</groupId>
-    <!-- For example: amoro-flink-1.15 -->
-    <artifactId>amoro-flink-${flink.minor-version}</artifactId>
-    <!-- For example: 0.6.1 -->
+    <groupId>org.apache.amoro</groupId>
+    <!-- For example: amoro-mixed-format-flink-runtime-1.15 -->
+    <artifactId>amoro-mixed-format-flink-runtime-${flink.minor-version}</artifactId>
+    <!-- For example: 0.7.0-incubating -->
     <version>${amoro-mixed-format-flink.version}</version>
   </dependency>
   ...
@@ -36,10 +52,10 @@ Using Batch mode to read the full and incremental data in the FileStore.
 - The primary key table temporarily only supports reading the current full amount and later CDC data.
 
 ```java
-import com.netease.arctic.flink.InternalCatalogBuilder;
-import com.netease.arctic.flink.table.ArcticTableLoader;
-import com.netease.arctic.flink.table.FlinkSource;
-import com.netease.arctic.table.TableIdentifier;
+import org.apache.amoro.flink.InternalCatalogBuilder;
+import org.apache.amoro.flink.table.FlinkSource;
+import org.apache.amoro.flink.table.MixedFormatTableLoader;
+import org.apache.amoro.table.TableIdentifier;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.data.RowData;
@@ -56,7 +72,7 @@ public class Main {
                         .metastoreUrl("thrift://<url>:<port>/<catalog_name>");
 
         TableIdentifier tableId = TableIdentifier.of("catalog_name", "database_name", "test_table");
-        ArcticTableLoader tableLoader = ArcticTableLoader.of(tableId, catalogBuilder);
+        MixedFormatTableLoader tableLoader = MixedFormatTableLoader.of(tableId, catalogBuilder);
 
         Map<String, String> properties = new HashMap<>();
         // Default is true
@@ -93,17 +109,17 @@ Amoro supports reading incremental data in FileStore or LogStore through Java AP
 
 ### Streaming mode (LogStore)
 ```java 
-import com.netease.arctic.flink.InternalCatalogBuilder;
-import com.netease.arctic.flink.read.source.log.kafka.LogKafkaSource;
-import com.netease.arctic.flink.table.ArcticTableLoader;
-import com.netease.arctic.flink.util.ArcticUtils;
-import com.netease.arctic.table.ArcticTable;
-import com.netease.arctic.table.TableIdentifier;
+import org.apache.amoro.flink.InternalCatalogBuilder;
+import org.apache.amoro.flink.read.source.log.kafka.LogKafkaSource;
+import org.apache.amoro.flink.table.MixedFormatTableLoader;
+import org.apache.amoro.flink.util.MixedFormatUtils;
+import org.apache.amoro.shade.org.apache.iceberg.Schema;
+import org.apache.amoro.table.MixedTable;
+import org.apache.amoro.table.TableIdentifier;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.data.RowData;
-import org.apache.iceberg.Schema;
 
 
 public class Main {
@@ -115,9 +131,9 @@ public class Main {
                         .metastoreUrl("thrift://<url>:<port>/<catalog_name>");
 
         TableIdentifier tableId = TableIdentifier.of("catalog_name", "database_name", "test_table");
-        ArcticTableLoader tableLoader = ArcticTableLoader.of(tableId, catalogBuilder);
+        MixedFormatTableLoader tableLoader = MixedFormatTableLoader.of(tableId, catalogBuilder);
 
-        ArcticTable table = ArcticUtils.loadArcticTable(tableLoader);
+        MixedTable table = MixedFormatUtils.loadMixedTable(tableLoader);
         // Read table All fields. If you only read some fields, you can construct the schema yourself, for example:
         // Schema userSchema = new Schema(new ArrayList<Types.NestedField>() {{
         //   add(Types.NestedField.optional(0, "f_boolean", Types.BooleanType.get()));
@@ -141,10 +157,10 @@ public class Main {
 
 ### Streaming mode (FileStore)
 ```java 
-import com.netease.arctic.flink.InternalCatalogBuilder;
-import com.netease.arctic.flink.table.ArcticTableLoader;
-import com.netease.arctic.flink.table.FlinkSource;
-import com.netease.arctic.table.TableIdentifier;
+import org.apache.amoro.flink.InternalCatalogBuilder;
+import org.apache.amoro.flink.table.FlinkSource;
+import org.apache.amoro.flink.table.MixedFormatTableLoader;
+import org.apache.amoro.table.TableIdentifier;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.data.RowData;
@@ -162,7 +178,7 @@ public class Main {
                         .metastoreUrl("thrift://<url>:<port>/<catalog_name>");
 
         TableIdentifier tableId = TableIdentifier.of("catalog_name", "database_name", "test_table");
-        ArcticTableLoader tableLoader = ArcticTableLoader.of(tableId, catalogBuilder);
+        MixedFormatTableLoader tableLoader = MixedFormatTableLoader.of(tableId, catalogBuilder);
 
         Map<String, String> properties = new HashMap<>();
         // Default value is true
@@ -181,7 +197,7 @@ public class Main {
         // Submit and execute the task
         env.execute("Test Mixed-format table streaming Read");
     }
-} 
+}
 ``` 
 DataStream API supports reading primary key tables and non-primary key tables. The configuration items supported by properties can refer to Querying With SQL [chapter Hint Option](../flink-dml/)
 
@@ -192,10 +208,10 @@ Amoro table supports writing data to LogStore or FileStore through Java API
 Amoro table currently Only supports the existing data in the dynamic Overwrite table of the non-primary key table
 
 ```java
-import com.netease.arctic.flink.InternalCatalogBuilder;
-import com.netease.arctic.flink.table.ArcticTableLoader;
-import com.netease.arctic.flink.write.FlinkSink;
-import com.netease.arctic.table.TableIdentifier;
+import org.apache.amoro.flink.InternalCatalogBuilder;
+import org.apache.amoro.flink.table.MixedFormatTableLoader;
+import org.apache.amoro.flink.write.FlinkSink;
+import org.apache.amoro.table.TableIdentifier;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.DataTypes;
@@ -215,7 +231,7 @@ public class Main {
                         .metastoreUrl("thrift://<url>:<port>/<catalog_name>");
 
         TableIdentifier tableId = TableIdentifier.of("catalog_name", "database_name", "test_table");
-        ArcticTableLoader tableLoader = ArcticTableLoader.of(tableId, catalogBuilder);
+        MixedFormatTableLoader tableLoader = MixedFormatTableLoader.of(tableId, catalogBuilder);
 
         TableSchema flinkSchema = TableSchema.builder()
                 .field("id", DataTypes.INT())
@@ -233,19 +249,19 @@ public class Main {
         // Submit and execute the task
         env.execute("Test Mixed-format table overwrite");
     }
-}
+} 
 ```
 
 ### Appending data
 For the Amoro table, it supports specifying to write data to FileStore or LogStore through Java API.
 
 ```java
-import com.netease.arctic.flink.InternalCatalogBuilder;
-import com.netease.arctic.flink.table.ArcticTableLoader;
-import com.netease.arctic.flink.util.ArcticUtils;
-import com.netease.arctic.flink.write.FlinkSink;
-import com.netease.arctic.table.ArcticTable;
-import com.netease.arctic.table.TableIdentifier;
+import org.apache.amoro.flink.InternalCatalogBuilder;
+import org.apache.amoro.flink.table.MixedFormatTableLoader;
+import org.apache.amoro.flink.util.MixedFormatUtils;
+import org.apache.amoro.flink.write.FlinkSink;
+import org.apache.amoro.table.MixedTable;
+import org.apache.amoro.table.TableIdentifier;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.DataTypes;
@@ -265,7 +281,7 @@ public class Main {
                         .metastoreUrl("thrift://<url>:<port>/<catalog_name>");
 
         TableIdentifier tableId = TableIdentifier.of("catalog_name", "database_name", "test_table");
-        ArcticTableLoader tableLoader = ArcticTableLoader.of(tableId, catalogBuilder);
+        MixedFormatTableLoader tableLoader = MixedFormatTableLoader.of(tableId, catalogBuilder);
 
         TableSchema flinkSchema = TableSchema.builder()
                 .field("id", DataTypes.INT())
@@ -273,9 +289,9 @@ public class Main {
                 .field("op_time", DataTypes.TIMESTAMP_WITH_LOCAL_TIME_ZONE())
                 .build();
 
-        ArcticTable table = ArcticUtils.loadArcticTable(tableLoader);
+        MixedTable table = MixedFormatUtils.loadMixedTable(tableLoader);
 
-        table.properties().put("arctic.emit.mode", "log,file");
+        table.properties().put("mixed-format.emit.mode", "log,file");
 
         FlinkSink
                 .forRowData(input)
@@ -292,6 +308,6 @@ The DataStream API supports writing to primary key tables and non-primary key ta
 
 > **TIPS**
 >
-> arctic.emit.mode contains log, you need to configure log-store.enabled = true [Enable Log Configuration](../flink-dml/)
+> mixed-format.emit.mode contains log, you need to configure log-store.enabled = true [Enable Log Configuration](../flink-dml/)
 >
-> arctic.emit.mode When file is included, the primary key table will only be written to ChangeStore, and the non-primary key table will be directly written to BaseStore.
+> mixed-format.emit.mode When file is included, the primary key table will only be written to ChangeStore, and the non-primary key table will be directly written to BaseStore.
