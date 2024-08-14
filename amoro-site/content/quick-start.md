@@ -60,8 +60,6 @@ services:
       - JVM_XMS=1024
     networks:
       amoro_network:
-        aliases:
-          - warehouse.minio
     volumes:
       - ./amoro:/tmp/warehouse
     command: ["/entrypoint.sh", "ams"]
