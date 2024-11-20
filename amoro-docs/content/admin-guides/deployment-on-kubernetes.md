@@ -81,7 +81,7 @@ You can obtain the latest official release chart by adding the official Helm rep
 $ helm repo add amoro https://netease.github.io/amoro/charts
 $ helm search repo amoro 
 NAME           CHART VERSION    APP VERSION        DESCRIPTION           
-amoro/amoro    0.1.0            0.7.0              A Helm chart for Amoro 
+amoro/amoro    0.1.0            0.7.1              A Helm chart for Amoro 
 
 $ helm pull amoro/amoro 
 $ tar zxvf amoro-*.tgz

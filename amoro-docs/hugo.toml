@@ -24,13 +24,12 @@ home = [ "HTML", "RSS", "SearchIndex" ]
 [menu]
 
   topnav = [
-    { name = "Quickstart", weight = 100 },
-    { name = "Setup", parent = "Quickstart", pre = "relative", url = "../../quickstart-setup/", weight = 101 },
-    { name = "Quick Demo", parent = "Quickstart", pre = "relative", url = "../../quick-demo/", weight = 102 },
+    { name = "Quickstart", url = "../../quick-start/", weight = 100 },
     { name = "Docs", weight = 200 },
     { name = "latest", parent = "Docs", pre = "relative", url = "../../docs/latest/", weight = 201 },
-    { name = "0.7.0-incubating", parent = "Docs", pre = "relative", url = "../../docs/0.7.0/", weight = 202 },
-    { name = "0.6.1", parent = "Docs", pre = "relative", url = "../../docs/0.6.1/", weight = 203 },
+    { name = "0.7.1-incubating", parent = "Docs", pre = "relative", url = "../../docs/0.7.1/", weight = 202 },
+    { name = "0.7.0-incubating", parent = "Docs", pre = "relative", url = "../../docs/0.7.0/", weight = 203 },
+    { name = "0.6.1", parent = "Docs", pre = "relative", url = "../../docs/0.6.1/", weight = 204 },
     { name = "Benchmark", weight = 300 },
     { name = "Benchmark Report", parent = "Benchmark", pre = "relative", url = "../../benchmark-report/", weight = 301 },
     { name = "Benchmark Guide", parent = "Benchmark", pre = "relative", url = "../../benchmark-guide/", weight = 302 },
