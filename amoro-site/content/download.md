@@ -6,7 +6,7 @@ disableSidebar: true
 
 # Download
 
-Please choose an Amoro version to download from the following tables. It is recommended you use the latest release.
+Please choose an Amoro version to download from the following tables. It is recommended you use the latest version.
 
 Please verify the release with corresponding hashes(sha512), signatures and [project release KEYS](https://downloads.apache.org/incubator/amoro/KEYS).
 
