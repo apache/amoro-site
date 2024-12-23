@@ -28,6 +28,7 @@ jobs:
           keep_files: true
 
   deploy-latest-docs-page:
+    needs: deploy-site-page
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-20.04
     steps:
@@ -52,6 +53,7 @@ jobs:
           keep_files: true
 
   deploy-versioned-docs-page:
+    needs: [deploy-site-page, deploy-latest-docs-page]
     if: github.ref != 'refs/heads/master'
     runs-on: ubuntu-20.04
     continue-on-error: true
