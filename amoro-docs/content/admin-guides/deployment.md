@@ -98,7 +98,7 @@ Make sure the port is not used before configuring it.
 
 ### Configure system database
 
-Amoro used `Derby` as the backend storage default, so you can use `Derby` directly without any additional configuration. 
+AMS uses embedded [Apache Derby](https://db.apache.org/derby/) as the backend storage by default, so you can use `Derby` directly without any additional configuration. 
 
 You can also configure a relational backend storage as you needed.
 
