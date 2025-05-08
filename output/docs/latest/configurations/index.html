@@ -507,6 +507,10 @@
                         </li>
                     
                         <li>
+                            <a href="../flink-cdc-ingestion/">Flink CDC Ingestion</a>
+                        </li>
+                    
+                        <li>
                             <a href="../flink-datastream/">Flink DataStream</a>
                         </li>
                     
@@ -688,6 +692,11 @@ modified through <a href="../using-tables/#modify-table">Alter Table</a> operati
           <td>60000</td>
           <td>The minimum time interval between two self-optimizing planning action</td>
       </tr>
+      <tr>
+          <td>self-optimizing.filter</td>
+          <td>NULL</td>
+          <td>Filter conditions for self-optimizing, using SQL conditional expressions, without supporting any functions. For the timestamp column condition, the ISO date-time formatter must be used. For example: op_time &gt; &lsquo;2007-12-03T10:15:30&rsquo;.</td>
+      </tr>
   </tbody>
 </table>
 <h2 id="data-cleaning-configurations">Data-cleaning configurations</h2>
@@ -712,9 +721,14 @@ modified through <a href="../using-tables/#modify-table">Alter Table</a> operati
           <td>Time to live in minutes for data of ChangeStore</td>
       </tr>
       <tr>
-          <td>snapshot.base.keep.minutes</td>
-          <td>720(12 hours)</td>
-          <td>Table-Expiration keeps the latest snapshots of BaseStore within a specified time in minutes</td>
+          <td>snapshot.keep.duration</td>
+          <td>720min(12 hours)</td>
+          <td>Table-Expiration keeps the latest snapshots within a specified duration</td>
+      </tr>
+      <tr>
+          <td>snapshot.keep.min-count</td>
+          <td>1</td>
+          <td>Minimum number of snapshots retained for table expiration</td>
       </tr>
       <tr>
           <td>clean-orphan-file.enabled</td>

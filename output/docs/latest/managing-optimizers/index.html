@@ -507,6 +507,10 @@
                         </li>
                     
                         <li>
+                            <a href="../flink-cdc-ingestion/">Flink CDC Ingestion</a>
+                        </li>
+                    
+                        <li>
                             <a href="../flink-datastream/">Flink DataStream</a>
                         </li>
                     
@@ -597,19 +601,97 @@
 <li>Optimizer: The specific unit that performs optimizing tasks, usually with multiple concurrent units.</li>
 </ul>
 <h2 id="optimizer-container">Optimizer container</h2>
-<p>Before using self-optimizing, you need to configure the container information in the configuration file. Optimizer container represents a specific set of runtime environment configuration, and the scheduling scheme of optimizer in that runtime environment. The container includes three types: flink, local, and external.</p>
+<p>Before start exploring self-optimizing, you need to configure the container information in the configuration file. Optimizer container represents a specific set of runtime environment configuration. The supported container types include: local, kubernetes, flink, spark, and external.</p>
 <h3 id="local-container">Local container</h3>
 <p>Local container is a way to start Optimizer by local process and supports multi-threaded execution of Optimizer tasks. It is recommended to be used only in demo or local deployment scenarios. If the environment variable for jdk is not configured, the user can configure java_home to point to the jdk root directory. If already configured, this configuration item can be ignored.</p>
+<p>Local container support the following properties:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Property Name</th>
+          <th>Required</th>
+          <th>Default Value</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>ams-optimizing-uri</td>
+          <td>false</td>
+          <td>N/A</td>
+          <td>URI of AMS thrift self-optimizing endpoint. This could be used if the ams.server-expose-host is not available</td>
+      </tr>
+      <tr>
+          <td>export.JAVA_HOME</td>
+          <td>false</td>
+          <td>N/A</td>
+          <td>Java runtime location</td>
+      </tr>
+  </tbody>
+</table>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">containers</span>:
 </span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">localContainer</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">container-impl</span>: <span style="color:#ae81ff">org.apache.amoro.server.manager.LocalOptimizerContainer</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">properties</span>:
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">export.JAVA_HOME</span>: <span style="color:#e6db74">&#34;/opt/java&#34;</span>   <span style="color:#75715e"># JDK environment</span>
-</span></span></code></pre></div><h3 id="kubernetes-container">Kubernetes container</h3>
-<p>Kubernetes Optimizer Container is a way to start Optimizer On K8s with standalone Optimizer.
-To use flink container, you need to add a new container configuration.
+</span></span></code></pre></div><p>The format for optimizing URI is <code>thrift://{host}:{port}?parameter1=value2&amp;parameter2=value2</code>.
+The supported parameters include:</p>
+<table>
+  <thead>
+      <tr>
+          <th>Parameter Name</th>
+          <th>efault Value</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>autoReconnect</td>
+          <td>true</td>
+          <td>If reconnect the server when the connection is broken</td>
+      </tr>
+      <tr>
+          <td>maxReconnects</td>
+          <td>5</td>
+          <td>Retry times when reconnecting</td>
+      </tr>
+      <tr>
+          <td>connectTimeout</td>
+          <td>0 (Forever)</td>
+          <td>Timeout in milliseconds when connecting the server</td>
+      </tr>
+      <tr>
+          <td>socketTimeout</td>
+          <td>0 (Forever)</td>
+          <td>Timeout in milliseconds when communicating with the server</td>
+      </tr>
+      <tr>
+          <td>maxMessageSize</td>
+          <td>104856600 (100MB)</td>
+          <td>Max message size when communicating with the server</td>
+      </tr>
+      <tr>
+          <td>maxMessageSize</td>
+          <td>104856600 (100MB)</td>
+          <td>Max message size when communicating with the server</td>
+      </tr>
+      <tr>
+          <td>minIdle</td>
+          <td>0</td>
+          <td>Minimal idle clients in the pool</td>
+      </tr>
+      <tr>
+          <td>maxIdle</td>
+          <td>5</td>
+          <td>Maximal idle clients in the pool</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="kubernetes-container">Kubernetes container</h3>
+<p>Kubernetes container is a way to start Optimizer On K8s with standalone Optimizer.
+To use Kubernetes container, you need to add a new container configuration.
 with container-impl as <code>org.apache.amoro.server.manager.KubernetesOptimizerContainer</code></p>
-<p>KubernetesOptimizerContainer support the following properties:</p>
+<p>Kubernetes container support the following properties:</p>
 <table>
   <thead>
       <tr>
@@ -662,6 +744,12 @@ with container-impl as <code>org.apache.amoro.server.manager.KubernetesOptimizer
           <td>N/A</td>
           <td>Memory usage for pre thread</td>
       </tr>
+      <tr>
+          <td>extra.jvm.heap.ratio</td>
+          <td>false</td>
+          <td>0.8</td>
+          <td>The ratio of JVM heap memory to total pod memory</td>
+      </tr>
   </tbody>
 </table>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">containers</span>:
@@ -675,7 +763,7 @@ with container-impl as <code>org.apache.amoro.server.manager.KubernetesOptimizer
 <p>Flink container is a way to start Optimizer through Flink jobs. With Flink, you can easily deploy Optimizer
 on yarn clusters or kubernetes clusters to support large-scale data scenarios. To use flink container,
 you need to add a new container configuration. with container-impl as <code>org.apache.amoro.server.manager.FlinkOptimizerContainer</code></p>
-<p>FlinkOptimizerContainer support the following properties:</p>
+<p>Flink container support the following properties:</p>
 <table>
   <thead>
       <tr>
@@ -804,7 +892,7 @@ you need to add a new container configuration. with container-impl as <code>org.
 <p>Spark container is another way to start Optimizer through Spark jobs. With Spark, you can easily deploy Optimizer
 on yarn clusters or kubernetes clusters to support large-scale data scenarios. To use spark container,
 you need to add a new container configuration. with container-impl as <code>org.apache.amoro.server.manager.SparkOptimizerContainer</code></p>
-<p>SparkOptimizerContainer support the following properties:</p>
+<p>Spark container support the following properties:</p>
 <table>
   <thead>
       <tr>

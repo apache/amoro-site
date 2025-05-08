@@ -2,6 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://amoro.apache.org/docs/latest/using-customized-encryption-method/</loc>
+  </url><url>
     <loc>https://amoro.apache.org/docs/latest/readme/</loc>
   </url><url>
     <loc>https://amoro.apache.org/docs/latest/admin-guides/</loc>
@@ -21,6 +23,8 @@
     <loc>https://amoro.apache.org/docs/latest/deployment-on-kubernetes/</loc>
   </url><url>
     <loc>https://amoro.apache.org/docs/latest/engines/</loc>
+  </url><url>
+    <loc>https://amoro.apache.org/docs/latest/flink-cdc-ingestion/</loc>
   </url><url>
     <loc>https://amoro.apache.org/docs/latest/flink-datastream/</loc>
   </url><url>

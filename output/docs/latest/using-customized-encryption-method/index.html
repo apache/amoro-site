@@ -36,7 +36,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Overview</title>
+    <title>Using Customized Encryption Method for Configurations</title>
 
     
     
@@ -450,7 +450,7 @@
                 <li>
 
 
-                    <a class="top-menu chevron-toggle " data-toggle="collapse" href="#Formats">
+                    <a class="top-menu chevron-toggle  collapsed" data-toggle="collapse" href="#Formats">
                         <span>Formats</span>
                     </a>
                 </li>
@@ -593,25 +593,93 @@
  - See the License for the specific language governing permissions and
  - limitations under the License.
  -->
-<h1 id="formats-overview">Formats Overview</h1>
-<p>Table format (aka. format) was first proposed by Iceberg, which can be described as follows:</p>
+<h1 id="using-customized-encryption-method-for-configurations">Using Customized Encryption Method for Configurations</h1>
+<p>To enhance security, AMS allows encrypted sensitive configuration items such as passwords. Currently, AMS only supports the built-in base64 encryption algorithm (see <a href="../deployment/#configure-encrypted-sensitive-configuration-items">Configure encrypted configuration items</a> for details). If you require a stronger or customized encryption method, AMS also provides the flexibility to implement your own encryption algorithm.</p>
+<h2 id="develop-the-custom-implementation">Develop the Custom Implementation</h2>
+<p>To integrate a custom encryption algorithm, you need to create a Java class that implements the <code>ConfigShade</code> interface and package it as a service.</p>
+<h3 id="add-maven-dependency">Add Maven Dependency</h3>
+<p>If using a Maven project, add the following dependency to your <code>pom.xml</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;groupId&gt;</span>org.apache.amoro<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;artifactId&gt;</span>amoro-common<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;version&gt;</span>${amoro.version}<span style="color:#f92672">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;scope&gt;</span>provided<span style="color:#f92672">&lt;/scope&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><h3 id="implement-the-configshade-interface">Implement the <code>ConfigShade</code> Interface</h3>
+<p>Create a Java class that implements the <code>ConfigShade</code> interface. This class will handle decryption for sensitive configuration values.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * The interface that provides the ability to decrypt {@link
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * org.apache.amoro.config.Configurations}.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ConfigShade</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Initializes the custom instance using the service configurations.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * This method can be useful when decryption requires an external file (e.g. a key file)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * defined in the service configs.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initialize</span>(Configurations serviceConfig) <span style="color:#66d9ef">throws</span> Exception {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * The unique identifier of the current interface, used it to select the correct {@link
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * ConfigShade}.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   */</span>
+</span></span><span style="display:flex;"><span>  String <span style="color:#a6e22e">getIdentifier</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * Decrypt the content.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   * @param content The content to decrypt
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   */</span>
+</span></span><span style="display:flex;"><span>  String <span style="color:#a6e22e">decrypt</span>(String content);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In this interface:</p>
 <ul>
-<li>It defines the relationship between tables and files, and any engine can query and retrieve data files according to the table format.</li>
-<li>New formats such as Iceberg/Delta/Hudi further define the relationship between tables and snapshots, and the relationship between snapshots and files.
-All write operations on the table will generate new snapshots, and all read operations on the table are based on snapshots.
-Snapshots bring MVCC, ACID, and Transaction capabilities to data lakes.</li>
+<li><code>getIdentifier()</code>: Returns a <strong>unique</strong> identifier for your encryption algorithm, which is used to configure the <code>ams.shade.identifier</code>. Avoid using &ldquo;default&rdquo; (which disables encryption) or &ldquo;base64&rdquo; (which refers to AMS’s built-in Base64 support).</li>
+<li><code>decrypt(String content)</code>: Implements the decryption logic for converting encrypted values back to plaintext.</li>
 </ul>
-<p>In addition, new table formats such as <a href="https://Iceberg.apache.org/">Iceberg</a> also provide many advanced features such as schema evolve, hidden partition, and data skip.
-<a href="https://hudi.apache.org/">Hudi</a> and <a href="https://delta.io/">Delta</a> may have some differences in specific functions, but we see that the standard of table formats is gradually established with the functional convergence of these three open-source projects in the past two years.</p>
-<p>For users, the design goal of Amoro is to provide an out-of-the-box data lake system. Internally, Amoro&rsquo;s design philosophy is to use different table formats as storage engines for data lakes.
-This design pattern is more common in open-source systems such as MySQL and ClickHouse.</p>
-<p>Currently, Amoro mainly provides the following four table formats:</p>
-<ul>
-<li><strong>Iceberg format:</strong> Users can directly entrust their Iceberg tables to Amoro for maintenance, so that users can not only use all the functions of Iceberg tables, but also enjoy the performance and stability improvements brought by Amoro.</li>
-<li><strong>Mixed-Iceberg format:</strong> Amoro provides a set of more optimized formats for streaming update scenarios on top of the Iceberg format. If users have high performance requirements for streaming updates or have demands for CDC incremental data reading functions, they can choose to use the Mixed-Iceberg format.</li>
-<li><strong>Mixed-Hive format:</strong> Many users do not want to affect the business originally built on Hive while using data lakes. Therefore, Amoro provides the Mixed-Hive format, which can upgrade Hive tables to Mixed-Hive format only through metadata migration, and the original Hive tables can still be used normally. This ensures business stability and benefits from the advantages of data lake computing.</li>
-<li><strong>Paimon format:</strong> Amoro supports displaying metadata information in the Paimon format, including Schema, Options, Files, Snapshots, DDLs, and Compaction information.</li>
-</ul>
+<p>Here is an example implementation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.example.shade;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.config.Configurations;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.amoro.config.shade.ConfigShade;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Base64;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Custom Base64 decryption implementation for AMS.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Base64CustomConfigShade</span> <span style="color:#66d9ef">implements</span> ConfigShade {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getIdentifier</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;base64-custom&#34;</span>; <span style="color:#75715e">// Use this identifier in shade.identifier</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">decrypt</span>(String content) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> String(Base64.<span style="color:#a6e22e">getDecoder</span>().<span style="color:#a6e22e">decode</span>(content));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="register-the-custom-implementation">Register the Custom Implementation</h3>
+<p>Create a file named <code>org.apache.amoro.config.shade.ConfigShade</code> under <code>resources/META-INF/services/</code> and add the fully qualified class name of your implementation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-j" data-lang="j"><span style="display:flex;"><span>com<span style="color:#f92672">.</span>example<span style="color:#f92672">.</span>shade<span style="color:#f92672">.</span>Base64CustomConfigShade
+</span></span></code></pre></div><h3 id="build-the-jar">Build the JAR</h3>
+<p>Package your implementation into a JAR file using Maven:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>mvn clean package
+</span></span></code></pre></div><h2 id="deploy-the-custom-implementation">Deploy the Custom Implementation</h2>
+<p>Once you&rsquo;ve developed and packaged the custom encryption algorithm, you can deploy it to AMS by following these steps.</p>
+<h3 id="copy-the-jar-to-ams">Copy the JAR to AMS</h3>
+<p>Move the generated JAR file to the <code>${AMORO_HOME}/lib/</code> directory.</p>
+<h3 id="configure-ams-to-use-the-custom-encryption">Configure AMS to Use the Custom Encryption</h3>
+<p>Modify <code>${AMORO_HOME}/conf/config.yaml</code> to specify the custom encryption algorithm by setting the <code>ams.shade.identifier</code> to match the value returned by <code>getIdentifier()</code> in your Java class.
+Then, replace sensitive configuration values with their encrypted versions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">ams</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">shade</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">identifier</span>: <span style="color:#ae81ff">base64-custom </span> <span style="color:#75715e"># Use the custom encryption algorithm</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">sensitive-keywords</span>: <span style="color:#ae81ff">admin-password;database.password</span>
+</span></span></code></pre></div><h3 id="restart-ams">Restart AMS</h3>
+<p>Restart the AMS service to apply the new encryption settings.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>bin/ams restart
+</span></span></code></pre></div><p>By following these steps, you can successfully integrate and deploy a custom encryption algorithm in AMS, ensuring that sensitive information is securely stored in the configuration file.</p>
 </div>
                 
                     
@@ -631,7 +699,25 @@ This design pattern is more common in open-source systems such as MySQL and Clic
 
 <div id="toc" class="markdown-body">
     <div id="full">
-        <nav id="TableOfContents"></nav>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#develop-the-custom-implementation">Develop the Custom Implementation</a>
+      <ul>
+        <li><a href="#add-maven-dependency">Add Maven Dependency</a></li>
+        <li><a href="#implement-the-configshade-interface">Implement the <code>ConfigShade</code> Interface</a></li>
+        <li><a href="#register-the-custom-implementation">Register the Custom Implementation</a></li>
+        <li><a href="#build-the-jar">Build the JAR</a></li>
+      </ul>
+    </li>
+    <li><a href="#deploy-the-custom-implementation">Deploy the Custom Implementation</a>
+      <ul>
+        <li><a href="#copy-the-jar-to-ams">Copy the JAR to AMS</a></li>
+        <li><a href="#configure-ams-to-use-the-custom-encryption">Configure AMS to Use the Custom Encryption</a></li>
+        <li><a href="#restart-ams">Restart AMS</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 

@@ -507,6 +507,10 @@
                         </li>
                     
                         <li>
+                            <a href="../flink-cdc-ingestion/">Flink CDC Ingestion</a>
+                        </li>
+                    
+                        <li>
                             <a href="../flink-datastream/">Flink DataStream</a>
                         </li>
                     
@@ -614,7 +618,7 @@ Auto-bucket divides the data under a partition into sets of non-intersecting pri
 <ul>
 <li>Compatibility limited — In scenarios where Hive and Iceberg are compatible, there may be a violation of primary key uniqueness or the failure of conflict resolution.</li>
 <li>Primary key constraint — When the primary key does not include partition keys and there are no updates to the stream data, normalized operators or other methods need to be used to restore the previous data to ensure primary key uniqueness.</li>
-<li>Engines integrated — Currently supports reading and writing with Flink and Spark, and querying data with Trino and Impala.</li>
+<li>Engines integrated — Currently supports reading and writing with Flink and Spark, and querying data with Trino.</li>
 </ul>
 <p>The BaseStore and ChangeStore of the Mixed-Iceberg format both use the Iceberg format and are consistent with Iceberg in schema, types, and partition usage.
 While possessing the features of the Mixed-Iceberg format, the BaseStore and ChangeStore can be read and written using the native Iceberg connector, thus having all the functional features of the Iceberg format.

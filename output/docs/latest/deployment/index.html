@@ -507,6 +507,10 @@
                         </li>
                     
                         <li>
+                            <a href="../flink-cdc-ingestion/">Flink CDC Ingestion</a>
+                        </li>
+                    
+                        <li>
                             <a href="../flink-datastream/">Flink DataStream</a>
                         </li>
                     
@@ -607,17 +611,17 @@ Unzip it to create the amoro-x.y.z directory in the same directory, and then go 
 </span></span><span style="display:flex;"><span>$ cd amoro
 </span></span><span style="display:flex;"><span>$ base_dir<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span> 
 </span></span><span style="display:flex;"><span>$ mvn clean package -DskipTests
-</span></span><span style="display:flex;"><span>$ cd amoro-ams/dist/target/
+</span></span><span style="display:flex;"><span>$ cd dist/target/
 </span></span><span style="display:flex;"><span>$ ls
 </span></span><span style="display:flex;"><span>amoro-x.y.z-bin.zip <span style="color:#75715e"># AMS release package</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>$ cd <span style="color:#e6db74">${</span>base_dir<span style="color:#e6db74">}</span>/amoro-mixed-format/amoro-mixed-format-flink/v1.15/amoro-mixed-format-flink-runtime-1.15/target
+</span></span><span style="display:flex;"><span>$ cd <span style="color:#e6db74">${</span>base_dir<span style="color:#e6db74">}</span>/amoro-format-mixed/amoro-format-mixed-flink/v1.15/amoro-format-mixed-flink-runtime-1.15/target
 </span></span><span style="display:flex;"><span>$ ls 
-</span></span><span style="display:flex;"><span>amoro-mixed-format-flink-runtime-1.15-x.y.z.jar <span style="color:#75715e"># Flink 1.15 runtime package</span>
+</span></span><span style="display:flex;"><span>amoro-format-mixed-flink-runtime-1.15-x.y.z.jar <span style="color:#75715e"># Flink 1.15 runtime package</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>$ cd <span style="color:#e6db74">${</span>base_dir<span style="color:#e6db74">}</span>/amoro-mixed-format/amoro-mixed-format-spark/v3.2/amoro-mixed-format-spark-runtime-3.2/target
+</span></span><span style="display:flex;"><span>$ cd <span style="color:#e6db74">${</span>base_dir<span style="color:#e6db74">}</span>/amoro-format-mixed/amoro-format-mixed-spark/v3.2/amoro-format-mixed-spark-runtime-3.2/target
 </span></span><span style="display:flex;"><span>$ ls
-</span></span><span style="display:flex;"><span>amoro-mixed-format-spark-runtime-3.2-x.y.z.jar <span style="color:#75715e"># Spark v3.2 runtime package)</span>
+</span></span><span style="display:flex;"><span>amoro-format-mixed-spark-runtime-3.2-x.y.z.jar <span style="color:#75715e"># Spark v3.2 runtime package)</span>
 </span></span></code></pre></div><p>More build guide can be found in the project&rsquo;s <a href="https://github.com/apache/amoro?tab=readme-ov-file#building">README</a>.</p>
 <h2 id="configuration">Configuration</h2>
 <p>If you want to use AMS in a production environment, it is recommended to modify <code>{AMORO_HOME}/conf/config.yaml</code> by referring to the following configuration steps.</p>
@@ -641,6 +645,7 @@ Unzip it to create the amoro-x.y.z directory in the same directory, and then go 
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">bind-port</span>: <span style="color:#ae81ff">1261</span> <span style="color:#75715e">#The port for accessing AMS optimizing service.</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">http-server</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">session-timeout</span>: <span style="color:#ae81ff">7d</span> <span style="color:#75715e">#Re-login after 7days</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">bind-port</span>: <span style="color:#ae81ff">1630</span> <span style="color:#75715e">#The port for accessing AMS Dashboard.</span>
 </span></span></code></pre></div><div class="info">
     Make sure the port is not used before configuring it.
@@ -660,6 +665,7 @@ and move it into the <code>${AMORO_HOME}/lib/</code> directory.</p></blockquote>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">url</span>: <span style="color:#ae81ff">${your_jdbc_url}</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">username</span>: <span style="color:#ae81ff">${your_username}</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">password</span>: <span style="color:#ae81ff">${your_password}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">auto-create-tables</span>: <span style="color:#66d9ef">true</span>
 </span></span></code></pre></div><h3 id="configure-high-availability">Configure high availability</h3>
 <p>To improve stability, AMS supports a one-master-multi-backup HA mode. Zookeeper is used to implement leader election,
 and the AMS cluster name and Zookeeper address are specified. The AMS cluster name is used to bind different AMS clusters
@@ -770,6 +776,31 @@ The configuration for kyuubi mode can refer to: <a href="../using-kyuubi/">Using
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">scrape_interval</span>: <span style="color:#ae81ff">15s</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">static_configs</span>:
 </span></span><span style="display:flex;"><span>      - <span style="color:#f92672">targets</span>: [<span style="color:#e6db74">&#39;localhost:9090&#39;</span>]  <span style="color:#75715e"># The host and port that you configured in Amoro plugins configs file.</span>
+</span></span></code></pre></div><h3 id="configure-encrypted-configuration-items">Configure encrypted configuration items</h3>
+<p>For enhanced security, AMS supports encrypted values for sensitive configuration items such as passwords within <code>config.yaml</code>. This prevents plaintext passwords and other critical information from being directly exposed in the configuration file.
+Currently, AMS provides built-in support for base64 decryption, and users can also implement custom decryption algorithms if needed (see <a href="../using-customized-encryption-method/">Using Customized Encryption Method for Configurations</a>).</p>
+<p>To enable encrypted sensitive configuration items, add the following configurations under <code>config.yaml</code> of AMS:</p>
+<ul>
+<li>The <code>ams.shade.identifier</code> configuration specifies the encryption method used for the sensitive values. The default value is <code>default</code>, which means no encryption is applied. To enable encrypted values, set it to <code>base64</code> or another supported encryption method.</li>
+<li>The <code>ams.shade.sensitive-keywords</code> configuration specifies which configuration items under <code>ams</code> are encrypted. The default value is <code>admin-password;database.password</code>, and multiple keywords should be separated by semicolons (<code>;</code>). The values of these items must be replaced with their encrypted counterparts.</li>
+</ul>
+<p>Example Configuration (Partial):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">ams</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">admin-username</span>: <span style="color:#ae81ff">admin</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">admin-password</span>: <span style="color:#ae81ff">YWRtaW4=   </span> <span style="color:#75715e"># Ciphertext for &#34;admin&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">server-bind-host</span>: <span style="color:#e6db74">&#34;0.0.0.0&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">server-expose-host</span>: <span style="color:#e6db74">&#34;127.0.0.1&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">shade</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">identifier</span>: <span style="color:#ae81ff">base64</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">sensitive-keywords</span>: <span style="color:#ae81ff">admin-password;database.password</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">database</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">type</span>: <span style="color:#ae81ff">mysql</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">jdbc-driver-class</span>: <span style="color:#ae81ff">com.mysql.cj.jdbc.Driver</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">url</span>: <span style="color:#ae81ff">jdbc:mysql://127.0.0.1:3306/amoro?useUnicode=true&amp;characterEncoding=UTF8&amp;autoReconnect=true&amp;useAffectedRows=true&amp;allowPublicKeyRetrieval=true&amp;useSSL=false</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">username</span>: <span style="color:#ae81ff">root</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">password</span>: <span style="color:#ae81ff">cGFzc3dvcmQ=   </span> <span style="color:#75715e"># Ciphertext for &#34;password&#34;</span>
 </span></span></code></pre></div><h3 id="environments-variables">Environments variables</h3>
 <p>The following environment variables take effect during the startup process of AMS,
 you can set up those environments to overwrite the default value.</p>
@@ -884,6 +915,7 @@ Replace all contents in the original <code>{AMORO_HOME}/plugin</code> directory 
         <li><a href="#configure-optimizer-containers">Configure optimizer containers</a></li>
         <li><a href="#configure-terminal">Configure terminal</a></li>
         <li><a href="#configure-metric-reporter">Configure metric reporter</a></li>
+        <li><a href="#configure-encrypted-configuration-items">Configure encrypted configuration items</a></li>
         <li><a href="#environments-variables">Environments variables</a></li>
         <li><a href="#configure-ams-jvm">Configure AMS JVM</a></li>
       </ul>

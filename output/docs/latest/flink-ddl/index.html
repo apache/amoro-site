@@ -507,6 +507,10 @@
                         </li>
                     
                         <li>
+                            <a href="../flink-cdc-ingestion/">Flink CDC Ingestion</a>
+                        </li>
+                    
+                        <li>
                             <a href="../flink-datastream/">Flink DataStream</a>
                         </li>
                     
@@ -620,11 +624,11 @@
           <td>metastore.url</td>
           <td>(none)</td>
           <td>String</td>
-          <td>Yes</td>
+          <td>No</td>
           <td>The URL for Amoro Metastore is thrift://<code>&lt;ip&gt;</code>:<code>&lt;port&gt;</code>/<code>&lt;catalog_name_in_metastore&gt;</code>.<br>If high availability is enabled for AMS, it can also be specified in the form of zookeeper://{zookeeper-server}/{cluster-name}/{catalog-name}.</td>
       </tr>
       <tr>
-          <td>default-database<img width=100/></td>
+          <td>default-database</td>
           <td>default</td>
           <td>String</td>
           <td>No</td>
@@ -636,6 +640,13 @@
           <td>Integer</td>
           <td>No</td>
           <td>Catalog properties version, this option is for future backward compatibility</td>
+      </tr>
+      <tr>
+          <td>catalog-type</td>
+          <td>N/A</td>
+          <td>String</td>
+          <td>No</td>
+          <td>Metastore type of the catalog, validate values are hadoop, hive, rest, custom</td>
       </tr>
   </tbody>
 </table>
