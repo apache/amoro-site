@@ -56,20 +56,20 @@ The Amoro project can be self-compiled to obtain the runtime jar.
 
 `mvn clean package -pl ':amoro-mixed-flink-runtime-1.15' -am -DskipTests`
 
-The Flink Runtime Jar is located in the `amoro-mixed-format/amoro-mixed-format-flink/v1.15/amoro-mixed-format-flink-runtime-1.15/target` directory.
+The Flink Runtime Jar is located in the `amoro-format-mixed/amoro-format-mixed-flink/v1.15/amoro-format-mixed-flink-runtime-1.15/target` directory.
 
 ## Environment preparation
 Download Flink and related dependencies, and download Flink 1.15/1.16/1.17 as needed. Taking Flink 1.15 as an example:
 ```shell
 # Replace version value with the latest Amoro version if needed
-AMORO_VERSION=0.7.1-incubating
+AMORO_VERSION=0.8.0-incubating
 FLINK_VERSION=1.15.3
 FLINK_MAJOR_VERSION=1.15
 FLINK_HADOOP_SHADE_VERSION=2.7.5
 APACHE_FLINK_URL=archive.apache.org/dist/flink
 MAVEN_URL=https://repo1.maven.org/maven2
 FLINK_CONNECTOR_URL=${MAVEN_URL}/org/apache/flink
-AMORO_CONNECTOR_URL=${MAVEN_URL}/org/apache/flink
+AMORO_CONNECTOR_URL=${MAVEN_URL}/org/apache/amoro
 
 # Download FLink binary package
 wget ${APACHE_FLINK_URL}/flink-${FLINK_VERSION}/flink-${FLINK_VERSION}-bin-scala_2.12.tgz
@@ -80,11 +80,11 @@ cd flink-${FLINK_VERSION}
 # Download Flink Hadoop dependency
 wget ${FLINK_CONNECTOR_URL}/flink-shaded-hadoop-2-uber/${FLINK_HADOOP_SHADE_VERSION}-10.0/flink-shaded-hadoop-2-uber-${FLINK_HADOOP_SHADE_VERSION}-10.0.jar
 # Download Flink Amoro Connector
-wget ${AMORO_CONNECTOR_URL}/amoro-mixed-flink-runtime-${FLINK_MAJOR_VERSION}/${AMORO_VERSION}/amoro-mixed-flink-runtime-${FLINK_MAJOR_VERSION}-${AMORO_VERSION}.jar
+wget ${AMORO_CONNECTOR_URL}/amoro-mixed-format-flink-runtime-${FLINK_MAJOR_VERSION}/${AMORO_VERSION}/amoro-mixed-format-flink-runtime-${FLINK_MAJOR_VERSION}-${AMORO_VERSION}.jar
 
 # Copy the necessary JAR files to the lib directory
 mv flink-shaded-hadoop-2-uber-${FLINK_HADOOP_SHADE_VERSION}-10.0.jar lib
-mv amoro-mixed-flink-runtime-${FLINK_MAJOR_VERSION}-${AMORO_VERSION}.jar lib
+mv amoro-mixed-format-flink-runtime-${FLINK_MAJOR_VERSION}-${AMORO_VERSION}.jar lib
 ```
 
 Modify Flink related configuration files:
