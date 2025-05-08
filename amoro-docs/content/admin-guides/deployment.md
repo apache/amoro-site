@@ -31,7 +31,8 @@ You can choose to download the stable release package from [download page](../..
 ## System requirements
 
 - Java 8 is required.
-- Optional: A RDBMS (PostgreSQL 14.x or higher, MySQL 5.5 or higher)
+- Optional: MySQL 5.5 or higher
+- Optional: PostgreSQL 14.x or higher
 - Optional: ZooKeeper 3.4.x or higher
 
 ## Download the distribution
@@ -49,17 +50,17 @@ $ git clone https://github.com/apache/amoro.git
 $ cd amoro
 $ base_dir=$(pwd) 
 $ mvn clean package -DskipTests
-$ cd amoro-ams/dist/target/
+$ cd dist/target/
 $ ls
 amoro-x.y.z-bin.zip # AMS release package
 
-$ cd ${base_dir}/amoro-mixed-format/amoro-mixed-format-flink/v1.15/amoro-mixed-format-flink-runtime-1.15/target
+$ cd ${base_dir}/amoro-format-mixed/amoro-format-mixed-flink/v1.15/amoro-format-mixed-flink-runtime-1.15/target
 $ ls 
-amoro-mixed-format-flink-runtime-1.15-x.y.z.jar # Flink 1.15 runtime package
+amoro-format-mixed-flink-runtime-1.15-x.y.z.jar # Flink 1.15 runtime package
 
-$ cd ${base_dir}/amoro-mixed-format/amoro-mixed-format-spark/v3.2/amoro-mixed-format-spark-runtime-3.2/target
+$ cd ${base_dir}/amoro-format-mixed/amoro-format-mixed-spark/v3.2/amoro-format-mixed-spark-runtime-3.2/target
 $ ls
-amoro-mixed-format-spark-runtime-3.2-x.y.z.jar # Spark v3.2 runtime package)
+amoro-format-mixed-spark-runtime-3.2-x.y.z.jar # Spark v3.2 runtime package)
 ```
 
 More build guide can be found in the project's [README](https://github.com/apache/amoro?tab=readme-ov-file#building).
@@ -89,6 +90,7 @@ ams:
       bind-port: 1261 #The port for accessing AMS optimizing service.
 
   http-server:
+    session-timeout: 7d #Re-login after 7days
     bind-port: 1630 #The port for accessing AMS Dashboard.
 ```
 
@@ -98,7 +100,7 @@ Make sure the port is not used before configuring it.
 
 ### Configure system database
 
-AMS uses embedded [Apache Derby](https://db.apache.org/derby/) as the backend storage by default, so you can use `Derby` directly without any additional configuration. 
+AMS uses embedded [Apache Derby](https://db.apache.org/derby/) as the backend storage by default, so you can use `Derby` directly without any additional configuration.
 
 You can also configure a relational backend storage as you needed.
 
@@ -117,6 +119,7 @@ ams:
     url: ${your_jdbc_url}
     username: ${your_username}
     password: ${your_password}
+    auto-create-tables: true
 ```
 
 ### Configure high availability
@@ -233,6 +236,34 @@ scrape_configs:
     scrape_interval: 15s
     static_configs:
       - targets: ['localhost:9090']  # The host and port that you configured in Amoro plugins configs file.
+```
+
+### Configure encrypted configuration items
+For enhanced security, AMS supports encrypted values for sensitive configuration items such as passwords within `config.yaml`. This prevents plaintext passwords and other critical information from being directly exposed in the configuration file. 
+Currently, AMS provides built-in support for base64 decryption, and users can also implement custom decryption algorithms if needed (see [Using Customized Encryption Method for Configurations](../using-customized-encryption-method/)).
+
+To enable encrypted sensitive configuration items, add the following configurations under `config.yaml` of AMS:
+- The `ams.shade.identifier` configuration specifies the encryption method used for the sensitive values. The default value is `default`, which means no encryption is applied. To enable encrypted values, set it to `base64` or another supported encryption method.
+- The `ams.shade.sensitive-keywords` configuration specifies which configuration items under `ams` are encrypted. The default value is `admin-password;database.password`, and multiple keywords should be separated by semicolons (`;`). The values of these items must be replaced with their encrypted counterparts.
+
+Example Configuration (Partial):
+```yaml
+ams:
+  admin-username: admin
+  admin-password: YWRtaW4=    # Ciphertext for "admin"
+  server-bind-host: "0.0.0.0"
+  server-expose-host: "127.0.0.1"
+
+  shade:
+    identifier: base64
+    sensitive-keywords: admin-password;database.password
+
+  database:
+    type: mysql
+    jdbc-driver-class: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/amoro?useUnicode=true&characterEncoding=UTF8&autoReconnect=true&useAffectedRows=true&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: cGFzc3dvcmQ=    # Ciphertext for "password"
 ```
 
 

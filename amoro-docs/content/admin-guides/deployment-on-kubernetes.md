@@ -81,7 +81,7 @@ You can obtain the latest official release chart by adding the official Helm rep
 $ helm repo add amoro https://netease.github.io/amoro/charts
 $ helm search repo amoro 
 NAME           CHART VERSION    APP VERSION        DESCRIPTION           
-amoro/amoro    0.1.0            0.7.1              A Helm chart for Amoro 
+amoro/amoro    0.1.0            0.7.0              A Helm chart for Amoro 
 
 $ helm pull amoro/amoro 
 $ tar zxvf amoro-*.tgz
@@ -208,6 +208,58 @@ optimizer:
       "flink-conf.taskmanager.memory.network.max": "32mb",
       "flink-conf.taskmanager.memory.network.min": "32mb"
     }
+```
+### Configure the Kubernetes Optimizer Container
+
+By default, the Kubernetes Optimizer Container is enabled.
+You can modify the container configuration by changing the `optimizer.Kubernetes` section.
+
+```yaml
+optimizer:
+  kubernetes:
+    # enable the kubernetes optimizer container
+    enabled: true
+    properties:
+      namespace: "default"
+      kube-config-path: "~/.kube/config"
+      image: "apache/amoro:latest"
+      pullPolicy: "IfNotPresent"
+      # configure additional parameters by using the extra. prefix
+      # extra.jvm.heap.ratio: "0.8"
+```
+
+To use PodTemplate, you need to copy and paste the following into the `kubernetes.properties`.
+
+This is the default podTemplate, and when the user doesn't specify any additional parameters, the default is to use the template's parameters
+
+Therefore, there will be a priority issue that needs to be elaborated: _Resource(WebUi) > Independent User Profile Configuration > PodTemplate_
+
+```yaml
+podTemplate: |
+  apiVersion: apps/v1
+  kind: PodTemplate
+  metadata:
+    name: <NAME_PREFIX><resourceId>
+  template:
+    metadata:
+      labels:
+        app: <NAME_PREFIX><resourceId>
+        AmoroOptimizerGroup: <groupName>
+        AmoroResourceId: <resourceId>
+    spec:
+      containers:
+        - name: optimizer
+          image: apache/amoro:0.6
+          imagePullPolicy: IfNotPresent
+          command: [ "sh", "-c", "echo 'Hello, World!'" ]
+          resources:
+            limits:
+              memory: 2048Mi
+              cpu: 2
+            requests:
+              memory: 2048Mi
+              cpu: 2
+
 ```
 
 
