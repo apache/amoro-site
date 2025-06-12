@@ -10,6 +10,11 @@ Anyone interested in the Amoro project can join the community and contribute to 
 
 This document describes some guidelines for joining the Amoro community.
 
+## Slack
+We use the [workspace](https://asf-amoro.slack.com/) on Slack. To be invited, follow this [invite link](https://join.slack.com/t/asf-amoro/shared_invite/zt-328wr7rbm-hFlTDc0ImZca3Vv24AhGdQ).
+
+Please note that this link may occasionally break when Slack does an upgrade. If you encounter problems using it, please let us know by sending an email to [dev@amoro.apache.org](mailto:dev@amoro.apache.org).
+
 ## Mailing Lists
 
 | List Name           | Address                  | Subscribe                                              | Unsubscribe                                                | Archive                                                                |
