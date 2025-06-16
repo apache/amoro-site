@@ -202,7 +202,7 @@ In the maven configuration file `~/.m2/settings.xml`, add the following item:
     <server>
         <id>apache.releases.https</id>
         <!-- APACHE LDAP UserName --> 
-        <username>jinsongzhou</username>
+        <username>amoro</username>
         <!-- APACHE LDAP password (Fill in the password you just created with the command `mvn --encrypt-password <apache passphrase>`) -->
         <password>{/ZLaH78TWboH5IRqNv9pgU4uamuqm9fCIbw0gRWT01c=}</password>
     </server>
@@ -292,8 +292,8 @@ $ cd ${AMORO_SOURCE_HOME}/tools
 $ RELEASE_VERSION=0.8.0-incubating bash ./releasing/create_source_release.sh
 ```
 
-Validate the source and binary packages according to the [How to validate a new version](#how-to-validate-a-new-version) guides.
-After that, ublish the dev directory of the Apache SVN warehouse of the material package:
+Validate the source and binary packages according to the [How to validate a new release](../validate-release/) guides.
+After that, publish the dev directory of the Apache SVN warehouse of the material package:
 
 ```shell
 $ cd ~/amoro_svn/dev/amoro
@@ -313,7 +313,7 @@ $ cd ${$AMORO_SOURCE_HOME}/tools
 $ RELEASE_VERSION=0.8.0-incubating bash ./releasing/deploy_staging_jars.sh
 ```
 
-You can visit https://repository.apache.org/ and log in to check the publishment status. You can find the publishment process in the `Staging Repositories` section. You nedd to close the process when all jars are publised.
+You can visit https://repository.apache.org/ and log in to check the publishment status. You can find the publishment process in the `Staging Repositories` section. You need to close the process when all jars are publised.
 
 ## Vote for the new release
 
@@ -321,15 +321,15 @@ Next, vote for the new release via email. First complete the vote within the Amo
 
 ### Vote in the Amoro community
 
-Send a vote email to `dev@amoro.apache.org` to start the vote process in Apache Amoro community, you can take [[VOTE] Release Apache Amoro(incubating) 0.8.0-incubating rc3](https://lists.apache.org/thread/22rrpzwtzkby8vnhfvcwzmpfxxz8qhns) as a example.
+Send a vote email to `dev@amoro.apache.org` to start the vote process in Apache Amoro community, you can take [[VOTE] Release Apache Amoro(incubating) 0.8.0-incubating rc3](https://lists.apache.org/thread/22rrpzwtzkby8vnhfvcwzmpfxxz8qhns) as an example.
 
-After 72 hours, if there are at least 3 binding votes in favor and no votes against, send the result email to celebrate the release of the version like [[RESULT][VOTE] Release Apache Amoro(incubating) 0.8.0-incubating rc3](https://lists.apache.org/thread/gokj30ldgh3p5866tw40h41mhdw90whs).
+After 72 hours, if there are at least 3 binding votes from Amoro PPMC members and no votes against, send the result email to celebrate the release of the version like [[RESULT][VOTE] Release Apache Amoro(incubating) 0.8.0-incubating rc3](https://lists.apache.org/thread/gokj30ldgh3p5866tw40h41mhdw90whs).
 
 ### Vote in the Incubator community
 
-Then send a vote email to `general@incubator.apache.org` to start the vote process in Apache Incubator community, you can take [[VOTE] Release Apache Amoro(incubating) 0.8.0-incubating rc3](https://lists.apache.org/thread/22rrpzwtzkby8vnhfvcwzmpfxxz8qhns) as a example.
+Send a vote email to `general@incubator.apache.org` to start the vote process in Apache Incubator community, you can take [[VOTE] Release Apache Amoro(incubating) 0.8.0-incubating rc3](https://lists.apache.org/thread/bqj7gohrjwxp5gwycdgh78xmpymfm6jr) as an example.
 
-After 72 hours, if there are at least 3 binding votes in favor and no votes against, send the result email to celebrate the release of the version like [[RESULT][VOTE] Release Apache Amoro(incubating) 0.8.0-incubating rc3](https://lists.apache.org/thread/qmvg3tcds0p0pbn05w0mzchm85o581rv).
+After 72 hours, if there are at least 3 binding votes from IPMC members and no votes against, send the result email to celebrate the release of the version like [[RESULT][VOTE] Release Apache Amoro(incubating) 0.8.0-incubating rc3](https://lists.apache.org/thread/qmvg3tcds0p0pbn05w0mzchm85o581rv).
 
 ## Complete the final publishing steps
 
@@ -355,112 +355,3 @@ $ svn mv https://dist.apache.org/repos/dist/dev/incubator/amoro/0.8.0-incubating
 Finally, we need to send the announcement email to these mailing lists: `dev@amoro.apache.org`, `general@incubator.apache.org`. Here is an example of an announcement email:  [[ANNOUNCE] Apache Amoro (Incubating) 0.8.0-incubating available](https://lists.apache.org/thread/h3cy8f2mfmp4zms4cs3tq4hdlq64qyw0).
 
 Congratulations! You have successfully completed all steps of the Apache Amoro release process. Thank you for your contributions!
-
-# How to validate a new version
-
-## Download candidate
-
-```shell
-# If there is svn locally, you can clone to the local
-$ svn co https://dist.apache.org/repos/dist/dev/incubator/amoro/${release_version}-${rc_version}/
-# or download the material file directly
-$ wget https://dist.apache.org/repos/dist/dev/incubator/amoro/${release_version}-${rc_version}/
-```
-
-## validate candidate
-
-### Check GPG signature
-
-Download the KEYS and import it:
-
-```shell
-$ curl  https://downloads.apache.org/incubator/amoro/KEYS > KEYS # Download KEYS
-$ gpg --import KEYS # Import KEYS to local
-```
-
-Trust the KEY used in this version:
-
-```shell
-$ gpg --edit-key xxxxxxxxxx #KEY user used in this version
-gpg (GnuPG) 2.2.21; Copyright (C) 2020 Free Software Foundation, Inc.
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
-
-Secret key is available.
-gpg> trust #trust
-Please decide how far you trust this user to correctly verify other users' keys
-(by looking at passports, checking fingerprints from different sources, etc.)
-
-  1 = I don't know or won't say
-  2 = I do NOT trust
-  3 = I trust marginally
-  4 = I trust fully
-  5 = I trust ultimately
-  m = back to the main menu
-
-Your decision? 5 #choose 5
-Do you really want to set this key to ultimate trust? (y/N) y  #choose y
-```
-
-Check the gpg signature:
-
-```shell
-$ for i in *.tar.gz; do echo $i; gpg --verify $i.asc $i; done
-```
-
-### Check sha512 hash
-
-```shell
-# Command for Linux
-$ for i in *.tar.gz; do echo $i; sha512sum --check  $i.sha512; done
-# Command for MacOS
-$ for i in *.tar.gz; do echo $i; shasum -a 512 -c $i.sha512; done
-```
-
-### Check the binary package
-
-Unzip the binary pakcages: `apache-amoro-${AMORO_VERSION}-bin-${HADOOP_VERSION}.tar.gz`:
-
-```shell
-# Hadoop2
-$ tar -xzvf apache-amoro-0.8.0-incubating-bin-hadoop2.tar.gz
-
-# Hadoop3 
-$ tar -xzvf apache-amoro-0.8.0-incubating-bin-hadoop3.tar.gz
-```
-
-check as follows:
-- Check whether the package contains unnecessary files, which makes the tar package too large
-- Folder contains the word incubating
-- There are LICENSE and NOTICE files
-- There is a DISCLAIMER file
-- Check for extra files or folders, such as empty folders, etc.
-
-### Check the source package
-
-Unzip the binary pakcages: `apache-amoro-${AMORO_VERSION}-src.tar.gz`:
-
-```shell
-# Hadoop2
-$ tar -xzvf apache-amoro-0.8.0-incubating-src.tar.gz
-```
-
-Check as follows:
-- There are LICENSE and NOTICE files
-- There is a DISCLAIMER file
-- All source files have ASF license at the beginning
-- Only source files exist, not binary files
-
-Compile from source:
-
-```shell
-# Compile from source
-$ mvn clean package
-
-# Or skip the unit test
-$ mvn clean package -DskipTests
-```
-
-## vote for the release
-
-If all verifications pass, please vote for the new release! Thanks a lot for your contribution!
