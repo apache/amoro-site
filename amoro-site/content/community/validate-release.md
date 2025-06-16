@@ -88,7 +88,6 @@ check as follows:
 Unzip the binary pakcages: `apache-amoro-${AMORO_VERSION}-src.tar.gz`:
 
 ```shell
-# Hadoop2
 $ tar -xzvf apache-amoro-0.8.0-incubating-src.tar.gz
 ```
 
