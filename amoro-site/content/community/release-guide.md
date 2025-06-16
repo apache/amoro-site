@@ -17,8 +17,8 @@ Please refer to the following link to understand the ASF release process:
 ### Environmental requirements
 
 - JDK 11
-- Apache Maven 3.x
-- GnuPG 2.x
+- Apache Maven 3.8+
+- GnuPG 2.1+
 - Git
 - SVN
 
@@ -233,11 +233,17 @@ $ mvn --encrypt-password <apache password>
 
 ### Cut the release branch
 
-Cut the release branch:
+Cut the release branch if it is not created in the Apache remote repository, if it already exists, check it out and pull the latest changes.
 
 ```shell
 $ cd ${AMORO_SOURCE_HOME}
+
+# Cut the release branch if it is not created 
 $ git checkout -b 0.8.x
+
+# Or check it out and pull the latest changes if it is created
+$ git checkout 0.8.x
+$ git pull apache 0.8.x
 ```
 
 Change the project version to the release version in the `tools/change-version.sh`:
@@ -322,6 +328,8 @@ Next, vote for the new release via email. First complete the vote within the Amo
 ### Vote in the Amoro community
 
 Send a vote email to `dev@amoro.apache.org` to start the vote process in Apache Amoro community, you can take [[VOTE] Release Apache Amoro(incubating) 0.8.0-incubating rc3](https://lists.apache.org/thread/22rrpzwtzkby8vnhfvcwzmpfxxz8qhns) as an example.
+
+You can validate the source and binary packages according to the [How to validate a new release](../validate-release/) guides and give your vote resulut. If other developers identify critical issues, you need to cancel the current vote, wait for the fixes to be implemented, and then restart the release process with a new release candidate.
 
 After 72 hours, if there are at least 3 binding votes from Amoro PPMC members and no votes against, send the result email to celebrate the release of the version like [[RESULT][VOTE] Release Apache Amoro(incubating) 0.8.0-incubating rc3](https://lists.apache.org/thread/gokj30ldgh3p5866tw40h41mhdw90whs).
 

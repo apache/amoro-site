@@ -109,4 +109,5 @@ $ mvn clean package -DskipTests
 
 ## vote for the release
 
-If all verifications pass, please vote for the new release! Thanks a lot for your contribution!
+If all verifications pass, please vote +1 for the new release! If you find any critical issues, pleaste vote -1 for it.
+Thanks a lot for your work!
