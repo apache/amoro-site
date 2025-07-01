@@ -108,13 +108,13 @@ To use the Mixed-Iceberg Format, select `Type` as `Internal Catalog`, and choose
 
 ### Start optimizers
 
-Click on `Optimizing` in the sidebar, select the `Optimizer Group` tab, and click the `scale-out` operation for group `local`.
+Click on `Optimizing` in the sidebar, select the `Optimizers` tab, and click the `Create Optimizer` button.
 
-![Scale out optimizer](../images/quickstart/scale-out-optimizer.png)
+![Scale out optimizer](../images/quickstart/create-optimizer.png)
 
-Set the concurrency of the optimizer to 1 and click `OK`.
+Choose the `local` resource group and set the concurrency of the optimizer to 1 and click `OK`.
 
-Then you can switch the tab to `Optimizers`, you can find the newly launched optimizer here.
+You may need to wait a few seconds and try refreshing the page, you will find the newly launched optimizer here.
 
 ![Optimizers](../images/quickstart/optimizers.png)
 
