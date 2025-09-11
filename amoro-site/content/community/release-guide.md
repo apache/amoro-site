@@ -335,6 +335,8 @@ After 72 hours, if there are at least 3 binding votes from Amoro PPMC members an
 
 ### Vote in the Incubator community
 
+> We recommend to use gmail when sending the email.
+
 Send a vote email to `general@incubator.apache.org` to start the vote process in Apache Incubator community, you can take [[VOTE] Release Apache Amoro(incubating) 0.8.0-incubating rc3](https://lists.apache.org/thread/bqj7gohrjwxp5gwycdgh78xmpymfm6jr) as an example.
 
 After 72 hours, if there are at least 3 binding votes from IPMC members and no votes against, send the result email to celebrate the release of the version like [[RESULT][VOTE] Release Apache Amoro(incubating) 0.8.0-incubating rc3](https://lists.apache.org/thread/qmvg3tcds0p0pbn05w0mzchm85o581rv).
@@ -357,6 +359,11 @@ $ svn mv https://dist.apache.org/repos/dist/dev/incubator/amoro/0.8.0-incubating
 - Click the Release button above, this process will perform a series of checks
 
 > It usually takes 24 hours for the warehouse to synchronize to other data sources
+
+### Add release note and update the main web
+
+- Creating an [new release note](https://github.com/apache/amoro/releases) in github
+- Update the content for the new version for the web, the source locates in [amoro-site](github.com/apache/amoro-site) repo
 
 ### Send announcement email
 
