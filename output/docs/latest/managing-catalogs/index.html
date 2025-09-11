@@ -146,6 +146,10 @@
                             </li class="topnav-page-selection">
                         
                             <li class="topnav-page-selection">
+                            <a   href="https://amoro.apache.org/docs/latest/../../docs/0.8.1/">0.8.1-incubating</a>
+                            </li class="topnav-page-selection">
+                        
+                            <li class="topnav-page-selection">
                             <a   href="https://amoro.apache.org/docs/latest/../../docs/0.8.0/">0.8.0-incubating</a>
                             </li class="topnav-page-selection">
                         
@@ -408,6 +412,10 @@
                         </li>
                     
                         <li>
+                            <a href="../using-customized-encryption-method/">Using Customized Encryption Method for Configurations</a>
+                        </li>
+                    
+                        <li>
                             <a href="../using-kyuubi/">Using Kyuubi By Terminal</a>
                         </li>
                     
@@ -639,11 +647,19 @@ please read the following guidelines and select the appropriate creation accordi
 <ul>
 <li>warehouse: Warehouse <strong>must be configured</strong> for ams/hadoop/glue catalog, as it determines where our database and table files should be placed</li>
 <li>catalog-impl: when the metastore is <strong>Custom</strong>, an additional catalog-impl must be defined, and the user must put the jar package for the custom catalog implementation into the <strong>{AMORO_HOME}/lib</strong> directory, <strong>and the service must be restarted to take effect</strong></li>
+<li>clients: Hive Catalog connection pool size for accessing HiveMetaStore, default configuration is 20, requires restarting Amoro to take effect.</li>
 <li>database-filter: Configure a regular expression to filter databases in the catalog. If not set then all databases will be displayed in table menu.</li>
 <li>table-filter: Configure a regular expression to filter tables in the catalog. The matching will be done in the format of <code>database.table</code>. For example, if it is set to <code>(A\.a)|(B\.b)</code>, it will ignore all tables except for table <code>a</code> in database <code>A</code> and table <code>b</code> in database <code>B</code></li>
 </ul>
 <h3 id="configure-table-properties">Configure table properties</h3>
 <p>If you want to add the same table properties to all tables under a catalog, you can add these table properties here on the catalog level. If you also configure this property on the table level, the property on the table will take effect.</p>
+<h2 id="rest-catalog">REST Catalog</h2>
+<p>When a user needs to create a Iceberg REST Catalog, they can choose <strong>External Catalog Type</strong>、<strong>Custom Metastore Type</strong>、<strong>Iceberg Table Format</strong>, configure properties include:
+<strong>catalog-impl=org.apache.iceberg.rest.RESTCatalog</strong>, <strong>uri=$restCatalog_uri</strong>.</p>
+<p>After configuring the above parameters, the final result in the AMS frontend will look like this:
+<img src="../images/admin/create-rest_catalog.png" alt="create-rest_catalog"></p>
+<h3 id="nessies-rest-catalog">Nessie&rsquo;s REST Catalog</h3>
+<p>When a user needs to create a Nessie Rest Catalog, they can also set <strong>catalog-impl=org.apache.iceberg.nessie.NessieCatalog</strong> on top of the above parameters.</p>
 <h2 id="delete-catalog">Delete catalog</h2>
 <p>When a user needs to delete a Catalog, they can go to the details page of the Catalog and click the Remove button at the bottom of the page to perform the deletion.</p>
 <div class="info">
@@ -678,6 +694,11 @@ If there are still tables under that Catalog, AMS will prompt that the deletion 
         <li><a href="#configure-authentication">Configure authentication</a></li>
         <li><a href="#configure-properties">Configure properties</a></li>
         <li><a href="#configure-table-properties">Configure table properties</a></li>
+      </ul>
+    </li>
+    <li><a href="#rest-catalog">REST Catalog</a>
+      <ul>
+        <li><a href="#nessies-rest-catalog">Nessie&rsquo;s REST Catalog</a></li>
       </ul>
     </li>
     <li><a href="#delete-catalog">Delete catalog</a></li>

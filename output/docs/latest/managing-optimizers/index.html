@@ -146,6 +146,10 @@
                             </li class="topnav-page-selection">
                         
                             <li class="topnav-page-selection">
+                            <a   href="https://amoro.apache.org/docs/latest/../../docs/0.8.1/">0.8.1-incubating</a>
+                            </li class="topnav-page-selection">
+                        
+                            <li class="topnav-page-selection">
                             <a   href="https://amoro.apache.org/docs/latest/../../docs/0.8.0/">0.8.0-incubating</a>
                             </li class="topnav-page-selection">
                         
@@ -408,6 +412,10 @@
                         </li>
                     
                         <li>
+                            <a href="../using-customized-encryption-method/">Using Customized Encryption Method for Configurations</a>
+                        </li>
+                    
+                        <li>
                             <a href="../using-kyuubi/">Using Kyuubi By Terminal</a>
                         </li>
                     
@@ -644,7 +652,7 @@ The supported parameters include:</p>
   <thead>
       <tr>
           <th>Parameter Name</th>
-          <th>efault Value</th>
+          <th>Default Value</th>
           <th>Description</th>
       </tr>
   </thead>
@@ -1114,12 +1122,12 @@ contain several optimizers with the same container implementation to facilitate 
 <h3 id="remove-optimizer-group">Remove optimizer group</h3>
 <p>You can click the <code>remove</code> button on the <code>Optimizer Groups</code> page to delete the optimizer group, but only if the group is
 not referenced by any catalog or table and no optimizer belonging to this group is running.</p>
-<h2 id="optimizer-scale-out-and-release">Optimizer Scale-out and Release</h2>
-<h3 id="scale-out-optimizer">Scale out optimizer</h3>
-<p>You can click the <code>Scale-Out</code> button on the <code>Optimizer Groups</code> page to scale out the optimizer for the corresponding optimizer
+<h2 id="optimizer-create-and-release">Optimizer Create and Release</h2>
+<h3 id="create-optimizer">Create optimizer</h3>
+<p>You can click the <code>Create Optimizer</code> button on the <code>Optimizers</code> page to create the optimizer for the corresponding optimizer
 group, and then click <code>OK</code> to start the optimizer for this optimizer group according to the parallelism configuration.
 If the optimizer runs normally, you will see an optimizer with the status <code>RUNNING</code> on the <code>Optimizers</code> page.</p>
-<p><img src="../images/admin/optimizer_scale.png" alt="optimize-scale-out"></p>
+<p><img src="../images/admin/optimizer_create.png" alt="optimize-create"></p>
 <h3 id="release-optimizer">Release optimizer</h3>
 <p>You can click the <code>Release</code> button on the <code>Optimizer</code> page to release the optimizer.</p>
 <p><img src="../images/admin/optimizer_release.png" alt="release optimizer"></p>
@@ -1281,9 +1289,9 @@ If the optimizer runs normally, you will see an optimizer with the status <code>
         <li><a href="#remove-optimizer-group">Remove optimizer group</a></li>
       </ul>
     </li>
-    <li><a href="#optimizer-scale-out-and-release">Optimizer Scale-out and Release</a>
+    <li><a href="#optimizer-create-and-release">Optimizer Create and Release</a>
       <ul>
-        <li><a href="#scale-out-optimizer">Scale out optimizer</a></li>
+        <li><a href="#create-optimizer">Create optimizer</a></li>
         <li><a href="#release-optimizer">Release optimizer</a></li>
         <li><a href="#deploy-external-optimizer">Deploy external optimizer</a></li>
       </ul>
