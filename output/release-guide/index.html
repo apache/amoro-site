@@ -531,6 +531,8 @@ After that, publish the dev directory of the Apache SVN warehouse of the materia
 <p>You can validate the source and binary packages according to the <a href="../validate-release/">How to validate a new release</a> guides and give your vote resulut. If other developers identify critical issues, you need to cancel the current vote, wait for the fixes to be implemented, and then restart the release process with a new release candidate.</p>
 <p>After 72 hours, if there are at least 3 binding votes from Amoro PPMC members and no votes against, send the result email to celebrate the release of the version like <a href="https://lists.apache.org/thread/gokj30ldgh3p5866tw40h41mhdw90whs">[RESULT][VOTE] Release Apache Amoro(incubating) 0.8.0-incubating rc3</a>.</p>
 <h3 id="vote-in-the-incubator-community">Vote in the Incubator community</h3>
+<blockquote>
+<p>We recommend to use gmail when sending the email.</p></blockquote>
 <p>Send a vote email to <code>general@incubator.apache.org</code> to start the vote process in Apache Incubator community, you can take <a href="https://lists.apache.org/thread/bqj7gohrjwxp5gwycdgh78xmpymfm6jr">[VOTE] Release Apache Amoro(incubating) 0.8.0-incubating rc3</a> as an example.</p>
 <p>After 72 hours, if there are at least 3 binding votes from IPMC members and no votes against, send the result email to celebrate the release of the version like <a href="https://lists.apache.org/thread/qmvg3tcds0p0pbn05w0mzchm85o581rv">[RESULT][VOTE] Release Apache Amoro(incubating) 0.8.0-incubating rc3</a>.</p>
 <h2 id="complete-the-final-publishing-steps">Complete the final publishing steps</h2>
@@ -546,6 +548,11 @@ After that, publish the dev directory of the Apache SVN warehouse of the materia
 </ul>
 <blockquote>
 <p>It usually takes 24 hours for the warehouse to synchronize to other data sources</p></blockquote>
+<h3 id="add-release-note-and-update-the-main-web">Add release note and update the main web</h3>
+<ul>
+<li>Creating an <a href="https://github.com/apache/amoro/releases">new release note</a> in github</li>
+<li>Update the content for the new version for the web, the source locates in <a href="github.com/apache/amoro-site">amoro-site</a> repo</li>
+</ul>
 <h3 id="send-announcement-email">Send announcement email</h3>
 <p>Finally, we need to send the announcement email to these mailing lists: <code>dev@amoro.apache.org</code>, <code>general@incubator.apache.org</code>. Here is an example of an announcement email:  <a href="https://lists.apache.org/thread/h3cy8f2mfmp4zms4cs3tq4hdlq64qyw0">[ANNOUNCE] Apache Amoro (Incubating) 0.8.0-incubating available</a>.</p>
 <p>Congratulations! You have successfully completed all steps of the Apache Amoro release process. Thank you for your contributions!</p>
@@ -596,6 +603,7 @@ After that, publish the dev directory of the Apache SVN warehouse of the materia
       <ul>
         <li><a href="#migrate-source-and-binary-packages">Migrate source and binary packages</a></li>
         <li><a href="#publish-releases-in-the-apache-staging-repository">Publish releases in the Apache Staging repository</a></li>
+        <li><a href="#add-release-note-and-update-the-main-web">Add release note and update the main web</a></li>
         <li><a href="#send-announcement-email">Send announcement email</a></li>
       </ul>
     </li>
