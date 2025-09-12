@@ -363,7 +363,10 @@ $ svn mv https://dist.apache.org/repos/dist/dev/incubator/amoro/0.8.0-incubating
 ### Add release note and update the main web
 
 - Creating an [new release note](https://github.com/apache/amoro/releases) in github
-- Update the content for the new version for the web, the source locates in [amoro-site](github.com/apache/amoro-site) repo
+- Update the content for the new version for the web, the source locates in [amoro-site](https://github.com/apache/amoro-site) repo
+  - First, submit a pull request containing the new version. You can refer to [this commit](https://github.com/apache/amoro-site/commit/598787c97898bb6431686e9cf6dd37f89ce2a339). Note that the `$version` in the "url = "/docs/$version/" URL in hugo.toml corresponds to the branch name will be created in the following step in amoro-site
+  - After merging the pull request from step 1, pull a local branch named `$version` and push it remotely
+  - Check that the [GithubAction](https://github.com/apache/amoro-site/actions/workflows/deploy.yml) for branch `$version` is executed successfully
 
 ### Send announcement email
 
