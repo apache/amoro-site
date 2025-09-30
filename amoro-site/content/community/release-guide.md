@@ -232,22 +232,28 @@ $ mvn --encrypt-password <apache password>
 ## Build release
 
 ### Cut the release branch
+> The version of Apache Amoro follows the [Semantic Versioning](https://semver.org/), which looks like `{major}.{mior}.{patch}`
 
-Cut the release branch if it is not created in the Apache remote repository, if it already exists, check it out and pull the latest changes.
+Cut a branch for the `minor` version if it is not created in the Apache remote repository, if it already exists, check it out and pull the latest changes.
 
 ```shell
 $ cd ${AMORO_SOURCE_HOME}
 
-# Cut the release branch if it is not created 
+# Cut the release branch if it is not created, then push to the remote 
 $ git checkout -b 0.8.x
+$ git push apache 0.8.x
 
 # Or check it out and pull the latest changes if it is created
 $ git checkout 0.8.x
 $ git pull apache 0.8.x
 ```
 
-Change the project version to the release version in the `tools/change-version.sh`:
+Checkout a `patch` branch using the following command
+```
+$ git checkout -b 0.8.0-branch
+```
 
+Update the version in the new branch using the tool `tools/change-version.sh`:
 ```bash
 OLD="0.8-SNAPSHOT"
 NEW="0.8.0-incubating"
@@ -270,7 +276,7 @@ $ bash change-version.sh
 $ cd ..
 $ git add *
 $ git commit -m "Change project version to 0.8.0-incubating"
-$ git push apache 0.8.x
+$ git push apache 0.8.0-branch
 ```
 
 ### Create the release tag
