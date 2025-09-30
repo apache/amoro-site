@@ -555,7 +555,13 @@ After that, publish the dev directory of the Apache SVN warehouse of the materia
 <h3 id="add-release-note-and-update-the-main-web">Add release note and update the main web</h3>
 <ul>
 <li>Creating an <a href="https://github.com/apache/amoro/releases">new release note</a> in github</li>
-<li>Update the content for the new version for the web, the source locates in <a href="github.com/apache/amoro-site">amoro-site</a> repo</li>
+<li>Update the content for the new version for the web, the source locates in <a href="https://github.com/apache/amoro-site">amoro-site</a> repo
+<ul>
+<li>First, submit a pull request containing the new version. You can refer to <a href="https://github.com/apache/amoro-site/commit/598787c97898bb6431686e9cf6dd37f89ce2a339">this commit</a>. Note that the <code>$version</code> in the &ldquo;url = &ldquo;/docs/$version/&rdquo; URL in hugo.toml corresponds to the branch name will be created in the following step in amoro-site</li>
+<li>After merging the pull request from step 1, pull a local branch named <code>$version</code> and push it remotely</li>
+<li>Check that the <a href="https://github.com/apache/amoro-site/actions/workflows/deploy.yml">GithubAction</a> for branch <code>$version</code> is executed successfully</li>
+</ul>
+</li>
 </ul>
 <h3 id="send-announcement-email">Send announcement email</h3>
 <p>Finally, we need to send the announcement email to these mailing lists: <code>dev@amoro.apache.org</code>, <code>general@incubator.apache.org</code>. Here is an example of an announcement email:  <a href="https://lists.apache.org/thread/h3cy8f2mfmp4zms4cs3tq4hdlq64qyw0">[ANNOUNCE] Apache Amoro (Incubating) 0.8.0-incubating available</a>.</p>
