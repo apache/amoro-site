@@ -8,6 +8,8 @@
   </url><url>
     <loc>https://amoro.apache.org/benchmark/</loc>
   </url><url>
+    <loc>https://amoro.apache.org/blogs/</loc>
+  </url><url>
     <loc>https://amoro.apache.org/categories/</loc>
   </url><url>
     <loc>https://amoro.apache.org/community/</loc>
@@ -25,8 +27,6 @@
     <loc>https://amoro.apache.org/release-guide/</loc>
   </url><url>
     <loc>https://amoro.apache.org/validate-release/</loc>
-  </url><url>
-    <loc>https://amoro.apache.org/roadmap/</loc>
   </url><url>
     <loc>https://amoro.apache.org/tags/</loc>
   </url>
