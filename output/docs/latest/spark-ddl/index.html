@@ -665,18 +665,21 @@ Integers and longs truncate to bins: truncate(10, i) produces partitions 0, 10, 
 </li>
 </ul>
 <blockquote>
-<p>Mixed-Hive format doesn&rsquo;t support transform.</p></blockquote>
+<p>Mixed-Hive format doesn&rsquo;t support transform.</p>
+</blockquote>
 <h2 id="create-table--as-select">CREATE TABLE &hellip; AS SELECT</h2>
 <pre tabindex="0"><code>CREATE TABLE mixed_catalog.db.sample
 USING mixed_iceberg
 AS SELECT ...
 </code></pre><blockquote>
 <p>The <code>CREATE TABLE ... AS SELECT</code> syntax is used to create a table and write the query results to the table. Primary
-keys, partitions, and properties are not inherited from the source table and need to be configured separately.</p></blockquote>
+keys, partitions, and properties are not inherited from the source table and need to be configured separately.</p>
+</blockquote>
 <blockquote>
 <p>You can enable uniqueness check for the primary key in the source table by setting set
 <code>spark.sql.mixed-format.check-source-data-uniqueness.enabled = true</code> in Spark SQL. If there are duplicate primary keys, an
-error will be raised during the write operation.</p></blockquote>
+error will be raised during the write operation.</p>
+</blockquote>
 <p>You can use the following syntax to create a table with primary keys, partitions, and properties:</p>
 <pre tabindex="0"><code>CREATE TABLE mixed_catalog.db.sample
 PRIMARY KEY(id) USING mixed_iceberg 
@@ -696,18 +699,21 @@ USING mixed_iceberg
 TBLPROPERTIES (&#39;owner&#39;=&#39;xxxx&#39;);
 </code></pre><blockquote>
 <p>Since <code>PRIMARY KEY</code> is not a standard Spark syntax, if the source table is a MixedFormat table with primary keys, the
-new table can copy the schema information with the primary keys. Otherwise, only schema could be copied.</p></blockquote>
+new table can copy the schema information with the primary keys. Otherwise, only schema could be copied.</p>
+</blockquote>
 <div class="info">
     <code>Create Table Like</code> only supports the binary form of <code>db.table</code> and in the same catalog
 </div>
 <h2 id="replace-table--as-select">REPLACE TABLE &hellip; AS SELECT</h2>
 <blockquote>
-<p>The <code>REPLACE TABLE ... AS SELECT</code> syntax only supports tables without primary keys in the current version.</p></blockquote>
+<p>The <code>REPLACE TABLE ... AS SELECT</code> syntax only supports tables without primary keys in the current version.</p>
+</blockquote>
 <pre tabindex="0"><code>REPLACE TABLE mixed_catalog.db.sample
 USING mixed_iceberg
 AS SELECT ...
 </code></pre><blockquote>
-<p>In the current version, <code>REPLACE TABLE ... AS SELECT</code> does not provide atomicity guarantees.</p></blockquote>
+<p>In the current version, <code>REPLACE TABLE ... AS SELECT</code> does not provide atomicity guarantees.</p>
+</blockquote>
 <h2 id="drop-table">DROP TABLE</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> mixed_catalog.db.sample;
 </span></span></code></pre></div><h2 id="truncate-table">TRUNCATE TABLE</h2>

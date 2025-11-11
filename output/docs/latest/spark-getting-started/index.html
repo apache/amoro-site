@@ -619,7 +619,8 @@ for more information.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>spark-shell --packages org.apache.amoro:amoro-mixed-spark-3.3-runtime:0.7.0
 </span></span></code></pre></div><blockquote>
 <p>If you want to include the connector in your Spark installation, add the <code>amoro-mixed-spark-3.3-runtime</code> Jar to
-Spark&rsquo;s <code>jars</code> folder.</p></blockquote>
+Spark&rsquo;s <code>jars</code> folder.</p>
+</blockquote>
 <h2 id="adding-catalogs">Adding catalogs</h2>
 <pre tabindex="0"><code>${SPARK_HOME}/bin/spark-sql \
     --conf spark.sql.extensions=org.apache.amoro.spark.MixedFormatSparkExtensions \
@@ -630,10 +631,12 @@ Spark&rsquo;s <code>jars</code> folder.</p></blockquote>
 in the following format:
 <code>thrift://${AMS_HOST}:${AMS_PORT}/${AMS_CATALOG_NAME}</code>,
 The mixed-format-spark-connector will automatically download the Hadoop site configuration file through
-the thrift protocol for accessing the HDFS cluster</p></blockquote>
+the thrift protocol for accessing the HDFS cluster</p>
+</blockquote>
 <blockquote>
 <p>The AMS_PORT is the port number of the AMS service&rsquo;s thrift API interface, with a default value of 1260
-The AMS_CATALOG_NAME is the name of the Catalog you want to access on AMS.</p></blockquote>
+The AMS_CATALOG_NAME is the name of the Catalog you want to access on AMS.</p>
+</blockquote>
 <p>Regarding detailed configurations for Spark, please refer to <a href="../spark-configuration/">Spark Configurations</a></p>
 <h2 id="creating-a-table">Creating a table</h2>
 <p>In Spark SQL command line, you can execute a create table command using the <code>CREATE TABLE</code> statement.</p>
@@ -669,7 +672,8 @@ insert overwrite test3 values
 ( 2, &#34;bbb&#34;, timestamp(&#39;2022-1-2 00:00:00&#39;)),
 ( 3, &#34;bbb&#34;, timestamp(&#39;2022-1-3 00:00:00&#39;));
 </code></pre><blockquote>
-<p>If you are using Static Overwrite, you cannot define transforms on partition fields.</p></blockquote>
+<p>If you are using Static Overwrite, you cannot define transforms on partition fields.</p>
+</blockquote>
 <p>Alternatively, you can use the DataFrame API to write data to an Amoro table within a JAR job.</p>
 <pre tabindex="0"><code>val df = spark.read().load(&#34;/path-to-table&#34;)
 df.writeTo(&#39;test_db.table1&#39;).overwritePartitions()

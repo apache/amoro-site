@@ -630,11 +630,13 @@ the table. If the PARTITION clause is omitted, all partitions will be replaced.<
 </span></span><span style="display:flex;"><span>partition( dt <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;2021-1-1&#39;</span>)  <span style="color:#66d9ef">values</span> 
 </span></span><span style="display:flex;"><span>(<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;aaa&#39;</span>), (<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;bbb&#39;</span>), (<span style="color:#ae81ff">3</span>, <span style="color:#e6db74">&#39;ccc&#39;</span>) 
 </span></span></code></pre></div><blockquote>
-<p>In Static mode, it is not supported to define transforms on partitioning columns.</p></blockquote>
+<p>In Static mode, it is not supported to define transforms on partitioning columns.</p>
+</blockquote>
 <blockquote>
 <p>You can enable uniqueness check of the primary key on the source table by setting
 <code>spark.sql.mixed-format.check-source-data-uniqueness.enabled = true</code> in SPARK SQL. If there are duplicate primary keys,
-an error will be thrown during the write operation.</p></blockquote>
+an error will be thrown during the write operation.</p>
+</blockquote>
 <h3 id="insert-into">INSERT INTO</h3>
 <p>To append new data to a table, use <code>INSERT INTO</code>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> mixed_catalog.db.sample <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;a&#39;</span>), (<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;b&#39;</span>)
@@ -659,7 +661,8 @@ even if there are rows with the same primary key in the table.</p>
 </span></span></code></pre></div><blockquote>
 <p>You can enable uniqueness check of the primary key on the source table by setting
 <code>spark.sql.mixed-format.check-source-data-uniqueness.enabled = true</code> in SPARK SQL. If there are duplicate primary keys,
-an error will be thrown during the write operation.</p></blockquote>
+an error will be thrown during the write operation.</p>
+</blockquote>
 <h3 id="delete-from">DELETE FROM</h3>
 <p>The <code>DELETE FROM</code> statements delete rows from table.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">FROM</span> mixed_catalog.db.sample

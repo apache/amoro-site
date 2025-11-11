@@ -694,7 +694,8 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> db.log_table <span style="color:#75715e">/*+ OPTIONS(&#39;mixed-format.emit.mode&#39;=&#39;log&#39;) */</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> id, name, ts <span style="color:#66d9ef">from</span> sourceTable;
 </span></span></code></pre></div><blockquote>
-<p>Currently, only the Apache Flink engine implements the dual-write LogStore and FileStore.</p></blockquote>
+<p>Currently, only the Apache Flink engine implements the dual-write LogStore and FileStore.</p>
+</blockquote>
 </div>
                 
                     
