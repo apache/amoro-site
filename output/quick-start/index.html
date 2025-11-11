@@ -326,10 +326,10 @@
 </span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">AWS_REGION=us-east-1</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">entrypoint</span>: &gt;<span style="color:#e6db74">
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      /bin/sh -c &#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      until (/usr/bin/mc config host add minio http://minio:9000 admin password) do echo &#39;...waiting...&#39; &amp;&amp; sleep 1; done;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      until (/usr/bin/mc alias set minio http://minio:9000 admin password) do echo &#39;...waiting...&#39; &amp;&amp; sleep 1; done;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      /usr/bin/mc rm -r --force minio/warehouse;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      /usr/bin/mc mb minio/warehouse;
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      /usr/bin/mc policy set public minio/warehouse;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      /usr/bin/mc anonymous set public minio/warehouse;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      tail -f /dev/null
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">amoro</span>:
