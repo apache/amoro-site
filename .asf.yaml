@@ -14,5 +14,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+github:
+  description: "Apache Amoro Website"
+  homepage: https://amoro.apache.org/
+  labels:
+    - amoro
+    - website
+    - hugo
 publish:
    whoami: asf-site
