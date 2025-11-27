@@ -34,6 +34,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Sync latest docs from Amoro repository
+        run: .github/bin/sync_docs.sh master amoro-docs/content
+
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
@@ -58,10 +61,13 @@ jobs:
     continue-on-error: true
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Set output
         id: vars
-        run: echo ::set-output name=branch_name::${GITHUB_REF#refs/*/}
+        run: echo "branch_name=$(echo ${GITHUB_REF#refs/*/})" >> $GITHUB_OUTPUT
+
+      - name: Sync docs from Amoro repository for branch
+        run: .github/bin/sync_docs.sh ${{ steps.vars.outputs.branch_name }} amoro-docs/content
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
@@ -79,3 +85,4 @@ jobs:
           publish_dir: ./output/docs/${{ steps.vars.outputs.branch_name }}
           publish_branch: asf-site
           destination_dir: ./output/docs/${{ steps.vars.outputs.branch_name }}
+          keep_files: true
