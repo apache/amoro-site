@@ -24,6 +24,10 @@ sectionPagesMenu = "main"
   title = "Wechat"
   icon = "wechat-fill"
   url = "javascript:void();"
+[[params.social]]
+  title = "X"
+  icon = "X-logo"
+  url = "https://x.com/apache_amoro"
 
 [[params.features]]
   title = "Self-optimizing"
