@@ -159,7 +159,7 @@
 }
 
 #home-footer .content .btns .btn {
-  width: 300px;
+  width: 280px;
   background-color: #fff;
   color: #1e1f27;
   font-size: 16px;
@@ -178,7 +178,9 @@
 }
 
 #home-footer .content .btns .btn .img-title img {
-  margin-right: 6px;
+  margin-right: 8px;
+  width: 24px;
+  height: 24px;
 }
 
 #home-footer .content .btns .wechat-btn {
